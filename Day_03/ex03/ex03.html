@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style03.css" />
+    <title>Exercise 03</title>
+  </head>
+  <body>
+    <!-- form login -->
+    <form action="" method="" class="form-login">
+      <!-- Username -->
+      <div class="form-username">
+        <label for="name">Username:</label>
+        <input type="text" id="name" name="name" />
+      </div>
+      <!-- Password -->
+      <div class="form-password">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" />
+      </div>
+      <!-- City of Employment -->
+      <div class="form-city">
+        <label for="city">City of<br />Employment:</label>
+        <input type="text" id="city" name="city" />
+      </div>
+      <!-- Web server -->
+      <div class="form-server">
+        <label for="server">Web server:</label>
+        <select name="server" id="server">
+          <option value="" hidden>--Choose a server--</option>
+          <option value="0">Server 0</option>
+          <option value="1">Server 1</option>
+          <option value="2">Server 2</option>
+          <option value="3">Server 3</option>
+          <option value="4">Server 4</option>
+        </select>
+      </div>
+      <!-- Please specify your role -->
+      <div class="form-role">
+        <label
+          >Please specify <br />
+          your role:</label
+        >
+        <div class="form-role-detail">
+          <label> <input type="radio" name="role" value="0" /> Admin </label>
+          <br />
+          <label> <input type="radio" name="role" value="1" /> Engineer </label>
+          <br />
+          <label> <input type="radio" name="role" value="2" /> Manager </label>
+          <br />
+          <label> <input type="radio" name="role" value="3" /> Guest </label>
+        </div>
+      </div>
+      <!-- Single Sign-on the following -->
+      <div class="form-following">
+        <label>Single Sign-on<br />co the following:</label>
+        <div class="form-following-detail">
+          <label>
+            <input type="checkbox" name="Sign-on" value="0" /> Mail
+          </label>
+          <br />
+          <label>
+            <input type="checkbox" name="Sign-on" value="1" /> Payroll
+          </label>
+          <br />
+          <label>
+            <input type="checkbox" name="Sign-on" value="2" /> Self-service
+          </label>
+        </div>
+      </div>
+      <!-- button -->
+      <div class="form-btn">
+        <button type="submit">Login</button>
+        <button type="reset">Reset</button>
+      </div>
+    </form>
+    <!-- end form login -->
+  </body>
+</html>

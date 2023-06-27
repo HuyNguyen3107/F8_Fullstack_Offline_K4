@@ -1,0 +1,59 @@
+/* common */
+html {
+  font-family: Arial, Helvetica, sans-serif;
+}
+/* contact section */
+.contact {
+  width: 50%;
+}
+.contact-heading {
+  display: inline;
+  font-weight: 500;
+}
+.contact-line {
+  width: 50px;
+  height: 2px;
+  background-color: sandybrown;
+  margin-top: 4px;
+  border-radius: 2px;
+}
+.contact-content {
+  display: flex;
+  justify-content: space-between;
+}
+/* contact information */
+.contact-info h3,
+.contact-form h3 {
+  font-weight: 600;
+}
+.contact-info-locate img,
+.contact-info-mail img,
+.contact-info-phone img {
+  width: 25px;
+  vertical-align: top;
+}
+.contact-info-locate p,
+.contact-info-mail p,
+.contact-info-phone p {
+  color: slategray;
+  display: inline-block;
+  margin-top: -4px;
+}
+/* contact form */
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+}
+.contact-form-mail,
+.contact-form-subject,
+.contact-form-message,
+.contact-form-btn {
+  margin-top: 12px;
+}
+.contact-form-btn {
+  padding: 12px;
+  color: white;
+  background-color: mediumturquoise;
+  border: none;
+  cursor: pointer;
+}

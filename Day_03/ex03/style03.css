@@ -1,0 +1,61 @@
+/* form login */
+.form-login {
+  width: 500px;
+}
+/* form-username */
+.form-username input {
+  margin-left: 24px;
+  outline: none;
+  border: 1px solid aqua;
+}
+/* form-password */
+.form-password {
+  margin-top: 8px;
+}
+.form-password input {
+  margin-left: 28px;
+  outline: none;
+  border: 1px solid aqua;
+}
+/* form-city */
+.form-city input {
+  margin-left: 6px;
+  outline: none;
+  border: 1px solid aqua;
+}
+/* form-server */
+.form-server {
+  margin-top: 8px;
+}
+.form-server select {
+  margin-left: 16px;
+  outline: none;
+  border: 1px solid aqua;
+}
+/* form-role */
+.form-role {
+  display: flex;
+  margin-top: 8px;
+}
+.form-role label {
+  align-self: center;
+}
+.form-role-detail {
+  margin-left: 24px;
+}
+/* form-following */
+.form-following {
+  display: flex;
+}
+.form-following-detail {
+  margin-left: 8px;
+}
+/* form-btn */
+.form-btn {
+  margin-top: 8px;
+  margin-left: 112px;
+}
+.form-btn button {
+  outline: none;
+  border: 1px solid aqua;
+}

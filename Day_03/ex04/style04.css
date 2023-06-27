@@ -1,0 +1,58 @@
+/* common */
+html {
+  font-family: Arial, Helvetica, sans-serif;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* map nav bar */
+.map-nav-bar {
+  border: 1px solid chocolate;
+  display: inline-block;
+}
+/* map list */
+.map-list {
+  width: 100%;
+}
+.map-list li {
+  list-style-type: none;
+  display: inline-block;
+}
+.map-list a {
+  text-decoration: none;
+  color: chocolate;
+}
+.map-list li a {
+  display: inline-block;
+  padding: 8px 36px;
+}
+.map-list li:hover a {
+  background-color: chocolate;
+  color: white;
+  cursor: pointer;
+}
+/* map content */
+.map-content {
+  display: flex;
+  margin-top: 36px;
+}
+.content-detail {
+  background-color: whitesmoke;
+  padding-right: 120px;
+}
+.content-info {
+  margin-left: 36px;
+  margin-top: 48px;
+}
+.content-info-address {
+  margin-top: 16px;
+}
+.content-info-contact {
+  margin-top: 16px;
+}
+.content-info-contact p a {
+  color: chocolate;
+  text-decoration: none;
+}
