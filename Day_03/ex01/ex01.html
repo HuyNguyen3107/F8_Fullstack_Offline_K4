@@ -7,37 +7,39 @@
     <title>Exercise 01</title>
   </head>
   <body>
-    <!-- Contact Section -->
-    <section class="contact">
-      <h2 class="contact-heading">CONTACT US</h2>
+    <!-- Contact -->
+    <main class="contact">
+      <h1 class="contact-heading">CONTACT US</h1>
       <div class="contact-line"></div>
       <!-- Contact content -->
       <div class="contact-content">
         <!-- Contact Information -->
         <div class="contact-info">
           <h3>Contact info</h3>
-          <div class="contact-info-locate">
-            <img src="images/locate.png" alt="locate-icon" />
-            <p>
-              321 Awesome Street <br />
-              New York, NY 17022
-            </p>
-          </div>
-          <div class="contact-info-mail">
-            <img src="images/mail.png" alt="mail-icon" />
-            <p>info@companyname.com</p>
-          </div>
-          <div class="contact-info-phone">
-            <img src="images/phone.png" alt="phone-icon" />
-            <p>+1 800 123 1234</p>
-          </div>
+          <ul class="contact-info-detail">
+            <li class="contact-info-locate">
+              <img src="images/locate.png" alt="locate-icon" />
+              <p>
+                321 Awesome Street <br />
+                New York, NY 17022
+              </p>
+            </li>
+            <li class="contact-info-mail">
+              <img src="images/mail.png" alt="mail-icon" />
+              <p>info@companyname.com</p>
+            </li>
+            <li class="contact-info-phone">
+              <img src="images/phone.png" alt="phone-icon" />
+              <p>+1 800 123 1234</p>
+            </li>
+          </ul>
         </div>
         <!-- End Contact Information -->
 
         <!-- Contact Form -->
         <div class="contact-form">
           <h3>Having Any Query! Or Book an appointment</h3>
-          <form action="" method="">
+          <form>
             <div class="contact-form-name">
               <input type="text" placeholder="Your Name" />
             </div>
@@ -48,13 +50,7 @@
               <input type="text" placeholder="Subject" />
             </div>
             <div class="contact-form-message">
-              <textarea
-                name=""
-                id=""
-                cols="30"
-                rows="10"
-                placeholder="Message"
-              ></textarea>
+              <textarea cols="30" rows="10" placeholder="Message"></textarea>
             </div>
             <button class="contact-form-btn">Send Message</button>
           </form>
@@ -62,7 +58,7 @@
         <!-- End Contact Form -->
       </div>
       <!--  End contact content -->
-    </section>
-    <!-- End Contact Section -->
+    </main>
+    <!-- End Contact -->
   </body>
 </html>

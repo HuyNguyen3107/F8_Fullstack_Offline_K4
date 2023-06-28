@@ -48,11 +48,13 @@ html {
 }
 .content-info-address {
   margin-top: 16px;
+  list-style: none;
 }
 .content-info-contact {
   margin-top: 16px;
+  list-style: none;
 }
-.content-info-contact p a {
+.content-info-contact li a {
   color: chocolate;
   text-decoration: none;
 }
