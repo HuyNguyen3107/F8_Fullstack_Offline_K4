@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./ex02.css" />
+    <title>Exercise 02</title>
+  </head>
+  <body>
+    <!-- Reservation section -->
+    <section class="reservation">
+      <!-- Reservation heading and title -->
+      <h3 class="reservation-title">RESERVATION</h3>
+      <h2 class="reservation-heading">Book your table</h2>
+      <!-- Booking form -->
+      <form class="form-booking">
+        <input type="text" placeholder="NAME" />
+        <input type="email" placeholder="EMAIL" />
+        <label for="date">
+          <input type="date" name="date" id="date" />
+          <div class="placeholder-date"><span>DATE</span></div>
+        </label>
+        <label for="time">
+          <input type="time" name="time" id="time" />
+          <div class="placeholder-time"><span>TIME</span></div>
+        </label>
+        <input type="number" placeholder="PEOPLE" />
+        <button>Find A Table</button>
+      </form>
+    </section>
+  </body>
+</html>
