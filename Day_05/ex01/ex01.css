@@ -1,0 +1,196 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Lato", sans-serif;
+}
+/* contact section */
+.form-contact {
+  width: 600px;
+  margin: 0 auto;
+}
+.contact-heading {
+  font-family: "Lobster", sans-serif;
+  font-size: 40px;
+  font-weight: 300;
+}
+.contact-desc span {
+  color: red;
+}
+.contact-desc {
+  margin-top: 24px;
+  color: #ccc;
+}
+/* contact form */
+.form-content {
+  margin-top: 24px;
+}
+.form-content label {
+  display: block;
+}
+.form-content-detail {
+  display: flex;
+  margin-bottom: 20px;
+  position: relative;
+}
+.form-content-detail label {
+  padding: 12px;
+  background-color: #cccccc7c;
+}
+.fa-user,
+.fa-envelope,
+.fa-mobile,
+.fa-book,
+.fa-message {
+  color: white;
+}
+#name,
+#email,
+#phone,
+#message,
+#subjects {
+  border: 2px solid #cccccc7c;
+  padding-left: 12px;
+  outline: none;
+}
+#name::placeholder,
+#email::placeholder,
+#phone::placeholder,
+#message::placeholder,
+#subjects::placeholder {
+  color: #ccccccee;
+}
+#name {
+  padding-right: 300px;
+}
+#email {
+  padding-right: 298px;
+}
+#phone {
+  padding-right: 302px;
+}
+#subjects {
+  padding-right: 374px;
+}
+.fa-star {
+  font-size: 8px;
+  color: #cccccc7c;
+  position: absolute;
+  right: 95px;
+  top: 16px;
+}
+.fa-xmark {
+  font-size: 12px;
+  color: #fff;
+  position: absolute;
+  right: 95px;
+  top: -16px;
+}
+.notice {
+  position: absolute;
+  font-size: 12px;
+  top: -50px;
+  left: 40px;
+  background-color: #000;
+  color: #fff;
+  padding: 12px;
+  border-radius: 2px;
+  display: none;
+}
+.notice::before {
+  content: "";
+  border: 12px solid;
+  border-color: #000 transparent transparent transparent;
+  position: absolute;
+  bottom: -20px;
+}
+.form-content-detail:hover label {
+  background-color: #000;
+}
+.form-content-detail:hover #name,
+.form-content-detail:hover #email,
+.form-content-detail:hover #phone,
+.form-content-detail:hover #subjects,
+.form-content-detail:hover #message {
+  border-color: #000;
+}
+input[type="text"]:focus ~ .notice,
+input[type="email"]:focus ~ .notice,
+select:focus ~ .notice,
+textarea:focus ~ .notice {
+  display: block;
+}
+input[type="text"]:focus ~ .fa-star,
+input[type="email"]:focus ~ .fa-star,
+textarea:focus ~ .fa-star {
+  top: -16px;
+  color: #fff;
+}
+input[type="text"]:focus ~ .fa-xmark,
+input[type="email"]:focus ~ .fa-xmark,
+textarea:focus ~ .fa-xmark {
+  top: 16px;
+  color: #ccccccbb;
+}
+.contact-btn {
+  display: flex;
+}
+.contact-btn button {
+  margin-left: 188px;
+  border: 1px solid red;
+  background-color: red;
+  color: #fff;
+  border-radius: 2px;
+  padding: 8px 24px;
+  cursor: pointer;
+}
+.notice-check label {
+  color: #cccccc;
+  display: inline-block;
+}
+.check-icon {
+  display: inline-block;
+  position: relative;
+  border: 3px solid #cccccc7c;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  overflow: hidden;
+  top: 2px;
+}
+.check-icon i {
+  font-size: 20px;
+  position: absolute;
+  right: 2px;
+  top: 25px;
+}
+input[type="checkbox"]:checked ~ .check-icon .fa-check {
+  top: 0;
+}
+.choose-icon {
+  position: absolute;
+  background-color: #fff;
+  width: 25px;
+  height: 25px;
+  right: 90px;
+  top: 12px;
+}
+.fa-caret-up {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  color: #cccccc7c;
+  font-size: 12px;
+}
+.fa-caret-down {
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  color: #cccccc7c;
+  font-size: 12px;
+}

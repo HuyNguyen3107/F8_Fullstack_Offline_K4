@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Roboto&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto", sans-serif;
+}
+/* services section */
+.services {
+  width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+.services-heading {
+  margin-top: 24px;
+}
+.services-desc {
+  margin-top: 8px;
+  font-size: 10px;
+}
+.services-list {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  column-gap: 12px;
+  margin-top: 80px;
+}
+.services-item {
+  background-color: #fff;
+  padding: 12px;
+  text-align: center;
+  height: 260px;
+  box-shadow: 1px 1px 5px #ccc;
+  border-radius: 2px;
+}
+.camera-icon,
+.laptop-icon,
+.video-icon {
+  background-color: #fff;
+  border: 1px solid darkorange;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+}
+.camera-icon i,
+.laptop-icon i,
+.video-icon i {
+  font-size: 40px;
+  margin-top: 24%;
+  color: darkorange;
+}
+.item-name {
+  margin-top: 16px;
+}
+.item-desc {
+  margin-top: 16px;
+  font-size: 10px;
+  opacity: 0.6;
+}
+.services-item button {
+  margin-top: 24px;
+  padding: 8px 14px;
+  border: 1px solid darkorange;
+  color: #fff;
+  background-color: darkorange;
+  cursor: pointer;
+}

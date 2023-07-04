@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./ex01.css" />
+    <link
+      rel="stylesheet"
+      href="../icons/fontawesome-free-6.4.0/fontawesome-free-6.4.0/css/all.min.css"
+    />
+    <title>Exercise 01</title>
+  </head>
+  <body>
+    <!-- contact section -->
+    <section class="form-contact">
+      <h1 class="contact-heading">Hey there</h1>
+      <p class="contact-desc">
+        <span>We'd like to hear from you.</span> Send us your message or just
+        say hy with our <br />
+        contact form or directly via phone, we love to chat.
+      </p>
+      <!-- Form contact -->
+      <form action="" class="form-content">
+        <!-- name field -->
+        <div class="form-content-detail">
+          <label for="name"><i class="fa-solid fa-user"></i></label>
+          <input type="text" placeholder="Your name" name="name" id="name" />
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-sharp fa-solid fa-xmark"></i>
+          <p class="notice">Enter your name</p>
+        </div>
+        <!-- email field -->
+        <div class="form-content-detail">
+          <label for="email"
+            ><i class="fa-sharp fa-solid fa-envelope"></i
+          ></label>
+          <input
+            type="email"
+            placeholder="your@domain.com"
+            name="email"
+            id="email"
+          />
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-sharp fa-solid fa-xmark"></i>
+          <p class="notice">Enter your email</p>
+        </div>
+        <!-- mobile field -->
+        <div class="form-content-detail">
+          <label for="phone"><i class="fa-sharp fa-solid fa-mobile"></i></label>
+          <input type="text" placeholder="+44 00 123" name="phone" id="phone" />
+          <i class="fa-sharp fa-solid fa-xmark"></i>
+          <p class="notice">Enter your phone number</p>
+        </div>
+        <!-- subjects field -->
+        <div class="form-content-detail">
+          <label for="subjects"><i class="fa-solid fa-book"></i></label>
+          <select name="subjects" id="subjects">
+            <option value="0" selected>Subject</option>
+            <option value="1">Javascript</option>
+            <option value="2">Python</option>
+            <option value="3">C++</option>
+            <option value="4">HTML CSS</option>
+          </select>
+          <div class="choose-icon">
+            <i class="fa-solid fa-caret-up"></i>
+            <i class="fa-solid fa-caret-down"></i>
+          </div>
+          <p class="notice">Choose your subject</p>
+        </div>
+        <!-- message field -->
+        <div class="form-content-detail">
+          <label for="message"><i class="fa-solid fa-message"></i></label>
+          <textarea
+            name="message"
+            id="message"
+            cols="61s"
+            rows="10"
+            placeholder="Message"
+          ></textarea>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-sharp fa-solid fa-xmark"></i>
+          <p class="notice">Enter your message</p>
+        </div>
+        <!-- btn -->
+        <div class="contact-btn">
+          <div class="notice-check">
+            <input
+              type="checkbox"
+              name="send-message"
+              id="send-message"
+              hidden
+            />
+            <div class="check-icon"><i class="fa-solid fa-check"></i></div>
+            <label for="send-message">Send me a copy of this message</label>
+          </div>
+          <button>SEND</button>
+        </div>
+      </form>
+    </section>
+  </body>
+</html>

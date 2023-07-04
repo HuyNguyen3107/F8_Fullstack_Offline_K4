@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Roboto&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto", sans-serif;
+}
+input[type="checkbox"] {
+    display: none;
+}
+/*  Questions */
+.questions-answers {
+  width: 1000px;
+  margin: 24px auto;
+}
+.question-answer {
+  margin-bottom: 8px;
+}
+.question-random-colors,
+.question-theme-colors,
+.question-change-icon {
+  display: flex;
+  background-color: orangered;
+  color: #fff;
+  padding: 8px;
+  border-radius: 2px;
+  position: relative;
+}
+.question-random-colors p,
+.question-theme-colors p,
+.question-change-icon p {
+  margin-left: 20px;
+}
+.answer-random-colors,
+.answer-theme-colors,
+.answer-change-icon {
+  background-color: whitesmoke;
+  padding: 12px;
+  display: none;
+}
+.fa-minus {
+    position: absolute;
+    left: -14px;
+}
+.fa-plus {
+    position: absolute;
+    left: 8px;
+}
+/* open and close answers */
+input:nth-of-type(1):checked ~ .question-answer .answer-random-colors,
+input:nth-of-type(2):checked ~ .question-answer .answer-theme-colors,
+input:nth-of-type(3):checked ~ .question-answer .answer-change-icon {
+    display: block;
+}
+input:nth-of-type(1):checked ~ .question-answer .question-random-colors .fa-plus,
+input:nth-of-type(2):checked ~ .question-answer .question-theme-colors .fa-plus,
+input:nth-of-type(3):checked ~ .question-answer .question-change-icon .fa-plus {
+    left: -14px;
+}
+input:nth-of-type(1):checked ~ .question-answer .question-random-colors .fa-minus,
+input:nth-of-type(2):checked ~ .question-answer .question-theme-colors .fa-minus,
+input:nth-of-type(3):checked ~ .question-answer .question-change-icon .fa-minus {
+    left: 8px;
+}
