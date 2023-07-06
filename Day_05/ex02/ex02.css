@@ -9,7 +9,7 @@ body {
   font-family: "Roboto", sans-serif;
 }
 input[type="checkbox"] {
-    display: none;
+  display: none;
 }
 /*  Questions */
 .questions-answers {
@@ -42,26 +42,43 @@ input[type="checkbox"] {
   display: none;
 }
 .fa-minus {
-    position: absolute;
-    left: -14px;
+  position: absolute;
+  left: -14px;
 }
 .fa-plus {
-    position: absolute;
-    left: 8px;
+  position: absolute;
+  left: 8px;
 }
 /* open and close answers */
 input:nth-of-type(1):checked ~ .question-answer .answer-random-colors,
 input:nth-of-type(2):checked ~ .question-answer .answer-theme-colors,
 input:nth-of-type(3):checked ~ .question-answer .answer-change-icon {
-    display: block;
+  display: block;
 }
-input:nth-of-type(1):checked ~ .question-answer .question-random-colors .fa-plus,
+input:nth-of-type(1):checked
+  ~ .question-answer
+  .question-random-colors
+  .fa-plus,
 input:nth-of-type(2):checked ~ .question-answer .question-theme-colors .fa-plus,
 input:nth-of-type(3):checked ~ .question-answer .question-change-icon .fa-plus {
-    left: -14px;
+  left: -14px;
 }
-input:nth-of-type(1):checked ~ .question-answer .question-random-colors .fa-minus,
-input:nth-of-type(2):checked ~ .question-answer .question-theme-colors .fa-minus,
-input:nth-of-type(3):checked ~ .question-answer .question-change-icon .fa-minus {
-    left: 8px;
+input:nth-of-type(1):checked
+  ~ .question-answer
+  .question-random-colors
+  .fa-minus,
+input:nth-of-type(2):checked
+  ~ .question-answer
+  .question-theme-colors
+  .fa-minus,
+input:nth-of-type(3):checked
+  ~ .question-answer
+  .question-change-icon
+  .fa-minus {
+  left: 8px;
+}
+.answer-random-colors p,
+.answer-theme-colors p,
+.answer-change-icon p {
+  line-height: 1.4;
 }

@@ -194,3 +194,7 @@ input[type="checkbox"]:checked ~ .check-icon .fa-check {
   color: #cccccc7c;
   font-size: 12px;
 }
+textarea {
+  padding-top: 10px;
+  reset: none;
+}
