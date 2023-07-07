@@ -1,0 +1,156 @@
+/* Import font */
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+/* Common */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body,
+input,
+button {
+  font-family: "Nunito", sans-serif;
+}
+body {
+  background-image: url(http://uiwebsoft.com/justlog/login-one/images/login-bg2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top -210px center;
+}
+/* Login page */
+.arrow-icon {
+  position: absolute;
+  top: 160px;
+  left: 224px;
+  line-height: 1;
+  padding: 6px;
+  color: #ff574d;
+  background-color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  border-radius: 50%;
+  box-shadow: 1px 1px 2px #ccc;
+}
+.login {
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 200px;
+  display: flex;
+  position: relative;
+}
+/* Content */
+.login-content {
+  background-color: #ff574d;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px 0 0 4px;
+  padding: 60px 12px;
+}
+.login-heading span {
+  display: inline-block;
+  color: #ff574d;
+  background-color: #fff;
+  line-height: 1;
+  padding: 2px;
+  border-radius: 2px;
+}
+.login-desc {
+  margin-top: 12px;
+  font-size: 12px;
+  opacity: 0.8;
+}
+.login-content button {
+  border: none;
+  color: #ff574d;
+  background-color: #fff;
+  padding: 5px 24px;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-top: 24px;
+  font-weight: 600;
+}
+.login-content ul {
+  width: 60%;
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.login-content ul li {
+  padding: 6px;
+  line-height: 1;
+  background-color: #c412095e;
+  border-radius: 1px;
+}
+.login-content ul li a {
+  color: #fff;
+}
+/* Form */
+.login-form {
+  background-color: #fff;
+  color: #717171;
+  border-radius: 0 4px 4px 0;
+  padding: 32px;
+  flex-grow: 1;
+  text-align: center;
+}
+.login-form-heading {
+  color: #ff574d;
+  position: relative;
+}
+.login-form-heading span {
+  color: #000;
+}
+.login-form-heading::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 52px;
+  background-color: #ff574d;
+  border-radius: 99px;
+  left: 125px;
+  bottom: -8px;
+}
+.login-info {
+  margin-top: 24px;
+}
+.login-info input {
+  display: block;
+  width: 100%;
+  border: 1px solid #ccccccbc;
+  padding: 8px 0 8px 10px;
+}
+.login-info input:nth-of-type(2) {
+  margin-top: 16px;
+}
+.notice {
+  display: flex;
+  margin-top: 12px;
+  justify-content: space-between;
+}
+.notice div a {
+  text-decoration: none;
+  color: #717171;
+}
+.login-form button {
+  display: block;
+  width: 100%;
+  padding: 8px 0;
+  margin-top: 12px;
+  border: none;
+  border-radius: 2px;
+  background-color: #ff574d;
+  color: #fff;
+  cursor: pointer;
+}
+.register {
+  font-size: 15px;
+  margin-top: 14px;
+}
+.register a {
+  color: #717171;
+  text-decoration: none;
+}

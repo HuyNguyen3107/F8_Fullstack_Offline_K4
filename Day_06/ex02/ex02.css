@@ -1,0 +1,92 @@
+/* Import font */
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+/* Common */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+/* Service layout */
+.services {
+  width: 1000px;
+  background-color: #ebf5fe;
+  padding: 24px 60px;
+  margin: 24px auto;
+}
+.services-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 24px;
+}
+.service-item {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 14px;
+  width: 270px;
+}
+.service-item > div {
+  display: flex;
+}
+.item-icon {
+  display: flex;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  justify-content: center;
+}
+.item-desc {
+  color: #666666;
+  font-size: 12px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  margin-top: 8px;
+}
+.service-item a {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.unique,
+.theme,
+.marketing,
+.website,
+.responsive,
+.support {
+  color: #fff;
+  font-size: 20px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+.fa-brush {
+  transform: rotate(45deg);
+}
+.unique {
+  background-color: rgba(255, 0, 0, 0.629);
+}
+.theme {
+  background-color: rgba(18, 185, 130, 0.829);
+}
+.marketing {
+  background-color: rgba(144, 137, 6, 0.781);
+}
+.website {
+  background-color: rgba(5, 46, 251, 0.695);
+}
+.fa-rocket {
+  transform: rotate(-90deg);
+}
+.responsive {
+  background-color: rgba(130, 3, 130, 0.856);
+}
+.support {
+  background-color: rgba(75, 123, 3, 0.83);
+}
+.service-item:hover {
+  border: 1px solid red;
+}
