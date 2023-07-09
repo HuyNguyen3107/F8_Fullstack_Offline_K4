@@ -14,8 +14,8 @@ button {
 body {
   background-image: url(http://uiwebsoft.com/justlog/login-one/images/login-bg2.jpg);
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top -210px center;
+  background-size: 100vw 100vh;
+  background-position: top center;
 }
 /* Login page */
 .arrow-icon {
@@ -78,10 +78,10 @@ body {
   margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
+  gap: 5px;
 }
 .login-content ul li {
-  padding: 6px;
-  line-height: 1;
+  flex: 1;
   background-color: #c412095e;
   border-radius: 1px;
 }
@@ -98,11 +98,11 @@ body {
   text-align: center;
 }
 .login-form-heading {
-  color: #ff574d;
+  color: #272323;
   position: relative;
 }
 .login-form-heading span {
-  color: #000;
+  color: #ff574d;
 }
 .login-form-heading::after {
   content: "";

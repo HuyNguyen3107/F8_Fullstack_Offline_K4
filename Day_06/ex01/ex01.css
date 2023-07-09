@@ -79,6 +79,7 @@ label {
   flex-grow: 1;
   border: 1px solid #ccc;
   padding: 10px;
+  align-items: center;
 }
 .home-item,
 .about-item,

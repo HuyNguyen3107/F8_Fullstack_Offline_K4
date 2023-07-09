@@ -28,6 +28,7 @@ body {
   border-radius: 4px;
   padding: 14px;
   width: 270px;
+  box-shadow: 1px 1px 4px #ccc;
 }
 .service-item > div {
   display: flex;
@@ -88,5 +89,5 @@ body {
   background-color: rgba(75, 123, 3, 0.83);
 }
 .service-item:hover {
-  border: 1px solid red;
+ outline: 1px solid red;
 }
