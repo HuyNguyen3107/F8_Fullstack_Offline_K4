@@ -1,0 +1,122 @@
+/* Import font */
+@import url("https://fonts.googleapis.com/css2?family=Asap&display=swap");
+/* Reset CSS */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+/* Set font */
+body {
+  font-family: "Asap", sans-serif;
+}
+/* Investor profile */
+.profile {
+  position: relative;
+}
+.profile-img img {
+  width: 100%;
+  height: 300px;
+}
+.profile-info {
+  width: 510px;
+  display: flex;
+  position: absolute;
+  top: 180px;
+  left: 40px;
+}
+.profile-avt img {
+  width: 250px;
+  height: 136px;
+  border-radius: 2px;
+  box-shadow: 1px 1px 3px #ccc;
+}
+.profile-desc {
+  background-color: transparent;
+  flex-grow: 1;
+}
+.group-name {
+  font-size: 20px;
+  color: #fff;
+  margin-left: 10px;
+  margin-top: 15px;
+}
+.group-details {
+  display: flex;
+  margin-left: 10px;
+  margin-top: 16px;
+  justify-content: space-between;
+}
+.group-details p {
+  font-size: 10px;
+  color: #ffffffc7;
+}
+.group-details p span {
+  color: #ffffffea;
+  font-size: 14px;
+  font-weight: 600;
+}
+/* Navigation */
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+}
+.nav-list li a {
+  text-decoration: none;
+  color: #000;
+  font-size: 15px;
+  font-weight: 600;
+}
+.nav-list li:nth-of-type(3) {
+  margin-right: 60px;
+}
+.nav-list li:nth-of-type(1),
+.nav-list li:nth-of-type(2) {
+  margin-right: 20px;
+}
+.nav-list li:nth-of-type(1) a::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 3px;
+  background-color: red;
+  border-radius: 99px;
+  margin-top: 5px;
+  transition: width 0.5s;
+}
+.nav-list li:nth-of-type(2) a::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 3px;
+  background-color: red;
+  border-radius: 99px;
+  margin-top: 5px;
+  transition: width 0.5s;
+}
+.nav-list li:nth-of-type(3) a::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 3px;
+  background-color: red;
+  border-radius: 99px;
+  margin-top: 5px;
+  transition: width 0.5s;
+}
+.nav-list li:nth-of-type(1):hover a::after {
+  width: 75px;
+}
+.nav-list li:nth-of-type(2):hover a::after {
+  width: 124px;
+}
+.nav-list li:nth-of-type(3):hover a::after {
+  width: 53px;
+}
+.nav-list li:nth-of-type(1):hover a,
+.nav-list li:nth-of-type(2):hover a,
+.nav-list li:nth-of-type(3):hover a {
+  color: red;
+}
