@@ -18,13 +18,14 @@ body {
 .profile-img img {
   width: 100%;
   height: 300px;
+  object-fit: cover;
 }
 .profile-info {
   width: 510px;
   display: flex;
   position: absolute;
-  top: 180px;
-  left: 40px;
+  top: 170px;
+  left: 80px;
 }
 .profile-avt img {
   width: 250px;
@@ -33,6 +34,7 @@ body {
   box-shadow: 1px 1px 3px #ccc;
 }
 .profile-desc {
+  margin-left: 12px;
   background-color: transparent;
   flex-grow: 1;
 }

@@ -33,20 +33,24 @@ body {
   padding: 8px 18px;
   cursor: pointer;
 }
-.location p:nth-of-type(1) {
+.location span {
+  display: block;
+}
+.location span:nth-of-type(1) {
   font-size: 14px;
   color: rgb(62, 34, 0);
   font-weight: 600;
 }
-.location p:nth-of-type(2) {
+.location span:nth-of-type(2) {
   font-size: 10px;
   margin-top: 4px;
   color: rgb(62, 34, 0);
+  font-style: italic;
 }
 .location:hover {
   background-color: darkgoldenrod;
 }
-.location:hover p {
+.location:hover span {
   color: #fff;
 }
 .location-detail-list {
@@ -61,23 +65,24 @@ body {
 .location-detail-item img {
   border-radius: 3px;
 }
-.location-detail-item p {
+.location-detail-item span {
   position: absolute;
+  display: block;
 }
-.location-detail-item p:nth-of-type(1) {
+.location-detail-item span:nth-of-type(1) {
   left: 20px;
   top: 24px;
   font-size: 18px;
   font-weight: 600;
   color: #fff;
 }
-.location-detail-item p:nth-of-type(2) {
+.location-detail-item span:nth-of-type(2) {
   top: 195px;
   left: 20px;
   font-size: 13px;
   color: #ffffffd5;
 }
-.location-detail-item p:nth-of-type(2) span {
+.location-detail-item span:nth-of-type(2) strong {
   font-size: 15px;
   color: #ffffffea;
   font-weight: 600;
