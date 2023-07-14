@@ -1,0 +1,78 @@
+/* Import font */
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+/* Reset CSS */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+/* Common */
+body {
+  font-family: "Roboto", sans-serif;
+}
+/* Special services */
+.special-services {
+  width: 1200px;
+  margin: 24px auto;
+  text-align: center;
+}
+.special-services-heading {
+  font-size: 48px;
+  font-weight: 600;
+  font-family: "Times New Roman", Times, serif;
+}
+.special-services-intro {
+  font-size: 14px;
+  margin-top: 18px;
+}
+.service-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+.service-list {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  column-gap: 24px;
+  row-gap: 32px;
+  margin-top: 30px;
+}
+.service-item {
+  height: 265px;
+  width: 365px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-evenly; */
+  align-items: center;
+}
+.service-item img {
+}
+.service-item .item-name {
+  margin-top: 10px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+}
+.service-item div {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+.item-desc {
+  font-size: 12px;
+}
+.service-item button {
+  border: none;
+  color: #fff;
+  background-color: darkblue;
+  padding: 10px 24px;
+  border-radius: 1px;
+  cursor: pointer;
+  transition: padding 0.1s linear;
+}
+.service-item button:hover {
+  padding: 6px 18px;
+}
