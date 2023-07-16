@@ -59,7 +59,7 @@ ul {
   padding-top: 28px;
   padding-bottom: 28px;
   height: 320px;
-  overflow: scroll;
+  overflow: auto;
 }
 .shopping-cart-product {
   display: flex;

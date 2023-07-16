@@ -39,7 +39,7 @@ body {
   margin-top: 30px;
 }
 .service-item {
-  height: 265px;
+  /* height: 265px; */
   width: 365px;
   display: flex;
   flex-direction: column;
@@ -63,6 +63,7 @@ body {
 }
 .item-desc {
   font-size: 12px;
+  line-height: 1.4;
 }
 .service-item button {
   border: none;
@@ -72,6 +73,7 @@ body {
   border-radius: 1px;
   cursor: pointer;
   transition: padding 0.1s linear;
+  margin-top: 12px;
 }
 .service-item button:hover {
   padding: 6px 18px;

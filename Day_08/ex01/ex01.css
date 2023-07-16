@@ -140,6 +140,8 @@ a {
 .elements-submenu {
   flex-grow: 6;
   margin-left: 120px;
+  border-left: 2px solid #cccccca7;
+  padding-left: 60px;
 }
 
 .elements-list {
