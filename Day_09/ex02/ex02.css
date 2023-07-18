@@ -1,0 +1,90 @@
+/* Import font */
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+/* Common */
+body {
+  font-family: "ROboto", sans-serif;
+}
+/* Information list */
+.information {
+  width: 1000px;
+  margin: 40px auto;
+}
+.information-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  column-gap: 18px;
+  row-gap: 30px;
+}
+.information-item:hover {
+  background-image: linear-gradient(
+      0,
+      rgba(109, 73, 1, 0.614),
+      rgba(147, 93, 22, 0.51)
+    ),
+    url(https://images2.fanpop.com/images/photos/7900000/One-Piece-one-piece-7934455-706-532.jpg);
+  background-size: cover;
+  position: relative;
+}
+.information-item > div {
+  border: 2px solid #ccc;
+  padding: 20px;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s linear;
+}
+.item-content {
+  transition-property: transform, color;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+}
+.item-content > i {
+  color: rgba(182, 83, 47, 0.844);
+  font-size: 36px;
+  margin-top: 12px;
+  /* transform: translateY(-80px); */
+}
+.item-content h3 {
+  font-size: 20px;
+  margin-top: 16px;
+}
+.item-content p {
+  margin-top: 16px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+.item-content a {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  transform: translateY(80px);
+}
+.item-content a div {
+  margin-left: 4px;
+  display: inline-block;
+  line-height: 0;
+  padding: 5px;
+  outline: 2px solid rgba(133, 81, 63, 0.844);
+  border-radius: 50%;
+}
+.information-item:hover > div {
+  transform: scale(0.9);
+  border-color: rgba(133, 81, 63, 0.844);
+}
+.information-item:hover .item-content {
+  transform: translateY(-80px);
+  color: #fff;
+}
+.item-content a div:hover {
+  outline: none;
+  background-color: #fff;
+  color: rgba(182, 83, 47, 0.4);
+}

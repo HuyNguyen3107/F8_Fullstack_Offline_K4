@@ -1,0 +1,157 @@
+/* Import font */
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+/* Common */
+body,
+input,
+select,
+textarea,
+button {
+  font-family: "ROboto", sans-serif;
+}
+/* Form Message */
+.form-message {
+  width: 800px;
+  margin: 30px auto;
+  text-align: center;
+}
+.form-heading {
+  word-spacing: 4px;
+}
+.form-desc {
+  margin-top: 16px;
+  opacity: 0.9;
+  word-spacing: 1px;
+}
+form {
+  margin-top: 36px;
+}
+form > div:nth-of-type(1) {
+  display: flex;
+  justify-content: space-between;
+}
+form > div:nth-of-type(1) input {
+  width: 390px;
+  padding: 15px;
+  border-radius: 4px;
+  outline: 1px solid whitesmoke;
+  border: none;
+  box-shadow: 1px 1px 2px #ccc;
+  transition: outline 0.1s linear;
+}
+form > div:nth-of-type(2) {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 18px;
+}
+form > div:nth-of-type(2) input {
+  width: 390px;
+  padding: 15px;
+  border-radius: 4px;
+  outline: 1px solid whitesmoke;
+  border: none;
+  box-shadow: 1px 1px 2px #ccc;
+  transition: outline 0.1s linear;
+}
+form > div:nth-of-type(2) select {
+  width: 390px;
+  padding: 15px;
+  border-radius: 4px;
+  outline: 1px solid whitesmoke;
+  border: none;
+  box-shadow: 1px 1px 2px #ccc;
+  transition: outline 0.1s linear;
+}
+textarea {
+  margin-top: 18px;
+  width: 800px;
+  border-radius: 4px;
+  outline: 1px solid whitesmoke;
+  border: none;
+  box-shadow: 1px 1px 2px #ccc;
+  transition: outline 0.1s linear;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+}
+.btn {
+  text-align: center;
+  margin-top: 18px;
+}
+.btn button {
+  border: none;
+  padding: 15px 24px;
+  border-radius: 99px;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(57, 57, 253, 0.863);
+  box-shadow: 1px 1px 2px #ccc;
+  cursor: pointer;
+}
+.name-info div label {
+  position: absolute;
+  color: #ccc;
+  left: 25px;
+  top: 15px;
+  transition-property: top, left, transform;
+  transition-duration: 0.1s;
+  transition-timing-function: linear;
+}
+.name-info div {
+  position: relative;
+}
+.name-info div input:focus ~ label {
+  top: 0;
+  left: 5px;
+  transform: scale(0.8);
+}
+form > div:nth-of-type(2) > div {
+  position: relative;
+}
+form > div:nth-of-type(2) > div label {
+  position: absolute;
+  color: #ccc;
+  left: 25px;
+  top: 15px;
+  transition-property: top, left, transform;
+  transition-duration: 0.1s;
+  transition-timing-function: linear;
+}
+form > div:nth-of-type(2) > div input:focus ~ label {
+  top: 0;
+  left: 9px;
+  transform: scale(0.8);
+}
+form > div:nth-of-type(3) {
+  position: relative;
+}
+form > div:nth-of-type(3) > label {
+  position: absolute;
+  color: #ccc;
+  left: 25px;
+  top: 30px;
+  transition-property: top, left, transform;
+  transition-duration: 0.1s;
+  transition-timing-function: linear;
+}
+form > div:nth-of-type(3) > textarea:focus ~ label {
+  top: 15px;
+  left: 8px;
+  transform: scale(0.8);
+}
+.name-info div input:focus {
+  border: none;
+  outline: 3px solid #ccc;
+}
+form > div:nth-of-type(2) > div input:focus {
+  outline: 3px solid #ccc;
+}
+form > div:nth-of-type(3) > textarea:focus {
+  outline: 3px solid #ccc;
+}

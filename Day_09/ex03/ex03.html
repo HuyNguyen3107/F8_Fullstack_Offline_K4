@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./ex03.css" />
+    <title>Exercise 03</title>
+  </head>
+  <body>
+    <!-- Form message -->
+    <div class="form-message">
+      <h1 class="form-heading">Drop Us a Line</h1>
+      <p class="form-desc">
+        Reach out to us from our contact form and we will get back to you
+        shortly.
+      </p>
+      <!-- Form -->
+      <form action="">
+        <div class="name-info">
+          <div>
+            <input type="text" id="first-name" />
+            <label for="first-name">First Name *</label>
+          </div>
+          <div>
+            <input type="text" id="last-name" />
+            <label for="last-name">Last Name *</label>
+          </div>
+        </div>
+        <div>
+          <div>
+            <input type="email" id="email" />
+            <label for="email">Email *</label>
+          </div>
+          <select name="courses">
+            <option value="0" selected>JavaScript</option>
+            <option value="1">HTML & CSS</option>
+            <option value="2">React JS</option>
+            <option value="3">Node JS</option>
+          </select>
+        </div>
+        <div>
+          <textarea name="message" cols="0" rows="10" id="message"></textarea>
+          <label for="message">Message *</label>
+        </div>
+        <div class="btn"><button>Send message</button></div>
+      </form>
+    </div>
+  </body>
+</html>

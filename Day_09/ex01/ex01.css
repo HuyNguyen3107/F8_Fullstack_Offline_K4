@@ -1,0 +1,127 @@
+/* Import fonts */
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+/* Reset CSS */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+/* Common */
+body {
+  font-family: "Inter", sans-serif;
+}
+/* Company history */
+.company-history {
+  width: 1280px;
+  margin: 30px auto;
+  display: flex;
+  justify-content: space-between;
+}
+.timeline > div + div {
+  margin-top: 10px;
+}
+.timeline-details-mark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.mark-circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 4px solid #e9e9e9;
+  background-color: rgb(1, 146, 102);
+}
+.mark-line {
+  width: 1px;
+  height: 80%;
+  background-color: #ccc;
+  margin-top: 4px;
+  padding-bottom: 140px;
+}
+.timeline-details {
+  display: flex;
+  justify-content: space-between;
+  width: 520px;
+}
+.timeline-details-info {
+  width: 400px;
+  text-align: end;
+  transition: transform 0.5s linear;
+}
+.timeline-details-info h2 {
+  font-size: 20px;
+  font-family: "Space Grotes", sans-serif;
+}
+.timeline-details-info p {
+  margin-top: 16px;
+  text-indent: 60px;
+  opacity: 0.7;
+  line-height: 1.4;
+  font-size: 14px;
+}
+.timeline-details-info span {
+  display: inline-block;
+  line-height: 0;
+  margin-top: 16px;
+  padding: 16px;
+  background-color: rgb(237, 236, 236);
+  border-radius: 99px;
+  font-size: 15px;
+  font-weight: 600;
+  color: gray;
+  transition-property: color, background-color;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
+}
+.period {
+  opacity: 0.8;
+  transition: transform 0.5s linear;
+}
+.company-images {
+  position: relative;
+}
+.company-images > div {
+  position: absolute;
+  top: 80px;
+  left: -130px;
+}
+.company-images > div div {
+  position: absolute;
+  background-color: #4058ae;
+  inset: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+.company-images > div div span {
+  display: block;
+  text-align: end;
+  margin-right: 16px;
+}
+.company-images > div div span:nth-of-type(1) {
+  font-size: 40px;
+  font-weight: 900;
+  color: #ffffffcd;
+}
+.company-images > div div span:nth-of-type(2) {
+  margin-bottom: 20px;
+  color: #ffffff8f;
+}
+.timeline-details:hover .timeline-details-info {
+  text-align: start;
+  transform: translate(438px);
+}
+.timeline-details:hover .period {
+  transform: translateX(-120px);
+}
+.timeline-details:hover .timeline-details-info p {
+  text-indent: 0;
+}
+.timeline-details:hover .timeline-details-info span {
+  color: #fff;
+  background-color: rgba(165, 77, 42, 0.89);
+}
