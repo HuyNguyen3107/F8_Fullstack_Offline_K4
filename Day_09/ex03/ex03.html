@@ -18,17 +18,17 @@
       <form action="">
         <div class="name-info">
           <div>
-            <input type="text" id="first-name" />
+            <input type="text" id="first-name" required />
             <label for="first-name">First Name *</label>
           </div>
           <div>
-            <input type="text" id="last-name" />
+            <input type="text" id="last-name" required />
             <label for="last-name">Last Name *</label>
           </div>
         </div>
         <div>
           <div>
-            <input type="email" id="email" />
+            <input type="email" id="email" required />
             <label for="email">Email *</label>
           </div>
           <select name="courses">
@@ -39,7 +39,13 @@
           </select>
         </div>
         <div>
-          <textarea name="message" cols="0" rows="10" id="message"></textarea>
+          <textarea
+            name="message"
+            cols="0"
+            rows="10"
+            id="message"
+            required
+          ></textarea>
           <label for="message">Message *</label>
         </div>
         <div class="btn"><button>Send message</button></div>

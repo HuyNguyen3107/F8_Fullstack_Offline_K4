@@ -155,3 +155,28 @@ form > div:nth-of-type(2) > div input:focus {
 form > div:nth-of-type(3) > textarea:focus {
   outline: 3px solid #ccc;
 }
+/* input:valid ~ label {
+  top: 0;
+  left: 5px;
+  transform: scale(0.8);
+} */
+/* textarea:valid ~ label {
+  top: 15px;
+  left: 8px;
+  transform: scale(0.8);
+} */
+.name-info > div input:valid ~ label {
+  top: 0;
+  left: 5px;
+  transform: scale(0.8);
+}
+form > div:nth-of-type(2) > div input:valid ~label {
+  top: 0;
+  left: 9px;
+  transform: scale(0.8);
+}
+form > div:nth-of-type(3) textarea:valid ~ label {
+  top: 15px;
+  left: 8px;
+  transform: scale(0.8);
+}
