@@ -1,0 +1,134 @@
+/* Common */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: rgb(66, 66, 81);
+}
+ul {
+  list-style: none;
+}
+/* Envelop */
+.envelop {
+  width: 360px;
+  margin: 200px auto;
+}
+/* Envelop-main */
+.envelop-main {
+  width: 100%;
+  height: 200px;
+  background-color: rgb(219, 70, 70);
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0px 0px 2px #ccc;
+  transition: transform 0.5s linear;
+}
+.envelop-container {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    to right bottom,
+    transparent 50%,
+    rgb(253, 83, 83) 50%
+  );
+  z-index: 2;
+}
+.envelop-container::before {
+  content: "";
+  position: absolute;
+  border-width: 100px 180px;
+  border-color: transparent transparent transparent rgb(250, 76, 76);
+  border-style: solid;
+  z-index: 2;
+}
+.envelop-open {
+  position: absolute;
+  border-width: 100px 180px;
+  top: 0;
+  border-color: rgb(219, 70, 70) transparent transparent transparent;
+  border-style: solid;
+  transform: rotateX(360deg);
+  transform-origin: top;
+  transition: transform 0.7s linear;
+}
+.envelop-main:hover .envelop-open {
+  transform: rotateX(180deg);
+}
+.envelop-letter {
+  width: 300px;
+  height: 90px;
+  background-color: #fff;
+  position: absolute;
+  transform-origin: bottom;
+  bottom: 0;
+  left: 30px;
+  transition: height 0.4s linear;
+}
+.envelop-main:hover .envelop-letter {
+  height: 380px;
+  transition-duration: 0.9s;
+}
+.envelop-letter ul {
+  background-color: whitesmoke;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.envelop-letter ul li {
+  width: 20px;
+  height: 25px;
+  background-color: rgb(219, 70, 70);
+  transform: skewX(-42deg);
+}
+.envelop-letter div:nth-of-type(1) {
+  width: 100px;
+  height: 20px;
+  background-color: rgb(219, 70, 70);
+  margin-top: 15px;
+  margin-left: 15px;
+}
+.envelop-letter div:nth-of-type(2) {
+  width: 50px;
+  height: 20px;
+  margin-top: 10px;
+  margin-left: 15px;
+  background-color: rgb(219, 70, 70);
+}
+.envelop-letter div:nth-of-type(3) {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: rgba(219, 70, 70, 0.7);
+  left: 180px;
+  top: 45%;
+  opacity: 0;
+  transition: opacity 0.3s linear;
+}
+.envelop-main:hover .envelop-letter div:nth-of-type(3) {
+  opacity: 1;
+  transition-duration: 1s;
+  transition-delay: 0.4s;
+}
+.envelop-main:hover {
+  transform: translateY(80px);
+}
+/* Envelop-shadow */
+.envelop-shadow {
+  margin: 60px auto;
+  width: 200px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #313030c8;
+  box-shadow: 0px 0px 50px 100px #3d3b3b;
+  transform: rotateX(85deg);
+  transition-property: width, box-shadow;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
+}
+.envelop-main:hover ~ .envelop-shadow {
+  width: 100px;
+  box-shadow: 0px 0px 30px 75px #3d3b3b;
+}
