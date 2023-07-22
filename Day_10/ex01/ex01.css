@@ -99,7 +99,7 @@ input[type="checkbox"]:checked ~ .menu-icon span::after {
   transform: rotate(-45deg);
 }
 input[type="checkbox"]:checked ~ .overlay {
-  transform: scale(15);
+  transform: scale(20);
 }
 input[type="checkbox"]:checked ~ .burger-menu-nav {
   display: block;
