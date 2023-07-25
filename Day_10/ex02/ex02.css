@@ -55,6 +55,8 @@ input:nth-of-type(4):checked ~ .titles label:nth-of-type(4) span {
 /* Contents */
 .list-content {
   list-style: none;
+  perspective: 1000px;
+  perspective-origin: 50% 50%;
 }
 .item-content {
   display: block;

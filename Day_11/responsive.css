@@ -1,0 +1,253 @@
+@media screen and (max-width: 1399px) {
+  .nav-list {
+    margin-left: 40px;
+    margin-right: 40px;
+    justify-content: center;
+  }
+  .delivery-time-content h1 {
+    font-size: 48px;
+  }
+  .delivery-service h2 {
+    font-size: 32px;
+    margin: 0;
+  }
+  .delivery-service h4 {
+    font-size: 16px;
+  }
+  .explore-content h2 {
+    font-size: 32px;
+  }
+  .explore-content h4 {
+    font-size: 16px;
+  }
+  .explore-content p {
+    font-size: 16px;
+  }
+  .explore-content button {
+    padding: 16px 28px;
+  }
+  .delivery-detail-content h2 {
+    font-size: 32px;
+  }
+  .delivery-detail-content h4 {
+    font-size: 16px;
+  }
+  .delivery-detail-content p {
+    font-size: 16px;
+    max-width: 100%;
+  }
+  .delivery-detail-content button {
+    padding: 16px 28px;
+  }
+  .download-app-content h2 {
+    font-size: 32px;
+  }
+  .download-app-content h4 {
+    font-size: 16px;
+  }
+  .download-app-content p {
+    font-size: 16px;
+  }
+  .link-download {
+    width: 85%;
+  }
+  .app-store,
+  .play-store {
+    padding: 10px 0;
+  }
+  .app-store a,
+  .play-store a {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 1198px) {
+  .delivery-time-content h1 {
+    font-size: 38px;
+  }
+  .delivery-time-content p {
+    font-size: 16px;
+  }
+  .delivery-time-content > div:nth-of-type(2) button {
+    font-size: 16px;
+  }
+  .delivery-time-content > div:nth-of-type(2) div button {
+    font-size: 16px;
+  }
+  .download-app-image img {
+    margin: 0;
+  }
+  .link-download .play-store {
+    margin-left: 16px;
+  }
+}
+@media screen and (max-width: 991px) {
+  .grover-logo {
+    display: flex;
+    justify-content: space-between;
+  }
+  .grover-header {
+    display: block;
+    text-align: center;
+  }
+  label {
+    display: inline-block;
+    font-size: 24px;
+    padding: 4px 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  main {
+    transform: translateY(-245px);
+    position: relative;
+    z-index: 2;
+    background-color: #fff;
+    transition: transform 0.2s linear;
+  }
+  .nav-list {
+    flex-direction: column;
+    align-items: center;
+    visibility: visible;
+    position: relative;
+    z-index: 1;
+  }
+  .nav-list li a {
+    width: 100%;
+    display: block;
+  }
+  .nav-list li {
+    margin: 0;
+    width: 100%;
+    margin-top: 30px;
+    text-align: center;
+  }
+  .search {
+    display: inline-block;
+    margin-top: 30px;
+    visibility: visible;
+    position: relative;
+    z-index: 1;
+  }
+  input[type="checkbox"]:checked ~ main {
+    transform: translateY(0px);
+  }
+  .delivery-time,
+  .explore {
+    flex-direction: column;
+  }
+  .delivery-detail {
+    flex-direction: column-reverse;
+  }
+  .delivery-time-content,
+  .delivery-time-image,
+  .explore-content,
+  .explore-image,
+  .delivery-detail-content,
+  .delivery-detail-image {
+    width: 100%;
+  }
+  .download-app {
+    flex-direction: column;
+    align-items: center;
+  }
+  .download-app-content,
+  .download-app-image {
+    width: 100%;
+  }
+  .download-app-content {
+    margin-top: 40px;
+  }
+  .link-download {
+    width: 68%;
+  }
+  .service-list {
+    width: 80%;
+  }
+  .service-item-bg {
+    width: 190px;
+    height: 430px;
+  }
+  .footer-top {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-top-content:nth-of-type(1) {
+    padding-right: 0;
+    width: 100%;
+  }
+  .footer-top-content:nth-of-type(1) p {
+    max-width: 100%;
+    font-size: 14px;
+  }
+  .footer-top-content:nth-of-type(2) {
+    width: 100%;
+  }
+  .footer-top-content:nth-of-type(2) p {
+    font-size: 14px;
+  }
+  .footer-top-content:nth-of-type(3) {
+    width: 100%;
+  }
+  .footer-top-content:nth-of-type(3) p {
+    font-size: 14px;
+  }
+  .footer-top-content:nth-of-type(4) {
+    width: 100%;
+  }
+  .footer-top-content:nth-of-type(4) p {
+    font-size: 14px;
+  }
+  .footer-bottom-content span {
+    font-size: 14px;
+  }
+  .footer-bottom-content div a {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .delivery-time-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .service-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .service-item {
+    width: 100%;
+  }
+  .service-item-bg {
+    width: 510px;
+    height: 330px;
+  }
+  .explore-content,
+  .delivery-detail-content,
+  .download-app-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 80px;
+  }
+  .explore-content h2,
+  .explore-content h4 {
+    max-width: 100%;
+  }
+  .delivery-detail-content h2,
+  .delivery-detail-content h4 {
+    max-width: 100%;
+  }
+  .download-app-content h4,
+  .download-app-content h2 {
+    max-width: 100%;
+  }
+  .download-app-image {
+    text-align: center;
+  }
+  .footer-bottom-content {
+    flex-direction: column;
+    align-items: center;
+  }
+}
