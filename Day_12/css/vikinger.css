@@ -1,0 +1,515 @@
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap");
+.vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(4) input:valid ~ label, .vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(4) input:focus ~ label, .vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(3) input:valid ~ label, .vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(3) input:focus ~ label, .vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(2) input:valid ~ label, .vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(2) input:focus ~ label, .vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(1) input:valid ~ label, .vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(1) input:focus ~ label, .vikinger .vikinger-main .vikinger-form .form-login form > div:nth-of-type(2) input:valid ~ label, .vikinger .vikinger-main .vikinger-form .form-login form > div:nth-of-type(2) input:focus ~ label, .vikinger .vikinger-main .vikinger-form .form-login form > div:nth-of-type(1) input:valid ~ label, .vikinger .vikinger-main .vikinger-form .form-login form > div:nth-of-type(1) input:focus ~ label {
+  top: -10px;
+  left: 8px;
+  transform: scale(0.8);
+}
+
+.vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(4) label, .vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(3) label, .vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(2) label, .vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(1) label, .vikinger .vikinger-main .vikinger-form .form-login form > div:nth-of-type(2) label, .vikinger .vikinger-main .vikinger-form .form-login form > div:nth-of-type(1) label {
+  transition-property: top, left, transform;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+body,
+input,
+button {
+  font-family: "Rajdhani", sans-serif;
+}
+
+.vikinger {
+  width: 100%;
+  height: 100%;
+  background-image: url(../images/landing-background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top -55px left 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.vikinger .vikinger-sub-bg {
+  background-image: url(../images/dot-texture.png);
+  background-color: #fff;
+  position: absolute;
+  top: -80px;
+  right: -365px;
+  width: 58%;
+  height: 120%;
+  border-radius: 50%;
+}
+.vikinger .vikinger-main {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.vikinger .vikinger-main input[type=radio]:nth-of-type(1):checked ~ .vikinger-content .change-tab label:nth-of-type(1) {
+  color: #000;
+  background-color: #fff;
+}
+.vikinger .vikinger-main input[type=radio]:nth-of-type(1):checked ~ .vikinger-form .form-login {
+  transform: translate(100px, -50%);
+  opacity: 1;
+  visibility: visible;
+}
+.vikinger .vikinger-main input[type=radio]:nth-of-type(2):checked ~ .vikinger-content .change-tab label:nth-of-type(2) {
+  color: #000;
+  background-color: #fff;
+}
+.vikinger .vikinger-main input[type=radio]:nth-of-type(2):checked ~ .vikinger-form .form-register {
+  transform: translate(100px, -50%);
+  opacity: 1;
+  visibility: visible;
+}
+.vikinger .vikinger-main .vikinger-content {
+  text-align: center;
+  width: 584px;
+}
+.vikinger .vikinger-main .vikinger-content > img {
+  margin-bottom: 36px;
+}
+.vikinger .vikinger-main .vikinger-content h2 {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 500;
+}
+.vikinger .vikinger-main .vikinger-content h1 {
+  color: #fff;
+  font-size: 104px;
+  font-weight: 900;
+  font-family: "Titillium Web", sans-serif;
+  position: relative;
+  top: -40px;
+}
+.vikinger .vikinger-main .vikinger-content p {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  margin: -24px 30px 95px;
+}
+.vikinger .vikinger-main .vikinger-content .change-tab {
+  display: flex;
+  justify-content: center;
+}
+.vikinger .vikinger-main .vikinger-content .change-tab label {
+  display: inline-block;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 15px 65px;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+.vikinger .vikinger-main .vikinger-content .change-tab label:nth-of-type(1) {
+  border-radius: 10px 0 0 10px;
+}
+.vikinger .vikinger-main .vikinger-content .change-tab label:nth-of-type(2) {
+  border-radius: 0 10px 10px 0;
+}
+.vikinger .vikinger-main .vikinger-form {
+  width: 484px;
+  position: relative;
+}
+.vikinger .vikinger-main .vikinger-form .form-login {
+  width: 100%;
+  position: absolute;
+  background-color: #fff;
+  top: 50%;
+  right: 0;
+  transform: translate(400px, -50%);
+  padding: 64px;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0px 0px 2px #ccc;
+  visibility: hidden;
+  opacity: 0;
+  transition-property: visibility, opacity, transform;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
+}
+.vikinger .vikinger-main .vikinger-form .form-login > img {
+  position: absolute;
+  top: -75px;
+  left: -75px;
+}
+.vikinger .vikinger-main .vikinger-form .form-login h2 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #3e3f5e;
+  margin-bottom: 75px;
+}
+.vikinger .vikinger-main .vikinger-form .form-login form > div:nth-of-type(1) {
+  position: relative;
+}
+.vikinger .vikinger-main .vikinger-form .form-login form > div:nth-of-type(1) input {
+  width: 100%;
+  padding: 18px;
+  height: 54px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  transition: border-color 0.2s linear;
+}
+.vikinger .vikinger-main .vikinger-form .form-login form > div:nth-of-type(1) input:focus {
+  border-color: rgb(64, 64, 239);
+}
+.vikinger .vikinger-main .vikinger-form .form-login form > div:nth-of-type(1) label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 24px;
+  color: #ccc;
+  background-color: #fff;
+  font-weight: 700;
+  padding: 0 4px;
+}
+.vikinger .vikinger-main .vikinger-form .form-login form > div:nth-of-type(2) {
+  margin-top: 30px;
+  position: relative;
+}
+.vikinger .vikinger-main .vikinger-form .form-login form > div:nth-of-type(2) input {
+  width: 100%;
+  padding: 18px;
+  height: 54px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  transition: border-color 0.2s linear;
+}
+.vikinger .vikinger-main .vikinger-form .form-login form > div:nth-of-type(2) input:focus {
+  border-color: rgb(64, 64, 239);
+}
+.vikinger .vikinger-main .vikinger-form .form-login form > div:nth-of-type(2) label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 24px;
+  color: #ccc;
+  background-color: #fff;
+  font-weight: 700;
+  padding: 0 4px;
+}
+.vikinger .vikinger-main .vikinger-form .form-login form .note {
+  margin-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.vikinger .vikinger-main .vikinger-form .form-login form .note .note-login span {
+  display: inline-block;
+  border: 1px solid rgba(228, 228, 228, 0.8470588235);
+  line-height: 0;
+  border-radius: 4px;
+  background-color: #fff;
+  padding: 2px 4px;
+  transition: background-color 0.2s linear;
+}
+.vikinger .vikinger-main .vikinger-form .form-login form .note .note-login span .fa-xmark {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  visibility: hidden;
+  opacity: 0;
+  transition-property: visibility, opacity;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+}
+.vikinger .vikinger-main .vikinger-form .form-login form .note .note-login label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #3e3f5e;
+  margin-left: 8px;
+}
+.vikinger .vikinger-main .vikinger-form .form-login form .note .note-login input[type=checkbox]:checked ~ span {
+  background-color: #23d2e2;
+}
+.vikinger .vikinger-main .vikinger-form .form-login form .note .note-login input[type=checkbox]:checked ~ span .fa-xmark {
+  visibility: visible;
+  opacity: 1;
+}
+.vikinger .vikinger-main .vikinger-form .form-login form .note a {
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #afafaf;
+}
+.vikinger .vikinger-main .vikinger-form .form-login form .note a:hover {
+  color: #23d2e2;
+}
+.vikinger .vikinger-main .vikinger-form .form-login form button {
+  margin-top: 36px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  height: 54px;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 12px;
+  color: #fff;
+  background-color: #625df6;
+  transition: background-color 0.1s linear;
+  cursor: pointer;
+}
+.vikinger .vikinger-main .vikinger-form .form-login form button:hover {
+  background-color: #5753e4;
+}
+.vikinger .vikinger-main .vikinger-form .form-login > p {
+  font-size: 14px;
+  font-weight: 700;
+  color: #3e3f5e;
+  margin-top: 35px;
+  position: relative;
+}
+.vikinger .vikinger-main .vikinger-form .form-login > p::before {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 70px;
+  background-color: #eaeaf5;
+  left: 12px;
+  top: 10px;
+}
+.vikinger .vikinger-main .vikinger-form .form-login > p::after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 70px;
+  background-color: #eaeaf5;
+  right: 12px;
+  top: 10px;
+}
+.vikinger .vikinger-main .vikinger-form .form-login .social-link {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+.vikinger .vikinger-main .vikinger-form .form-login .social-link a {
+  display: inline-block;
+  line-height: 0;
+  padding: 12px;
+  border-radius: 10px;
+  color: #fff;
+  transition: transform 0.2s linear;
+}
+.vikinger .vikinger-main .vikinger-form .form-login .social-link a + a {
+  margin-left: 12px;
+}
+.vikinger .vikinger-main .vikinger-form .form-login .social-link a:nth-of-type(1) {
+  background-color: #3763d2;
+}
+.vikinger .vikinger-main .vikinger-form .form-login .social-link a:nth-of-type(2) {
+  background-color: #1abcff;
+}
+.vikinger .vikinger-main .vikinger-form .form-login .social-link a:nth-of-type(3) {
+  background-color: #7b5dfa;
+}
+.vikinger .vikinger-main .vikinger-form .form-login .social-link a:nth-of-type(4) {
+  background-color: #fd434f;
+}
+.vikinger .vikinger-main .vikinger-form .form-login .social-link a:hover {
+  transform: translateY(-5px);
+}
+.vikinger .vikinger-main .vikinger-form .form-register {
+  width: 100%;
+  position: absolute;
+  background-color: #fff;
+  top: 50%;
+  right: 0;
+  transform: translate(400px, -50%);
+  padding: 64px;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0px 0px 2px #ccc;
+  visibility: hidden;
+  opacity: 0;
+  transition-property: visibility, opacity, transform;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
+}
+.vikinger .vikinger-main .vikinger-form .form-register > img {
+  position: absolute;
+  top: -15px;
+  left: -75px;
+}
+.vikinger .vikinger-main .vikinger-form .form-register h2 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #3e3f5e;
+  margin-bottom: 60px;
+}
+.vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(1) {
+  position: relative;
+}
+.vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(1) input {
+  width: 100%;
+  padding: 18px;
+  height: 54px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  transition: border-color 0.2s linear;
+}
+.vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(1) input:focus {
+  border-color: rgb(64, 64, 239);
+}
+.vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(1) label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 24px;
+  color: #ccc;
+  background-color: #fff;
+  font-weight: 700;
+  padding: 0 4px;
+}
+.vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(2) {
+  margin-top: 30px;
+  position: relative;
+}
+.vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(2) input {
+  width: 100%;
+  padding: 18px;
+  height: 54px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  transition: border-color 0.2s linear;
+}
+.vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(2) input:focus {
+  border-color: rgb(64, 64, 239);
+}
+.vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(2) label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 24px;
+  color: #ccc;
+  background-color: #fff;
+  font-weight: 700;
+  padding: 0 4px;
+}
+.vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(3) {
+  margin-top: 30px;
+  position: relative;
+}
+.vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(3) input {
+  width: 100%;
+  padding: 18px;
+  height: 54px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  transition: border-color 0.2s linear;
+}
+.vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(3) input:focus {
+  border-color: rgb(64, 64, 239);
+}
+.vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(3) label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 24px;
+  color: #ccc;
+  background-color: #fff;
+  font-weight: 700;
+  padding: 0 4px;
+}
+.vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(4) {
+  margin-top: 30px;
+  position: relative;
+}
+.vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(4) input {
+  width: 100%;
+  padding: 18px;
+  height: 54px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  transition: border-color 0.2s linear;
+}
+.vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(4) input:focus {
+  border-color: rgb(64, 64, 239);
+}
+.vikinger .vikinger-main .vikinger-form .form-register form > div:nth-of-type(4) label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 24px;
+  color: #ccc;
+  background-color: #fff;
+  font-weight: 700;
+  padding: 0 4px;
+}
+.vikinger .vikinger-main .vikinger-form .form-register form .note-register {
+  text-align: left;
+  margin-top: 28px;
+}
+.vikinger .vikinger-main .vikinger-form .form-register form .note-register span {
+  display: inline-block;
+  border: 1px solid rgba(228, 228, 228, 0.8470588235);
+  line-height: 0;
+  border-radius: 4px;
+  background-color: #fff;
+  padding: 2px 4px;
+  transition: background-color 0.2s linear;
+}
+.vikinger .vikinger-main .vikinger-form .form-register form .note-register span .fa-xmark {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  visibility: hidden;
+  opacity: 0;
+  transition-property: visibility, opacity;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+}
+.vikinger .vikinger-main .vikinger-form .form-register form .note-register label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #3e3f5e;
+  margin-left: 8px;
+}
+.vikinger .vikinger-main .vikinger-form .form-register form .note-register input[type=checkbox]:checked ~ span {
+  background-color: #23d2e2;
+}
+.vikinger .vikinger-main .vikinger-form .form-register form .note-register input[type=checkbox]:checked ~ span .fa-xmark {
+  visibility: visible;
+  opacity: 1;
+}
+.vikinger .vikinger-main .vikinger-form .form-register form button {
+  margin-top: 30px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  height: 54px;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 12px;
+  color: #fff;
+  background-color: #23d2e2;
+  transition: background-color 0.1s linear;
+  cursor: pointer;
+}
+.vikinger .vikinger-main .vikinger-form .form-register form button:hover {
+  background-color: #24c1cf;
+}
+.vikinger .vikinger-main .vikinger-form .form-register > p {
+  margin-top: 30px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #3e3f5e;
+  line-height: 1.6;
+}
+.vikinger .vikinger-main .vikinger-form .form-register > p span {
+  color: #23d2e2;
+}
+
+/*# sourceMappingURL=vikinger.css.map */

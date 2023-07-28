@@ -1,0 +1,54 @@
+//Grid System (No need to use in this exercise)
+:root {
+  --container-width: 1200px;
+  --column-space: 20px;
+  --container-padding: 15px;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 calc(-1 * var(--column-space) / 2);
+  row [class^="col-"] {
+    --column-width: calc(100% / (12 / var(--column-size)));
+    flex-basis: var(--column-width);
+    max-width: var(--column-width);
+    padding: 0 calc(var(--column-space) / 2);
+  }
+}
+
+$breakpoints: (
+  sm: 576,
+  md: 768,
+  lg: 992,
+  xl: 1200,
+  xxl: 1400,
+);
+
+@mixin column($name: "") {
+  $prefix: "col";
+
+  @if ($name != "") {
+    $prefix: $prefix + "-" + $name;
+  }
+
+  @for $i from 1 through 12 {
+    .#{$prefix}-#{$i} {
+      --column-size: #{$i};
+    }
+  }
+}
+
+@include column();
+
+@each $name, $breakpoint in $breakpoints {
+  @media screen and (min-width: #{$breakpoint}px) {
+    @include column($name);
+  }
+}

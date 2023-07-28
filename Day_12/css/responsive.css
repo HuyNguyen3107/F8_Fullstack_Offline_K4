@@ -1,0 +1,94 @@
+@media screen and (max-width: 1500px) {
+  .vikinger .vikinger-sub-bg {
+    display: none;
+  }
+}
+@media screen and (max-width: 1364px) {
+  .vikinger {
+    position: static;
+    background-position: top 0 left 0;
+  }
+  .vikinger .vikinger-main {
+    position: static;
+    flex-direction: column;
+    transform: none;
+    padding: 80px 0 100px;
+  }
+  .vikinger .vikinger-main input[type=radio]:nth-of-type(1):checked ~ .vikinger-form .form-login {
+    display: block;
+    transform: none;
+  }
+  .vikinger .vikinger-main input[type=radio]:nth-of-type(2):checked ~ .vikinger-form .form-register {
+    display: block;
+    transform: none;
+  }
+  .vikinger .vikinger-main .vikinger-content > p {
+    display: none;
+  }
+  .vikinger .vikinger-main .vikinger-content .change-tab {
+    margin-top: -20px;
+  }
+  .vikinger .vikinger-main .vikinger-form {
+    position: static;
+  }
+  .vikinger .vikinger-main .vikinger-form .form-login {
+    position: static;
+    transform: none;
+    margin-top: 75px;
+    opacity: 1;
+    visibility: visible;
+    display: none;
+    transition: none;
+  }
+  .vikinger .vikinger-main .vikinger-form .form-login > img {
+    display: none;
+  }
+  .vikinger .vikinger-main .vikinger-form .form-register {
+    position: static;
+    transform: none;
+    margin-top: 75px;
+    opacity: 1;
+    visibility: visible;
+    display: none;
+    transition: none;
+  }
+  .vikinger .vikinger-main .vikinger-form .form-register > img {
+    display: none;
+  }
+}
+@media screen and (max-width: 584px) {
+  .vikinger .vikinger-main .vikinger-content {
+    width: auto;
+  }
+  .vikinger .vikinger-main .vikinger-form {
+    width: auto;
+  }
+}
+@media screen and (max-width: 500px) {
+  .vikinger .vikinger-main .vikinger-content {
+    width: auto;
+  }
+  .vikinger .vikinger-main .vikinger-content h1 {
+    font-size: 60px;
+    top: -28px;
+  }
+  .vikinger .vikinger-main .vikinger-content .change-tab label {
+    padding: 15px 75px;
+  }
+  .vikinger .vikinger-main .vikinger-form {
+    width: auto;
+  }
+  .vikinger .vikinger-main .vikinger-form .form-login {
+    width: 100%;
+  }
+  .vikinger .vikinger-main .vikinger-form .form-register {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 397px) {
+  .vikinger .vikinger-main .vikinger-content .change-tab label {
+    padding: 15px 50px;
+  }
+}
+
+/*# sourceMappingURL=responsive.css.map */
