@@ -2,7 +2,7 @@ function getResult() {
   var val = document.getElementById("value").value;
   var n = +val;
   function check(n) {
-    if ((n % 1 !== 0) & (n <= 1)) {
+    if ((n % 1 !== 0) && (n <= 1)) {
       return false;
     } else {
       for (var i = 2; i < n; i++) {
