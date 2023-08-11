@@ -77,22 +77,21 @@ function convert() {
         var a = n / 1000;
         str = checkNum(a) + " Ngàn";
       }
-      if (checkQuantity(n % 1000) === 1 && n % 1000 !== 0) {
+      if (checkQuantity(n % 1000) === 1 && (n % 1000) !== 0) {
         var a = n / 1000;
         a = a - (a % 1);
         var b = n % 10;
-        str =
-          checkNum(a) + " Ngàn " + "Không " + "Trăm " + "Linh " + checkNum(b);
+        str = checkNum(a) + " Ngàn " + "Không " + "Trăm " + "Linh " + checkNum(b);
       }
       if (checkQuantity(n % 1000) === 2) {
         var a = n / 1000;
         a = a - (a % 1);
         var b = n % 100;
         var c;
-        if (10 <= b <= 19) {
+        if (10 <= b && b <= 19) {
           c = s(b);
         }
-        if (20 <= b <= 99) {
+        if (20 <= b && b <= 99) {
           c = t(b);
         }
         str = checkNum(a) + " Ngàn " + "Không " + "Trăm " + c;
@@ -133,7 +132,7 @@ function convert() {
           checkNum(b) +
           " Trăm " +
           "Linh " +
-          f(n % 100);
+          checkNum(n % 100);
       }
     }
 
