@@ -1,24 +1,22 @@
 var content = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis impedit omnis non suscipit, deserunt possimus
 harum hic itaque, consectetur sapiente qui beatae asperiores porro deleniti voluptatem modi rerum pariatur ullam.`;
 
-var temp = content.split(" ");
+content = `<span>${content}</span>`
 
-for (var i = 0; i < temp.length; i++) {
-  temp[i] = `<span>${temp[i]}</span>`;
-}
-content = temp.join(" ");
+content = content.replaceAll(' ', `</span> <span>`);
 
-var index = 0;
+
+var n = 0;
 setInterval(function () {
-  var char = content.charAt(index);
-  var charNext = content.charAt(index + 1);
+  var a = content.charAt(n);
+  var b = content.charAt(n + 1);
 
-  if (char === ">" && charNext !== " ") {
+  if (a === ">" && b !== " ") {
     document.getElementById("container").innerHTML =
-      content.slice(0, index) + ` class = "redColor"` + content.slice(index);
+      content.slice(0, n) + " " + `style = 'color: red'` + content.slice(n);
   }
-  index++;
-  if (index === content.length) {
-    index = 0;
+  n++;
+  if (n === content.length) {
+    n = 0;
   }
-}, 10);
+}, 20);
