@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 04</title>
+    <style>
+        button {
+            color: #fff;
+            background-color: purple;
+            border: none;
+            border-radius: 4px;
+            display: inline-block;
+            padding: 8px 20px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        input {
+            outline: none;
+            border: 2px solid purple;
+            padding: 4px 12px;
+        }
+        h1 {
+            color: purple;
+        }
+        p {
+            color: purple;
+        }
+    </style>
+</head>
+<body>
+    <h1>Nhập vào 1 mảng số nguyên (mỗi số cách nhau một khoảng trắng)</h1>
+    <p>* Khi muốn chèn giá trị vào mảng hãy nhập giá trị trước và vị trí chèn sau.</p>
+    <input type="text" placeholder="Array Integer" id="value">
+    <button onclick="sortArr()">Sort</button>
+    <input type="text" placeholder="Number and Position" id="element">
+    <button onclick="insertArr()">Insert</button>
+    <h2 id="result" style="color: purple;"></h2>
+    <script src="./ex04.js"></script>
+</body>
+</html>
