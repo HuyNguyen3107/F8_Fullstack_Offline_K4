@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 04</title>
+    <style>
+        .container {
+            display: flex;
+            align-items: center;
+            column-gap: 20px;
+            width: 1000px;
+            margin: 100px auto 0;
+            position: relative;
+        }
+
+        .container::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 1px;
+            background-color: #ccc;
+            bottom: -20px;
+            left: 0;
+            position: absolute;
+        }
+
+        .main-content h2 {
+            font-size: 48px;
+        }
+
+        .main-content p {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="./ex04.js"></script>
+</body>
+
+</html>
