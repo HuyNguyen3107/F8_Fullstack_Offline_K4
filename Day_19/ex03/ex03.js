@@ -4,10 +4,6 @@ var arr = [
   ["c", 3, false, undefined],
 ];
 
-var newArr = arr.reduce(function (a, b) {
-  return a.concat(b);
-}, []);
-
 var check = function (arr) {
   return arr.every(function (value) {
     if (Array.isArray(value)) {
@@ -18,29 +14,37 @@ var check = function (arr) {
   });
 };
 
-while (!check(newArr)) {
-  newArr = newArr.reduce(function (a, b) {
+if (arr.length && Array.isArray(arr)) {
+  var newArr = arr.reduce(function (a, b) {
     return a.concat(b);
   }, []);
-}
-console.log(newArr);
-var results = [];
-while (newArr.length) {
-  var temp = newArr[0];
-  var result = newArr
-    .filter(function (value) {
-      if (typeof temp === typeof value) {
+
+  while (!check(newArr)) {
+    newArr = newArr.reduce(function (a, b) {
+      return a.concat(b);
+    }, []);
+  }
+
+  var results = [];
+  while (newArr.length) {
+    var temp = newArr[0];
+    var result = newArr
+      .filter(function (value) {
+        if (typeof temp === typeof value) {
+          return true;
+        }
+      })
+      .filter(function (value) {
+        var index = newArr.indexOf(value);
+        if (index !== -1) {
+          newArr.splice(index, 1);
+        }
         return true;
-      }
-    })
-    .filter(function (value) {
-      var index = newArr.indexOf(value);
-      if (index !== -1) {
-        newArr.splice(index, 1);
-      }
-      return true;
-    });
-  results.push(result);
+      });
+    results.push(result);
+  }
+  console.log(results);
+} else {
+  console.log("Giá trị không hợp lệ.");
 }
 
-console.log(results);

@@ -36,7 +36,7 @@ var arr = [
   ],
 ];
 
-var html = `<div>
+var html = (arr.length && Array.isArray(arr)) ? `<div>
     ${arr.map(function (value, index) {
       if (index % 2 === 0) {
         return `<div class = "container">
@@ -56,6 +56,6 @@ var html = `<div>
           </div>`;
       }
     })}
-</div>`;
+</div>` : `<h2>Không có bài viết.</h2>`;
 
 document.write(html);
