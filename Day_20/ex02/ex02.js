@@ -12,18 +12,22 @@ const customers = [
 ];
 
 function createCustomers(customers) {
-  var result = [];
-  for (var value of customers) {
-    var customer = new Customer(value.name, value.age, value.address);
-    var temp = value.name.split(" ");
-    temp.splice(1, temp.length - 2);
-    customer.shortName = temp.join(" ");
-    result.push(customer);
+  if (customers.length && Array.isArray(customers)) {
+    var result = [];
+    for (var value of customers) {
+      var customer = new Customer(value.name, value.age, value.address);
+      var temp = value.name.split(" ");
+      temp.splice(1, temp.length - 2);
+      customer.shortName = temp.join(" ");
+      result.push(customer);
+    }
+    result.sort(function (next, prev) {
+      return next.age - prev.age;
+    });
+    return result;
+  } else {
+    return `Giá trị không hợp lệ.`;
   }
-  result.sort(function (next, prev) {
-    return next.age - prev.age;
-  });
-  return result;
 }
 
 const result = createCustomers(customers);

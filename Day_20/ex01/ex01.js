@@ -14,15 +14,25 @@ var errors = {
   },
 };
 
-console.log(errors);
-console.log(Object.entries(errors));
+function checkKey(field) {
+  for (var key in errors) {
+    if (field === key) {
+      return true;
+    }
+  }
+  return false;
+}
 
 function getError(field) {
+  if (checkKey(field)) {
     var result = Object.entries(errors).find(function (value) {
-        return value.includes(field);
+      return value.includes(field);
     });
     var err = Object.entries(result[1])[0][1];
     return err;
+  } else {
+    return `Không tìm thấy lỗi.`;
+  }
 }
 
-console.log(getError('password'));
+console.log(getError("password"));
