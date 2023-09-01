@@ -64,7 +64,7 @@ function buildTree(arr, parentId = 0) {
         if (item.parent === parentId) {
           var children = [];
           for (var value of arr) {
-            if (value.parent !== parentId && value.parent === item.id) {
+            if (value.parent === item.id) {
               delete value.parent;
               var temp = buildTree(arr, value.id);
               if (temp.length) {
