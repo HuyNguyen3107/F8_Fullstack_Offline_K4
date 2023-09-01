@@ -1,0 +1,182 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+body,
+input,
+button {
+  font-family: "Roboto", sans-serif;
+}
+
+.btn {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  background-color: purple;
+  border: 2px solid purple;
+  border-radius: 99px;
+  padding: 0 24px;
+  cursor: pointer;
+}
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: #000;
+  opacity: 0.5;
+}
+.register-form {
+  display: none;
+}
+.modal-box .modal {
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  width: 400px;
+  margin: 0 auto;
+  top: 100px;
+  text-align: center;
+}
+.categories {
+  display: flex;
+}
+.login {
+  text-align: center;
+  flex: 1;
+  padding: 10px 0;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+}
+.login:hover,
+.register:hover {
+  opacity: 0.8;
+  background-color: #ccc;
+}
+.register {
+  text-align: center;
+  flex: 1;
+  padding: 10px 0;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.login-form p:nth-of-type(1) {
+  text-align: center;
+  margin-top: 20px;
+}
+.social-login {
+  display: flex;
+  justify-content: center;
+  column-gap: 30px;
+  margin-top: 16px;
+}
+.social-login a {
+  background-color: aliceblue;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #000;
+  border-radius: 6px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+.social-login a i {
+  font-size: 20px;
+}
+.social-login a:nth-of-type(1) i {
+  color: red;
+}
+.social-login a:nth-of-type(2) i {
+  color: blue;
+}
+.login-form > span {
+  margin-top: 16px;
+  display: inline-block;
+  position: relative;
+}
+.login-form > span::before {
+  content: "";
+  background-color: #ccc;
+  height: 1px;
+  width: 120px;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: -350%;
+}
+.login-form > span::after {
+  content: "";
+  background-color: #ccc;
+  height: 1px;
+  width: 120px;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  right: -350%;
+}
+
+.login-form form {
+  margin-top: 16px;
+  text-align: left;
+  padding: 0 60px;
+}
+
+.login-form form div:nth-of-type(2) {
+  position: relative;
+}
+
+.login-form form div:nth-of-type(1) label,
+.login-form form div:nth-of-type(2) label {
+  display: inline-block;
+  margin-top: 8px;
+}
+
+.login-form form div:nth-of-type(1) input,
+.login-form form div:nth-of-type(2) input {
+  display: block;
+  margin-top: 4%;
+  width: 100%;
+  padding: 8px 50px 8px 0px;
+}
+.login-form form div:nth-of-type(2) i:nth-of-type(1) {
+  position: absolute;
+  bottom: 10px;
+  right: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  color: #9d9d9d;
+}
+.login-form form div:nth-of-type(2) i:nth-of-type(2) {
+  display: none;
+}
+.login-form form div:nth-of-type(3) {
+    margin-top: 8px;
+    display: flex;
+    justify-content: end;
+}
+.login-form form div:nth-of-type(3) a {
+    text-decoration: none;
+    color: #8b8b8b;
+    font-style: italic;
+    font-size: 14px;
+}
+.login-form form button {
+    width: 100%;
+    margin: 20px 0;
+    padding: 10px 0;
+    border: none;
+    cursor: pointer;
+    background-color: green;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+}

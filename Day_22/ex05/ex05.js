@@ -57,12 +57,15 @@ var categories = [
 
 var count = 0;
 
+var result = [];
+
+result[
+  result.length
+] = `<option value="" hidden>Chọn chuyên mục</option>  <option value="">Chọn chuyên mục</option>`;
+
 function render(arr) {
   if (Array.isArray(arr) && arr.length) {
     var result = [];
-    result[
-      result.length
-    ] = `<option value="" hidden>Chọn chuyên mục</option>  <option value="">Chọn chuyên mục</option>`;
     for (var value of arr) {
       var check = value.name.split(" ").slice(-1).join("").split(".");
       var item = `<option value = "${++count}"> ${value.name}</option>`;
@@ -84,7 +87,8 @@ function render(arr) {
     return "Đầu vào không hợp lệ";
   }
 }
-console.log(render(categories).join(" "));
+// console.log(render(categories).join(" "));
 var value = document.querySelector(".categories");
-console.log(value);
-value.innerHTML = render(categories).join(" ");
+// console.log(value);
+result.push(render(categories));
+value.innerHTML = result.join(" ");
