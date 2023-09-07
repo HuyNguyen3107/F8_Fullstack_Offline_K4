@@ -206,6 +206,7 @@ button {
 }
 .register-form form {
   padding: 25px;
+  text-align: left;
 }
 .register-form div {
   margin-bottom: 8px;
@@ -229,6 +230,7 @@ button {
   font-size: 15px;
   color: #8b8b8b;
   cursor: pointer;
+  display: none;
 }
 .register-form div:nth-of-type(3) i:nth-of-type(2) {
   display: none;
@@ -238,6 +240,7 @@ button {
   font-size: 15px;
   color: #8b8b8b;
   cursor: pointer;
+  display: none;
 }
 .register-form form > p {
   text-align: left;

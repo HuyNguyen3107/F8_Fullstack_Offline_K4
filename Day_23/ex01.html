@@ -53,26 +53,32 @@
             <div class="register-form">
                 <p>Hoàn thành đăng ký, và bắt đầu trải nghiệm ngay!</p>
                 <form action="">
+                    <span class="register-notice" style="color: red;"></span>
                     <div>
                         <label for="name">Họ và tên</label>
                         <input type="text" placeholder="Họ và tên" id="name">
+                        <span class="notice-name" style="color: red;"></span>
                     </div>
                     <div>
                         <label for="email">Email</label>
                         <input type="email" placeholder="Email" id="email-register">
+                        <span class="notice-email-rg" style="color: red;"></span>
                     </div>
                     <div>
                         <label for="password">Mật khẩu</label>
-                        <input type="password" placeholder="Mật khẩu" id="password-register">
-                        <i class="fa-solid fa-eye"></i>
-                        <i class="fa-solid fa-eye-slash"></i>
+                        <div style="position: relative;">
+                            <input type="password" placeholder="Mật khẩu" id="password-register">
+                            <i class="fa-solid fa-eye show"></i>
+                            <i class="fa-solid fa-eye-slash"></i>
+                        </div>
+                        <span class="notice-password-rg" style="color: red;"></span>
                     </div>
                     <p>
                         Bằng cách đăng ký tài khoản, bạn cũng đồng thời chấp nhận mọi <a href="#">điều kiện về quy định
                             và
                             chính sách của Dân trí</a>
                     </p>
-                    <button>Đăng ký</button>
+                    <button class="btn-register">Đăng ký</button>
                 </form>
             </div>
         </div>
