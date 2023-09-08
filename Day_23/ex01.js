@@ -106,8 +106,15 @@ emailLogin.onblur = function () {
   }
 };
 emailLogin.oninput = function () {
-  emailNotice.innerHTML = "";
-  emailLogin.classList.remove("border-red");
+  emailNotice.innerHTML = "Vui lòng nhập đúng định dạng email.";
+  if (
+    emailLogin.value.includes("@") &&
+    emailLogin.value.includes(".") &&
+    emailLogin.value.slice(emailLogin.value.indexOf(".") + 1).length >= 2
+  ) {
+    emailLogin.classList.remove("border-red");
+    emailNotice.innerHTML = "";
+  }
 };
 passwordLogin.onblur = function () {
   if (passwordLogin.value === "") {
@@ -178,8 +185,15 @@ emailRegister.onblur = function () {
 };
 
 emailRegister.oninput = function () {
-  emailNoticeRg.innerHTML = "";
-  emailRegister.classList.remove("border-red");
+  emailNoticeRg.innerHTML = "Vui lòng nhập đúng định dạng email.";
+  if (
+    emailRegister.value.includes("@") &&
+    emailRegister.value.includes(".") &&
+    emailRegister.value.slice(emailRegister.value.indexOf(".") + 1).length >= 2
+  ) {
+    emailRegister.classList.remove("border-red");
+    emailNoticeRg.innerHTML = "";
+  }
 };
 
 passwordRegister.onblur = function () {
