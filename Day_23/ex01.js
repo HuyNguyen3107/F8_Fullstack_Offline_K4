@@ -133,6 +133,10 @@ passwordLogin.onblur = function () {
 passwordLogin.oninput = function () {
   passwordNotice.innerText = "";
   passwordLogin.classList.remove("border-red");
+  if (passwordLogin.value === "") {
+    passwordNotice.innerText = "Vui lòng nhập thông tin";
+    passwordLogin.classList.add("border-red");
+  }
 };
 btnLogin.addEventListener("click", function (e) {
   if (passwordLogin.value !== "" && emailLogin.value !== "") {
@@ -250,6 +254,10 @@ nameRegister.onblur = function () {
 nameRegister.oninput = function () {
   nameNoticeRg.innerText = "";
   nameRegister.classList.remove("border-red");
+  if (nameRegister.value === "") {
+    nameNoticeRg.innerText = "Vui lòng nhập thông tin";
+    nameRegister.classList.add("border-red");
+  }
 };
 
 btnRegister.addEventListener("click", function (e) {
