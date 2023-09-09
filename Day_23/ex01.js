@@ -48,23 +48,23 @@ login.addEventListener("click", function () {
   if (nameRegister.classList.contains("border-red")) {
     nameRegister.classList.remove("border-red");
   }
-  if (nameNoticeRg.innerHTML) {
-    nameNoticeRg.innerHTML = "";
+  if (nameNoticeRg.innerText) {
+    nameNoticeRg.innerText = "";
   }
   if (emailRegister.classList.contains("border-red")) {
     emailRegister.classList.remove("border-red");
   }
-  if (emailNoticeRg.innerHTML) {
-    emailNoticeRg.innerHTML = "";
+  if (emailNoticeRg.innerText) {
+    emailNoticeRg.innerText = "";
   }
   if (passwordRegister.classList.contains("border-red")) {
     passwordRegister.classList.remove("border-red");
   }
-  if (passwordNoticeRg.innerHTML) {
-    passwordNoticeRg.innerHTML = "";
+  if (passwordNoticeRg.innerText) {
+    passwordNoticeRg.innerText = "";
   }
-  if (registerNotice.innerHTML) {
-    registerNotice.innerHTML = "";
+  if (registerNotice.innerText) {
+    registerNotice.innerText = "";
   }
 });
 register.addEventListener("click", function () {
@@ -81,66 +81,70 @@ register.addEventListener("click", function () {
   if (emailLogin.classList.contains("border-red")) {
     emailLogin.classList.remove("border-red");
   }
-  if (emailNotice.innerHTML) {
-    emailNotice.innerHTML = "";
+  if (emailNotice.innerText) {
+    emailNotice.innerText = "";
   }
   if (passwordLogin.classList.contains("border-red")) {
     passwordLogin.classList.remove("border-red");
   }
-  if (passwordNotice.innerHTML) {
-    passwordNotice.innerHTML = "";
+  if (passwordNotice.innerText) {
+    passwordNotice.innerText = "";
   }
-  if (loginNotice.innerHTML) {
-    loginNotice.innerHTML = "";
+  if (loginNotice.innerText) {
+    loginNotice.innerText = "";
   }
 });
 
 emailLogin.onblur = function () {
   if (emailLogin.value === "") {
-    emailNotice.innerHTML = "Vui lòng nhập thông tin";
+    emailNotice.innerText = "Vui lòng nhập thông tin";
     emailLogin.classList.add("border-red");
   }
   if (passwordLogin.value === "") {
-    passwordNotice.innerHTML = "Vui lòng nhập thông tin";
+    passwordNotice.innerText = "Vui lòng nhập thông tin";
     passwordLogin.classList.add("border-red");
   }
 };
 emailLogin.oninput = function () {
-  emailNotice.innerHTML = "Vui lòng nhập đúng định dạng email.";
+  emailNotice.innerText = "Vui lòng nhập đúng định dạng email.";
   if (
     emailLogin.value.includes("@") &&
     emailLogin.value.includes(".") &&
     emailLogin.value.slice(emailLogin.value.indexOf(".") + 1).length >= 2
   ) {
     emailLogin.classList.remove("border-red");
-    emailNotice.innerHTML = "";
+    emailNotice.innerText = "";
+  }
+  if (emailLogin.value === "") {
+    emailNotice.innerText = "Vui lòng nhập thông tin";
+    emailLogin.classList.add("border-red");
   }
 };
 passwordLogin.onblur = function () {
   if (passwordLogin.value === "") {
-    passwordNotice.innerHTML = "Vui lòng nhập thông tin";
+    passwordNotice.innerText = "Vui lòng nhập thông tin";
     passwordLogin.classList.add("border-red");
   }
   if (emailLogin.value === "") {
-    emailNotice.innerHTML = "Vui lòng nhập thông tin";
+    emailNotice.innerText = "Vui lòng nhập thông tin";
     emailLogin.classList.add("border-red");
   }
 };
 passwordLogin.oninput = function () {
-  passwordNotice.innerHTML = "";
+  passwordNotice.innerText = "";
   passwordLogin.classList.remove("border-red");
 };
 btnLogin.addEventListener("click", function (e) {
   if (passwordLogin.value !== "" && emailLogin.value !== "") {
-    loginNotice.innerHTML = "Account not existed";
+    loginNotice.innerText = "Account not existed";
   } else if (passwordLogin.value === "" && emailLogin.value === "") {
-    passwordNotice.innerHTML = "Vui lòng nhập thông tin";
+    passwordNotice.innerText = "Vui lòng nhập thông tin";
     passwordLogin.classList.add("border-red");
-    emailNotice.innerHTML = "Vui lòng nhập thông tin";
+    emailNotice.innerText = "Vui lòng nhập thông tin";
     emailLogin.classList.add("border-red");
   }
   if (passwordLogin.value === "" || emailLogin.value === "") {
-    loginNotice.innerHTML = "";
+    loginNotice.innerText = "";
   }
   e.preventDefault();
 });
@@ -171,68 +175,80 @@ faEyeSlash2.addEventListener("click", function () {
 
 emailRegister.onblur = function () {
   if (emailRegister.value === "") {
-    emailNoticeRg.innerHTML = "Vui lòng nhập thông tin";
+    emailNoticeRg.innerText = "Vui lòng nhập thông tin";
     emailRegister.classList.add("border-red");
   }
   if (passwordRegister.value === "") {
-    passwordNoticeRg.innerHTML = "Vui lòng nhập thông tin";
+    passwordNoticeRg.innerText = "Vui lòng nhập thông tin";
     passwordRegister.classList.add("border-red");
   }
   if (nameRegister.value === "") {
-    nameNoticeRg.innerHTML = "Vui lòng nhập thông tin";
+    nameNoticeRg.innerText = "Vui lòng nhập thông tin";
     nameRegister.classList.add("border-red");
   }
 };
 
 emailRegister.oninput = function () {
-  emailNoticeRg.innerHTML = "Vui lòng nhập đúng định dạng email.";
+  emailNoticeRg.innerText = "Vui lòng nhập đúng định dạng email.";
   if (
     emailRegister.value.includes("@") &&
     emailRegister.value.includes(".") &&
     emailRegister.value.slice(emailRegister.value.indexOf(".") + 1).length >= 2
   ) {
     emailRegister.classList.remove("border-red");
-    emailNoticeRg.innerHTML = "";
+    emailNoticeRg.innerText = "";
+  }
+  if (emailRegister.value === "") {
+    emailNoticeRg.innerText = "Vui lòng nhập thông tin";
+    emailRegister.classList.add("border-red");
   }
 };
 
 passwordRegister.onblur = function () {
   if (passwordRegister.value === "") {
-    passwordNoticeRg.innerHTML = "Vui lòng nhập thông tin";
+    passwordNoticeRg.innerText = "Vui lòng nhập thông tin";
     passwordRegister.classList.add("border-red");
   }
   if (emailRegister.value === "") {
-    emailNoticeRg.innerHTML = "Vui lòng nhập thông tin";
+    emailNoticeRg.innerText = "Vui lòng nhập thông tin";
     emailRegister.classList.add("border-red");
   }
   if (nameRegister.value === "") {
-    nameNoticeRg.innerHTML = "Vui lòng nhập thông tin";
+    nameNoticeRg.innerText = "Vui lòng nhập thông tin";
     nameRegister.classList.add("border-red");
   }
 };
 
 passwordRegister.oninput = function () {
-  passwordNoticeRg.innerHTML = "";
-  passwordRegister.classList.remove("border-red");
+  passwordNoticeRg.innerText = "Mật khẩu phải chứa ít nhất 6 ký tự";
+  passwordRegister.classList.add("border-red");
+  if (passwordRegister.value.length >= 6) {
+    passwordNoticeRg.innerText = "";
+    passwordRegister.classList.remove("border-red");
+  }
+  if (passwordRegister.value === "") {
+    passwordNoticeRg.innerText = "Vui lòng nhập thông tin";
+    passwordRegister.classList.add("border-red");
+  }
 };
 
 nameRegister.onblur = function () {
   if (nameRegister.value === "") {
-    nameNoticeRg.innerHTML = "Vui lòng nhập thông tin";
+    nameNoticeRg.innerText = "Vui lòng nhập thông tin";
     nameRegister.classList.add("border-red");
   }
   if (emailRegister.value === "") {
-    emailNoticeRg.innerHTML = "Vui lòng nhập thông tin";
+    emailNoticeRg.innerText = "Vui lòng nhập thông tin";
     emailRegister.classList.add("border-red");
   }
   if (passwordRegister.value === "") {
-    passwordNoticeRg.innerHTML = "Vui lòng nhập thông tin";
+    passwordNoticeRg.innerText = "Vui lòng nhập thông tin";
     passwordRegister.classList.add("border-red");
   }
 };
 
 nameRegister.oninput = function () {
-  nameNoticeRg.innerHTML = "";
+  nameNoticeRg.innerText = "";
   nameRegister.classList.remove("border-red");
 };
 
@@ -242,17 +258,17 @@ btnRegister.addEventListener("click", function (e) {
     emailRegister.value !== "" &&
     nameRegister.value !== ""
   ) {
-    registerNotice.innerHTML = "Account not existed";
+    registerNotice.innerText = "Account not existed";
   } else if (
     passwordRegister.value === "" &&
     emailRegister.value === "" &&
     nameRegister.value === ""
   ) {
-    passwordNoticeRg.innerHTML = "Vui lòng nhập thông tin";
+    passwordNoticeRg.innerText = "Vui lòng nhập thông tin";
     passwordRegister.classList.add("border-red");
-    emailNoticeRg.innerHTML = "Vui lòng nhập thông tin";
+    emailNoticeRg.innerText = "Vui lòng nhập thông tin";
     emailRegister.classList.add("border-red");
-    nameNoticeRg.innerHTML = "Vui lòng nhập thông tin";
+    nameNoticeRg.innerText = "Vui lòng nhập thông tin";
     nameRegister.classList.add("border-red");
   }
   if (
@@ -260,7 +276,7 @@ btnRegister.addEventListener("click", function (e) {
     emailRegister.value === "" ||
     nameRegister.value === ""
   ) {
-    registerNotice.innerHTML = "";
+    registerNotice.innerText = "";
   }
   e.preventDefault();
 });
