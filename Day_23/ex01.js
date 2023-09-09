@@ -107,6 +107,7 @@ emailLogin.onblur = function () {
 };
 emailLogin.oninput = function () {
   emailNotice.innerText = "Vui lòng nhập đúng định dạng email.";
+  emailLogin.classList.add("border-red");
   if (
     emailLogin.value.includes("@") &&
     emailLogin.value.includes(".") &&
@@ -194,6 +195,7 @@ emailRegister.onblur = function () {
 
 emailRegister.oninput = function () {
   emailNoticeRg.innerText = "Vui lòng nhập đúng định dạng email.";
+  emailRegister.classList.add("border-red");
   if (
     emailRegister.value.includes("@") &&
     emailRegister.value.includes(".") &&
