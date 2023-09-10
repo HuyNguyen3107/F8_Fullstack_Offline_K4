@@ -120,6 +120,10 @@ emailLogin.oninput = function () {
     emailNotice.innerText = "Vui lòng nhập thông tin";
     emailLogin.classList.add("border-red");
   }
+  if (passwordLogin.value === "") {
+    passwordNotice.innerText = "Vui lòng nhập thông tin";
+    passwordLogin.classList.add("border-red");
+  }
 };
 passwordLogin.onblur = function () {
   if (passwordLogin.value === "") {
@@ -137,6 +141,10 @@ passwordLogin.oninput = function () {
   if (passwordLogin.value === "") {
     passwordNotice.innerText = "Vui lòng nhập thông tin";
     passwordLogin.classList.add("border-red");
+  }
+  if (emailLogin.value === "") {
+    emailNotice.innerText = "Vui lòng nhập thông tin";
+    emailLogin.classList.add("border-red");
   }
 };
 btnLogin.addEventListener("click", function (e) {
@@ -208,6 +216,14 @@ emailRegister.oninput = function () {
     emailNoticeRg.innerText = "Vui lòng nhập thông tin";
     emailRegister.classList.add("border-red");
   }
+  if (passwordRegister.value === "") {
+    passwordNoticeRg.innerText = "Vui lòng nhập thông tin";
+    passwordRegister.classList.add("border-red");
+  }
+  if (nameRegister.value === "") {
+    nameNoticeRg.innerText = "Vui lòng nhập thông tin";
+    nameRegister.classList.add("border-red");
+  }
 };
 
 passwordRegister.onblur = function () {
@@ -236,6 +252,14 @@ passwordRegister.oninput = function () {
     passwordNoticeRg.innerText = "Vui lòng nhập thông tin";
     passwordRegister.classList.add("border-red");
   }
+  if (nameRegister.value === "") {
+    nameNoticeRg.innerText = "Vui lòng nhập thông tin";
+    nameRegister.classList.add("border-red");
+  }
+  if (emailRegister.value === "") {
+    emailNoticeRg.innerText = "Vui lòng nhập thông tin";
+    emailRegister.classList.add("border-red");
+  }
 };
 
 nameRegister.onblur = function () {
@@ -259,6 +283,14 @@ nameRegister.oninput = function () {
   if (nameRegister.value === "") {
     nameNoticeRg.innerText = "Vui lòng nhập thông tin";
     nameRegister.classList.add("border-red");
+  }
+  if (emailRegister.value === "") {
+    emailNoticeRg.innerText = "Vui lòng nhập thông tin";
+    emailRegister.classList.add("border-red");
+  }
+  if (passwordRegister.value === "") {
+    passwordNoticeRg.innerText = "Vui lòng nhập thông tin";
+    passwordRegister.classList.add("border-red");
   }
 };
 
