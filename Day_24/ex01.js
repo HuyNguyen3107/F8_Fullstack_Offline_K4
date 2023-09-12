@@ -37,7 +37,6 @@ function resetEdit(e, taskName) {
   var event = e;
   if (taskName !== "") {
     var value = taskName.replaceAll("<", "&lt;").replaceAll('"', "&quot;");
-    console.log(value);
     var task = document.createElement("div");
     task.classList.add("todos-task");
     task.innerHTML = `
@@ -85,7 +84,6 @@ function resetEdit(e, taskName) {
         valueChangeList.forEach(function (valueChange) {
           valueChange.addEventListener("keyup", function (e) {
             if (e.key === "Enter") {
-              console.log("huy");
               var exchange = valueChange.value.replaceAll("<", "&lt;");
               e.target.parentElement.outerHTML = `
             <div class = "todos-task">
@@ -112,7 +110,10 @@ function resetEdit(e, taskName) {
         completeChangeList.forEach(function (completeChange) {
           completeChange.addEventListener("click", function (e) {
             e.preventDefault();
-            var exchange = valueChange.value.replaceAll("<", "&lt;");
+            var exchange = e.target.previousElementSibling.value.replaceAll(
+              "<",
+              "&lt;"
+            );
             e.target.parentElement.outerHTML = `
             <div class = "todos-task">
             <span class="task-name check${count}">${exchange}</span>
