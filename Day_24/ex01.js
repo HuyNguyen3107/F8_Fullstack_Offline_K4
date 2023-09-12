@@ -1,14 +1,13 @@
-
 var inputAddTask = document.querySelector("#task");
 var btnAddTask = document.querySelector(".btn-add-task");
 var todosForm = document.querySelector(".todos-form");
 var count = 0;
 
-btnAddTask.addEventListener("click", function (e) {
+var addTask = function (e) {
   var taskName = inputAddTask.value;
   e.preventDefault();
   if (taskName !== "") {
-    var value = taskName.replaceAll('<', '&lt;');
+    var value = taskName.replaceAll("<", "&lt;");
     var task = document.createElement("div");
     task.classList.add("todos-task");
     task.innerHTML = `
@@ -22,34 +21,22 @@ btnAddTask.addEventListener("click", function (e) {
     inputAddTask.value = "";
     resetEdit(e, taskName);
   }
+};
+
+btnAddTask.addEventListener("click", function (e) {
+  addTask(e);
 });
 
 inputAddTask.addEventListener("keyup", function (e) {
   if (e.key === "Enter") {
-    var taskName = inputAddTask.value;
-    e.preventDefault();
-    if (taskName !== "") {
-      var value = taskName.replaceAll('<', '&lt;');
-      var task = document.createElement("div");
-      task.classList.add("todos-task");
-      task.innerHTML = `
-    <span class="task-name">${value}</span>
-    <div class="edit-icon">
-        <i class="fa-solid fa-pen-to-square change"></i>
-        <i class="fa-solid fa-trash close"></i>
-    </div>
-    `;
-      todosForm.appendChild(task);
-      inputAddTask.value = "";
-      resetEdit(e, taskName);
-    }
+    addTask(e);
   }
 });
 
 function resetEdit(e, taskName) {
   var event = e;
   if (taskName !== "") {
-    var value = taskName.replaceAll('<', "&lt;").replaceAll('"', '&quot;');
+    var value = taskName.replaceAll("<", "&lt;").replaceAll('"', "&quot;");
     console.log(value);
     var task = document.createElement("div");
     task.classList.add("todos-task");
@@ -90,7 +77,7 @@ function resetEdit(e, taskName) {
         console.log(value);
         e.target.parentElement.parentElement.outerHTML = `
         <div class="todos-main" style="margin-top: 32px;">
-                    <input type="text" id="task" class="value-change" value="${value}">
+                    <input type="text" id="task" class="value-change" value="${value}" placeholder="Update Task">
                     <button class="btn-add-task change-task">Add Task</button>
                 </div>
         `;
@@ -98,7 +85,7 @@ function resetEdit(e, taskName) {
         var valueChange = document.querySelector(".value-change");
         valueChange.addEventListener("keyup", function (e) {
           if (e.key === "Enter") {
-            var exchange = valueChange.value.replaceAll('<', "&lt;");
+            var exchange = valueChange.value.replaceAll("<", "&lt;");
             e.target.parentElement.outerHTML = `
           <div class = "todos-task">
           <span class="task-name check${++count}">${exchange}</span>
@@ -122,7 +109,7 @@ function resetEdit(e, taskName) {
         });
         completeChange.addEventListener("click", function (e) {
           e.preventDefault();
-          var exchange = valueChange.value.replaceAll('<', '&lt;');
+          var exchange = valueChange.value.replaceAll("<", "&lt;");
           e.target.parentElement.outerHTML = `
           <div class = "todos-task">
           <span class="task-name check${count}">${exchange}</span>
