@@ -18,9 +18,13 @@ body {
 
 .container {
   background-color: #1a1a40;
-  width: 450px;
+  display: inline-block;
+  min-width: 450px;
   border-radius: 8px;
-  margin: 100px auto 0;
+  margin-top: 100px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .todos {
   padding: 42px 35px;
@@ -54,21 +58,22 @@ body {
   font-weight: 400;
 }
 .todos-task {
-    margin-top: 32px;
-    background-color: #8758ff;
-    color: #fff;
-    display: flex;
-    border-radius: 4px;
-    padding: 12px 16px;
-    justify-content: space-between;
+  margin-top: 32px;
+  background-color: #8758ff;
+  color: #fff;
+  display: flex;
+  border-radius: 4px;
+  padding: 12px 16px;
+  justify-content: space-between;
 }
 .task-name {
-    cursor: pointer;
+  cursor: pointer;
 }
 .edit-icon {
-    display: flex;
-    column-gap: 12px;
+  display: flex;
+  column-gap: 12px;
+  margin-left: 10px;
 }
 .edit-icon i {
-    cursor: pointer;
+  cursor: pointer;
 }
