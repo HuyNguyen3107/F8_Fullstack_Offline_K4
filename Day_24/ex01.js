@@ -7,11 +7,7 @@ btnAddTask.addEventListener("click", function (e) {
   var taskName = inputAddTask.value;
   e.preventDefault();
   if (taskName !== "") {
-    var value = taskName;
-    if (taskName.includes(">") && taskName.includes("<")) {
-      var temp = taskName.replaceAll(">", "&gt;");
-      value = temp.replaceAll("<", "&lt;");
-    }
+    var value = taskName.replaceAll("<", "&lt;").replaceAll('"', "&quot;");
     var task = document.createElement("div");
     task.classList.add("todos-task");
     task.innerHTML = `
@@ -32,11 +28,7 @@ inputAddTask.addEventListener("keyup", function (e) {
     var taskName = inputAddTask.value;
     e.preventDefault();
     if (taskName !== "") {
-      var value = taskName;
-      if (taskName.includes(">") && taskName.includes("<")) {
-        var temp = taskName.replaceAll(">", "&gt;");
-        value = temp.replaceAll("<", "&lt;");
-      }
+      var value = taskName.replaceAll("<", "&lt;").replaceAll('"', "&quot;");
       var task = document.createElement("div");
       task.classList.add("todos-task");
       task.innerHTML = `
@@ -56,11 +48,8 @@ inputAddTask.addEventListener("keyup", function (e) {
 function resetEdit(e, taskName) {
   var event = e;
   if (taskName !== "") {
-    var value = taskName;
-    if (taskName.includes(">") && taskName.includes("<")) {
-      var temp = taskName.replaceAll(">", "&gt;");
-      value = temp.replaceAll("<", "&lt;");
-    }
+    var value = taskName.replaceAll("<", "&lt;").replaceAll('"', "&quot;");
+    console.log(value);
     var task = document.createElement("div");
     task.classList.add("todos-task");
     task.innerHTML = `
@@ -97,6 +86,7 @@ function resetEdit(e, taskName) {
     changeTasks.forEach(function (changeTask) {
       changeTask.addEventListener("click", function (e) {
         var check = changeTask.parentElement.previousElementSibling;
+        console.log(value);
         e.target.parentElement.parentElement.outerHTML = `
         <div class="todos-main" style="margin-top: 32px;">
                     <input type="text" id="task" class="value-change" value="${value}">
@@ -107,14 +97,9 @@ function resetEdit(e, taskName) {
         var valueChange = document.querySelector(".value-change");
         valueChange.addEventListener("keyup", function (e) {
           if (e.key === "Enter") {
-            var exchange = valueChange.value;
-            if (
-              valueChange.value.includes(">") &&
-              valueChange.value.includes("<")
-            ) {
-              var temporary = valueChange.value.replaceAll(">", "&gt;");
-              exchange = temporary.replaceAll("<", "&lt;");
-            }
+            var exchange = valueChange.value
+              .replaceAll("<", "&lt;")
+              .replaceAll('"', "&quot;");
             e.target.parentElement.outerHTML = `
           <div class = "todos-task">
           <span class="task-name check${++count}">${exchange}</span>
@@ -138,14 +123,9 @@ function resetEdit(e, taskName) {
         });
         completeChange.addEventListener("click", function (e) {
           e.preventDefault();
-          var exchange = valueChange.value;
-          if (
-            valueChange.value.includes(">") &&
-            valueChange.value.includes("<")
-          ) {
-            var temporary = valueChange.value.replaceAll(">", "&gt;");
-            exchange = temporary.replaceAll("<", "&lt;");
-          }
+          var exchange = valueChange.value
+            .replaceAll("<", "&lt;")
+            .replaceAll('"', "&quot;");
           e.target.parentElement.outerHTML = `
           <div class = "todos-task">
           <span class="task-name check${count}">${exchange}</span>
