@@ -1,3 +1,4 @@
+
 var inputAddTask = document.querySelector("#task");
 var btnAddTask = document.querySelector(".btn-add-task");
 var todosForm = document.querySelector(".todos-form");
@@ -7,7 +8,7 @@ btnAddTask.addEventListener("click", function (e) {
   var taskName = inputAddTask.value;
   e.preventDefault();
   if (taskName !== "") {
-    var value = taskName.replaceAll("<", "&lt;").replaceAll('"', "&quot;");
+    var value = taskName.replaceAll('<', '&lt;');
     var task = document.createElement("div");
     task.classList.add("todos-task");
     task.innerHTML = `
@@ -28,7 +29,7 @@ inputAddTask.addEventListener("keyup", function (e) {
     var taskName = inputAddTask.value;
     e.preventDefault();
     if (taskName !== "") {
-      var value = taskName.replaceAll("<", "&lt;").replaceAll('"', "&quot;");
+      var value = taskName.replaceAll('<', '&lt;');
       var task = document.createElement("div");
       task.classList.add("todos-task");
       task.innerHTML = `
@@ -48,7 +49,7 @@ inputAddTask.addEventListener("keyup", function (e) {
 function resetEdit(e, taskName) {
   var event = e;
   if (taskName !== "") {
-    var value = taskName.replaceAll("<", "&lt;").replaceAll('"', "&quot;");
+    var value = taskName.replaceAll('<', "&lt;").replaceAll('"', '&quot;');
     console.log(value);
     var task = document.createElement("div");
     task.classList.add("todos-task");
@@ -97,9 +98,7 @@ function resetEdit(e, taskName) {
         var valueChange = document.querySelector(".value-change");
         valueChange.addEventListener("keyup", function (e) {
           if (e.key === "Enter") {
-            var exchange = valueChange.value
-              .replaceAll("<", "&lt;")
-              .replaceAll('"', "&quot;");
+            var exchange = valueChange.value.replaceAll('<', "&lt;");
             e.target.parentElement.outerHTML = `
           <div class = "todos-task">
           <span class="task-name check${++count}">${exchange}</span>
@@ -123,9 +122,7 @@ function resetEdit(e, taskName) {
         });
         completeChange.addEventListener("click", function (e) {
           e.preventDefault();
-          var exchange = valueChange.value
-            .replaceAll("<", "&lt;")
-            .replaceAll('"', "&quot;");
+          var exchange = valueChange.value.replaceAll('<', '&lt;');
           e.target.parentElement.outerHTML = `
           <div class = "todos-task">
           <span class="task-name check${count}">${exchange}</span>
