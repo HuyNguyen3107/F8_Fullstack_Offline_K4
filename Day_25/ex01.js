@@ -78,15 +78,17 @@ var isDrag = false;
 var initialOffsetX;
 var rateChange = (10 * itemWidth) / 100;
 var check = false;
+var checkMove = false;
 
 carouselInner.addEventListener("mousedown", function (e) {
   isDrag = true;
   initialOffsetX = e.offsetX;
+  checkMove = true;
 });
 
 carouselInner.addEventListener("mousemove", function (e) {
   e.preventDefault();
-  if (isDrag) {
+  if (isDrag && checkMove) {
     var currentOffsetX = e.offsetX;
     var moveWidth = currentOffsetX - initialOffsetX;
 
@@ -95,8 +97,10 @@ carouselInner.addEventListener("mousemove", function (e) {
         if (!check && Math.abs(position) < totalWidth - itemWidth) {
           carouselInner.style.transition = null;
           position -= itemWidth;
+          console.log(position);
           carouselInner.style.translate = `${position}px`;
           check = true;
+          checkMove = false;
           var count = 1;
           dotItems.forEach(function (item) {
             if (item.classList.contains("active") && count === 1) {
@@ -115,8 +119,10 @@ carouselInner.addEventListener("mousemove", function (e) {
         if (!check && Math.abs(position) > 0) {
           carouselInner.style.transition = null;
           position += itemWidth;
+          console.log(position);
           carouselInner.style.translate = `${position}px`;
           check = true;
+          checkMove = false;
           var count = 1;
           dotItems.forEach(function (item) {
             if (item.classList.contains("active") && count === 1) {
