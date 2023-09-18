@@ -97,7 +97,6 @@ carouselInner.addEventListener("mousemove", function (e) {
         if (!check && Math.abs(position) < totalWidth - itemWidth) {
           carouselInner.style.transition = null;
           position -= itemWidth;
-          console.log(position);
           carouselInner.style.translate = `${position}px`;
           check = true;
           checkMove = false;
@@ -119,7 +118,6 @@ carouselInner.addEventListener("mousemove", function (e) {
         if (!check && Math.abs(position) > 0) {
           carouselInner.style.transition = null;
           position += itemWidth;
-          console.log(position);
           carouselInner.style.translate = `${position}px`;
           check = true;
           checkMove = false;

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./css/player.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="play-img">
+            <div class="image-music">
+                <img src="./images/mother's dream.jpg" alt="">
+            </div>
+        </div>
+        <h2 class="music-name">Mother's Dream</h2>
+        <div class="player">
+            <div class="play-btn-list">
+                <i class="fa-solid fa-forward forward-left"></i>
+                <div class="play-btn">
+                    <i class="fa-solid fa-play"></i>
+                </div>
+                <i class="fa-solid fa-forward forward-right"></i>
+            </div>
+            <div class="play-inner">
+                <span>00:00</span>
+                <div class="progress-bar">
+                    <span class="timeline">00:00</span>
+                    <div class="progress">
+                        <span></span>
+                    </div>
+                </div>
+                <span>00:00</span>
+            </div>
+        </div>
+    </div>
+    <audio
+        src="./music/Mother's Dream.mp3"
+        class="audio"></audio>
+    <script src="./js/player.js"></script>
+</body>
+
+</html>
