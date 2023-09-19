@@ -218,6 +218,13 @@ var musicNameList = [
   `Kìa Bóng Dáng Ai`,
 ];
 
+var downloadLinks = [
+  `https://vnno-vn-6-tf-a128-zmp3.zmdcdn.me/01dfa81eac14d450eff35d7159c71198?authen=exp=1695258596~acl=/01dfa81eac14d450eff35d7159c71198/*~hmac=c9370345e949f722413ada5f4ccad9e0`,
+  `https://vnno-pt-2-tf-a128-zmp3.zmdcdn.me/1402515bd8371adafa99fa6274679762?authen=exp=1695197985~acl=/1402515bd8371adafa99fa6274679762/*~hmac=9c0c80d909a6d615e140a5d20dca6e50`,
+  `https://vnno-pt-2-tf-a128-zmp3.zmdcdn.me/95273c28abe224d412e608abd1f3113b?authen=exp=1695269118~acl=/95273c28abe224d412e608abd1f3113b/*~hmac=71d841d08e90c4804e0b1bb925d61abe`,
+  `https://vnno-zn-5-tf-a128-zmp3.zmdcdn.me/441908d84c9e3c3f6044bc3f0e629465?authen=exp=1695268895~acl=/441908d84c9e3c3f6044bc3f0e629465/*~hmac=5a7167734d4792f194eff6bbb91b2ea2`,
+];
+
 var nextMusic = document.querySelector(".forward-right");
 var prevMusic = document.querySelector(".forward-left");
 var musicName = document.querySelector(".music-name");
@@ -226,7 +233,10 @@ var playItems = playListMusic.querySelectorAll(".play-item");
 var playItemImage = document.querySelector(".play-item-image");
 var itemName = document.querySelector(".item-name");
 var repeat = document.querySelector(".repeat-music");
-var downloadMusic = document.querySelector('.download-music');
+var downloadMusic = document.querySelector(".download-music");
+var downloadLink = document.querySelector('.link-download');
+// console.log(downloadLink);
+
 // console.log(nextMusic, prevMusic);
 // console.log(playListMusic.children);
 
@@ -245,6 +255,7 @@ nextMusic.addEventListener("click", function () {
     playListMusic.children[count].previousElementSibling.classList.remove(
       "select-music"
     );
+    downloadLink.href = downloadLinks[count];
   }
 });
 prevMusic.addEventListener("click", function () {
@@ -262,6 +273,7 @@ prevMusic.addEventListener("click", function () {
     playListMusic.children[count].nextElementSibling.classList.remove(
       "select-music"
     );
+    downloadLink.href = downloadLinks[count];
   }
 });
 
@@ -287,6 +299,7 @@ playItems.forEach(function (item, index) {
     currentTimeUpdate = 0;
     value = 0;
     musicImage.classList.remove("effect");
+    downloadLink.href = downloadLinks[index];
   });
 });
 
@@ -300,6 +313,7 @@ repeat.addEventListener("click", function () {
   }
 });
 
-downloadMusic.addEventListener('click', function () {
-  
+downloadMusic.addEventListener("click", function () {
+  downloadLink.click();
+  console.log('huy');
 });
