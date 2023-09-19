@@ -169,7 +169,7 @@ progressBar.addEventListener("mousemove", function (e) {
     timeLine.innerText = getTime(timeShow);
     timeLine.style.left = `${e.offsetX}px`;
     timeLine.style.transform = `translateX(-50%)`;
-    e.stopPropagation;
+    e.stopPropagation();
   }
 });
 
@@ -234,7 +234,7 @@ var playItemImage = document.querySelector(".play-item-image");
 var itemName = document.querySelector(".item-name");
 var repeat = document.querySelector(".repeat-music");
 var downloadMusic = document.querySelector(".download-music");
-var downloadLink = document.querySelector('.link-download');
+var downloadLink = document.querySelector(".link-download");
 // console.log(downloadLink);
 
 // console.log(nextMusic, prevMusic);
@@ -256,6 +256,7 @@ nextMusic.addEventListener("click", function () {
       "select-music"
     );
     downloadLink.href = downloadLinks[count];
+    console.log(count);
   }
 });
 prevMusic.addEventListener("click", function () {
@@ -274,6 +275,7 @@ prevMusic.addEventListener("click", function () {
       "select-music"
     );
     downloadLink.href = downloadLinks[count];
+    console.log(count);
   }
 });
 
@@ -300,6 +302,9 @@ playItems.forEach(function (item, index) {
     value = 0;
     musicImage.classList.remove("effect");
     downloadLink.href = downloadLinks[index];
+    count = index;
+
+    console.log(count, index);
   });
 });
 
@@ -315,5 +320,5 @@ repeat.addEventListener("click", function () {
 
 downloadMusic.addEventListener("click", function () {
   downloadLink.click();
-  console.log('huy');
+  // console.log('huy');
 });
