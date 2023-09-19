@@ -79,7 +79,7 @@ var handleInput = function (valueMove) {
   timeChange = (timeChange * audio.duration) / 100 + recentTime;
   if (timeChange > audio.duration) {
     timeChange = audio.duration;
-  } 
+  }
   if (timeChange < 0) {
     timeChange = 0;
   }
@@ -182,4 +182,60 @@ progressBar.addEventListener("mouseout", function () {
 progressSpan.addEventListener("mousemove", function (e) {
   timeLine.style.display = "";
   e.stopPropagation();
+});
+
+var count = 0;
+
+var playList = [
+  `./music/cay da quan doc.mp3`,
+  `./music/Mother's Dream.mp3`,
+  `./music/Cho ngay cuoi em.mp3`,
+  `./music/kia bong dang ai.mp3`,
+];
+
+var imageList = [
+  `./images/cay da quan doc.jpg`,
+  `./images/mother's dream.jpg`,
+  `./images/cho ngay cuoi  em.jpg`,
+  `./images/Kia bong dang ai.jpg`,
+];
+
+var musicNameList = [
+  `Cây Đa Quán Dốc`,
+  `Ước Mơ Của Mẹ`,
+  `Chờ Ngày Cưới Em`,
+  `Kìa Bóng Dáng Ai`,
+];
+
+var nextMusic = document.querySelector(".forward-right");
+var prevMusic = document.querySelector(".forward-left");
+var musicName = document.querySelector(".music-name");
+
+// console.log(nextMusic, prevMusic);
+
+nextMusic.addEventListener("click", function () {
+  if (count < playList.length - 1) {
+    musicImage.children[0].src = imageList[++count];
+    audio.src = playList[count];
+    musicName.innerText = musicNameList[count];
+    progress.style.width = 0;
+    playBtn.innerHTML = playIcon;
+    audio.currentTime = 0;
+    currentTimeUpdate = 0;
+    value = 0;
+    musicImage.classList.remove("effect");
+  }
+});
+prevMusic.addEventListener("click", function () {
+  if (count > 0) {
+    musicImage.children[0].src = imageList[--count];
+    audio.src = playList[count];
+    musicName.innerText = musicNameList[count];
+    progress.style.width = 0;
+    playBtn.innerHTML = playIcon;
+    audio.currentTime = 0;
+    currentTimeUpdate = 0;
+    value = 0;
+    musicImage.classList.remove("effect");
+  }
 });
