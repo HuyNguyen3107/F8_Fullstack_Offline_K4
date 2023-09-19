@@ -15,12 +15,13 @@ var currentTimeUpdate = 0;
 var current;
 var checkTimeUpdate = false;
 
-var musicImage = document.querySelector('.image-music');
+var musicImage = document.querySelector(".image-music");
 
 progressBar.addEventListener("mousedown", function (e) {
   if (e.which === 1) {
     value = (e.offsetX * 100) / progressBarWidth;
     progress.style.width = `${value}%`;
+    // console.log(value);
     handleChange(value);
     document.addEventListener("mousemove", handleDrag);
     initialClientX = e.clientX;
@@ -39,6 +40,7 @@ var handleDrag = function (e) {
   if (value > 100) {
     value = 100;
   }
+  // console.log(value);
   progress.style.width = `${value}%`;
   handleInput(valueMove);
   checkTimeUpdate = true;
@@ -46,6 +48,7 @@ var handleDrag = function (e) {
 
 progressSpan.addEventListener("mousedown", function (e) {
   e.stopPropagation();
+  e.preventDefault();
   document.addEventListener("mousemove", handleDrag);
   initialClientX = e.clientX;
   recentTime = audio.currentTime;
@@ -74,9 +77,23 @@ var handleChange = function (value) {
 var handleInput = function (valueMove) {
   var timeChange = (valueMove * 100) / progressBarWidth;
   timeChange = (timeChange * audio.duration) / 100 + recentTime;
+  if (timeChange > audio.duration) {
+    timeChange = audio.duration;
+  } 
+  if (timeChange < 0) {
+    timeChange = 0;
+  }
   currentTimeEl.innerText = getTime(timeChange);
   currentTimeUpdate = timeChange;
   var value = (timeChange * 100) / audio.duration;
+  // console.log(value);
+  if (value < 0) {
+    value = 0;
+  }
+
+  if (value > 100) {
+    value = 100;
+  }
   progress.style.width = `${value}%`;
   if (!isDrag) {
     audio.currentTime = timeChange;
@@ -87,15 +104,14 @@ var audio = document.querySelector(".audio");
 var currentTimeEl = progressBar.previousElementSibling;
 var durationEl = progressBar.nextElementSibling;
 
-currentTimeEl.style.color = 'purple';
-durationEl.style.color = 'purple';
+currentTimeEl.style.color = "purple";
+durationEl.style.color = "purple";
 
 var playBtn = document.querySelector(".play-btn");
 
 var pauseIcon = `<i class="fa-solid fa-pause"></i>`;
 
 var playIcon = `<i class="fa-solid fa-play"></i>`;
-
 
 var getTime = function (seconds) {
   var mins = Math.floor(seconds / 60);
@@ -113,11 +129,11 @@ playBtn.addEventListener("click", function () {
   if (audio.paused) {
     audio.play();
     this.innerHTML = pauseIcon;
-    musicImage.classList.add('effect');
+    musicImage.classList.add("effect");
   } else {
     audio.pause();
     this.innerHTML = playIcon;
-    musicImage.classList.remove('effect');
+    musicImage.classList.remove("effect");
   }
 });
 
@@ -133,12 +149,12 @@ audio.addEventListener("timeupdate", function () {
 
 audio.addEventListener("pause", function () {
   playBtn.innerHTML = playIcon;
-  musicImage.classList.remove('effect');
+  musicImage.classList.remove("effect");
 });
 
 audio.addEventListener("play", function () {
   playBtn.innerHTML = pauseIcon;
-  musicImage.classList.add('effect');
+  musicImage.classList.add("effect");
 });
 
 progressBar.addEventListener("mousemove", function (e) {
@@ -167,5 +183,3 @@ progressSpan.addEventListener("mousemove", function (e) {
   timeLine.style.display = "";
   e.stopPropagation();
 });
-
-
