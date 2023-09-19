@@ -147,3 +147,36 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.play-list {
+  position: absolute;
+  width: 300px;
+  /* right: 0; */
+  right: -400px;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  background-color: #c850c0;
+  border-radius: 8px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.play-item {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+  /* justify-content: center; */
+  padding: 10px 0 0 10px;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+}
+.play-item-image img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.select-music {
+  background-color: #fff;
+  color: #c850c0;
+}

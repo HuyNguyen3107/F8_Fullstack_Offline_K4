@@ -14,6 +14,8 @@ var isDrag = false;
 var currentTimeUpdate = 0;
 var current;
 var checkTimeUpdate = false;
+var flag = false;
+var repeatCheck = false;
 
 var musicImage = document.querySelector(".image-music");
 
@@ -52,6 +54,7 @@ progressSpan.addEventListener("mousedown", function (e) {
   document.addEventListener("mousemove", handleDrag);
   initialClientX = e.clientX;
   recentTime = audio.currentTime;
+  flag = true;
 });
 
 document.addEventListener("mouseup", function () {
@@ -63,6 +66,7 @@ document.addEventListener("mouseup", function () {
     audio.currentTime = currentTimeUpdate;
   }
   checkTimeUpdate = false;
+  flag = false;
 });
 
 // Nhận giá trị khi kéo, khi bấm chuột xuống
@@ -158,13 +162,15 @@ audio.addEventListener("play", function () {
 });
 
 progressBar.addEventListener("mousemove", function (e) {
-  var barRate = (e.offsetX * 100) / progressBarWidth;
-  var timeShow = (barRate * audio.duration) / 100;
-  timeLine.style.display = "block";
-  timeLine.innerText = getTime(timeShow);
-  timeLine.style.left = `${e.offsetX}px`;
-  timeLine.style.transform = `translateX(-50%)`;
-  e.stopPropagation;
+  if (!flag) {
+    var barRate = (e.offsetX * 100) / progressBarWidth;
+    var timeShow = (barRate * audio.duration) / 100;
+    timeLine.style.display = "block";
+    timeLine.innerText = getTime(timeShow);
+    timeLine.style.left = `${e.offsetX}px`;
+    timeLine.style.transform = `translateX(-50%)`;
+    e.stopPropagation;
+  }
 });
 
 audio.addEventListener("ended", function () {
@@ -173,6 +179,11 @@ audio.addEventListener("ended", function () {
   audio.currentTime = 0;
   currentTimeUpdate = 0;
   value = 0;
+  if (repeatCheck) {
+    setTimeout(function () {
+      audio.play();
+    }, 500);
+  }
 });
 
 progressBar.addEventListener("mouseout", function () {
@@ -210,8 +221,14 @@ var musicNameList = [
 var nextMusic = document.querySelector(".forward-right");
 var prevMusic = document.querySelector(".forward-left");
 var musicName = document.querySelector(".music-name");
-
+var playListMusic = document.querySelector(".play-list");
+var playItems = playListMusic.querySelectorAll(".play-item");
+var playItemImage = document.querySelector(".play-item-image");
+var itemName = document.querySelector(".item-name");
+var repeat = document.querySelector(".repeat-music");
+var downloadMusic = document.querySelector('.download-music');
 // console.log(nextMusic, prevMusic);
+// console.log(playListMusic.children);
 
 nextMusic.addEventListener("click", function () {
   if (count < playList.length - 1) {
@@ -224,6 +241,10 @@ nextMusic.addEventListener("click", function () {
     currentTimeUpdate = 0;
     value = 0;
     musicImage.classList.remove("effect");
+    playListMusic.children[count].classList.add("select-music");
+    playListMusic.children[count].previousElementSibling.classList.remove(
+      "select-music"
+    );
   }
 });
 prevMusic.addEventListener("click", function () {
@@ -237,5 +258,48 @@ prevMusic.addEventListener("click", function () {
     currentTimeUpdate = 0;
     value = 0;
     musicImage.classList.remove("effect");
+    playListMusic.children[count].classList.add("select-music");
+    playListMusic.children[count].nextElementSibling.classList.remove(
+      "select-music"
+    );
   }
+});
+
+// console.log(playItems);
+
+playItems.forEach(function (item, index) {
+  var temp = item;
+  item.addEventListener("click", function () {
+    item.classList.add("select-music");
+    playItems.forEach(function (item) {
+      if (item !== temp) {
+        if (item.classList.contains("select-music")) {
+          item.classList.remove("select-music");
+        }
+      }
+    });
+    musicImage.children[0].src = imageList[index];
+    audio.src = playList[index];
+    musicName.innerText = musicNameList[index];
+    progress.style.width = 0;
+    playBtn.innerHTML = playIcon;
+    audio.currentTime = 0;
+    currentTimeUpdate = 0;
+    value = 0;
+    musicImage.classList.remove("effect");
+  });
+});
+
+repeat.addEventListener("click", function () {
+  if (repeat.style.color === "") {
+    repeat.style.color = "#c850c0";
+    repeatCheck = true;
+  } else {
+    repeat.style.color = "";
+    repeatCheck = false;
+  }
+});
+
+downloadMusic.addEventListener('click', function () {
+  
 });
