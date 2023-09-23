@@ -97,6 +97,8 @@ Array.from(productList.children[1].children).forEach(function (item) {
   products[products.length] = product;
 });
 
+// console.log(products);
+
 var isDrag = true;
 var flag1 = false;
 var flag2 = false;
@@ -146,57 +148,76 @@ var addProduct = function (name, price, quantity) {
   tdf5.innerText = totalPrice;
   var arr = [];
   arr.push(td4, td5, td4.children[0], tr, +td1.innerText);
-  btn.addEventListener("click", function (e) {
-    totalNumber =
-      totalNumber -
-      +btn.parentElement.previousElementSibling.previousElementSibling
-        .children[0].value;
-    totalPrice =
-      totalPrice - +btn.parentElement.previousElementSibling.innerText;
-    tdf4.innerText = `${totalNumber}`;
-    tdf5.innerText = totalPrice;
-    var temp = btn.parentElement.parentElement.parentElement;
-    if (
-      +btn.parentElement.previousElementSibling.previousElementSibling
-        .previousElementSibling.innerText === 1000
-    ) {
-      flag1 = false;
-      check1 = true;
-      arr1 = [];
+  btn.addEventListener("click", function () {
+    var check;
+    var checkAlert = true;
+    var checkConfirm = true;
+    var tempBtn = btn.parentElement.parentElement.parentElement;
+    if (tempBtn.children.length === 1) {
+      check = true;
+      checkConfirm = false;
+      checkAlert = false;
     }
-    if (
-      +btn.parentElement.previousElementSibling.previousElementSibling
-        .previousElementSibling.innerText === 2000
-    ) {
-      flag2 = false;
-      check2 = true;
-      arr2 = [];
+    if (checkConfirm) {
+      check = confirm(
+        "Anh có chắc là anh muốn xóa sản phẩm này không anh Quân. Sản phẩm này chất lượng lắm đó :3 :3 :3"
+      );
     }
-    if (
-      +btn.parentElement.previousElementSibling.previousElementSibling
-        .previousElementSibling.innerText === 3000
-    ) {
-      flag3 = false;
-      check3 = true;
-      arr3 = [];
+    if (check) {
+      if (checkAlert) {
+        alert("Anh sẽ phải hối hận vì không mua sản phẩm này!!! :(");
+      }
+      totalNumber =
+        totalNumber -
+        +btn.parentElement.previousElementSibling.previousElementSibling
+          .children[0].value;
+      totalPrice =
+        totalPrice - +btn.parentElement.previousElementSibling.innerText;
+      tdf4.innerText = `${totalNumber}`;
+      tdf5.innerText = totalPrice;
+      var temp = btn.parentElement.parentElement.parentElement;
+      if (
+        +btn.parentElement.previousElementSibling.previousElementSibling
+          .previousElementSibling.innerText === 1000
+      ) {
+        flag1 = false;
+        check1 = true;
+        arr1 = [];
+      }
+      if (
+        +btn.parentElement.previousElementSibling.previousElementSibling
+          .previousElementSibling.innerText === 2000
+      ) {
+        flag2 = false;
+        check2 = true;
+        arr2 = [];
+      }
+      if (
+        +btn.parentElement.previousElementSibling.previousElementSibling
+          .previousElementSibling.innerText === 3000
+      ) {
+        flag3 = false;
+        check3 = true;
+        arr3 = [];
+      }
+      if (
+        +btn.parentElement.previousElementSibling.previousElementSibling
+          .previousElementSibling.innerText === 4000
+      ) {
+        flag4 = false;
+        check4 = true;
+        arr4 = [];
+      }
+      if (temp.children.length === 1) {
+        destroy();
+      }
+      var countAfter = 0;
+      btn.parentElement.parentElement.remove();
+      Array.from(temp.children).forEach(function (item) {
+        item.children[0].innerText = `${++countAfter}`;
+      });
+      count = countAfter;
     }
-    if (
-      +btn.parentElement.previousElementSibling.previousElementSibling
-        .previousElementSibling.innerText === 4000
-    ) {
-      flag4 = false;
-      check4 = true;
-      arr4 = [];
-    }
-    if (temp.children.length === 1) {
-      destroy();
-    }
-    var countAfter = 0;
-    btn.parentElement.parentElement.remove();
-    Array.from(temp.children).forEach(function (item) {
-      item.children[0].innerText = `${++countAfter}`;
-    });
-    count = countAfter;
   });
   return arr;
 };
@@ -337,17 +358,29 @@ var update = function (
   currentQuantity3,
   currentQuantity4
 ) {
-  if (currentQuantity1 <= 0) {
+  if (currentQuantity1 && (currentQuantity1 <= 0)) {
     currentQuantity1 = 1;
+    if (arr1[0]) {
+      arr1[0].children[0].value = 1;
+    }
   }
-  if (currentQuantity2 <= 0) {
+  if (currentQuantity2 && (currentQuantity2 <= 0)) {
     currentQuantity2 = 1;
+    if (arr2[0]) {
+      arr2[0].children[0].value = 1;
+    }
   }
-  if (currentQuantity3 <= 0) {
+  if (currentQuantity3 && (currentQuantity3 <= 0)) {
     currentQuantity3 = 1;
+    if (arr3[0]) {
+      arr3[0].children[0].value = 1;
+    }
   }
-  if (currentQuantity4 <= 0) {
+  if (currentQuantity4 && (currentQuantity4 <= 0)) {
     currentQuantity4 = 1;
+    if (arr4[0]) {
+      arr4[0].children[0].value = 1;
+    }
   }
   var newPrice1 = 0;
   var newPrice2 = 0;
