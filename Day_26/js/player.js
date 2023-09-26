@@ -243,6 +243,13 @@ var musicNameList = [
   `Kìa Bóng Dáng Ai`,
 ];
 
+var singers = [
+    `Lưu Anh Quân`,
+    `Tạ Hoàng An`,
+    `Đặng Ngọc Khải`,
+    `Lê Đức Nam`
+]
+
 var downloadLinks = [
   `https://vnno-zn-5-tf-a128-zmp3.zmdcdn.me/2bffcdf100535fc0c9a0f0a967cca1e1?authen=exp=1695827632~acl=/2bffcdf100535fc0c9a0f0a967cca1e1/*~hmac=072c7fa3482ba117f3d20bcfa466966f`,
   `https://a128-zmp3.zmdcdn.me/01dfa81eac14d450eff35d7159c71198?authen=exp=1695873182~acl=/01dfa81eac14d450eff35d7159c71198/*~hmac=87e4c9f7ea45416ccc0db763808af87d`,
@@ -10397,7 +10404,7 @@ var renderSentences = function () {
     countMinute++;
     if (countMinute >= 20) {
       karaokeContent.children[0].innerText = `${musicNameList[countName]}`;
-      karaokeContent.children[1].innerText = `Ca sỹ: Lưu Anh Quân`;
+      karaokeContent.children[1].innerText = `Ca sỹ: ${singers[countName]}`;
       countMinute = 0;
     }
   }
