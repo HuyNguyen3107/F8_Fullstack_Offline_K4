@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
 * {
   padding: 0;
   margin: 0;
@@ -15,6 +16,7 @@ body {
   );
   background-repeat: no-repeat;
   height: 100vh;
+  font-family: "Roboto", sans-serif;
 }
 
 .container {
@@ -34,7 +36,6 @@ body {
 }
 
 .music-name {
-  font-family: Arial, Helvetica, sans-serif;
   font-weight: 900;
   color: #fff;
   text-align: center;
@@ -159,7 +160,6 @@ body {
   row-gap: 20px;
   background-color: #c850c0;
   border-radius: 8px;
-  font-family: Arial, Helvetica, sans-serif;
 }
 .play-item {
   display: flex;
@@ -179,4 +179,65 @@ body {
 .select-music {
   background-color: #fff;
   color: #c850c0;
+}
+.play-karaoke {
+  position: absolute;
+  top: 150px;
+  left: -250px;
+  padding: 20px;
+  background-color: #c850c0;
+  color: #fff;
+  border-radius: 99px;
+  border: 1px solid #fff;
+  font-weight: 900;
+  box-shadow: 0 0 4px #fff;
+  cursor: pointer;
+}
+.karaoke {
+  position: fixed;
+  inset: 0;
+  translate: 0 100vh;
+  transition: translate 0.5s linear;
+  background-image: linear-gradient(90deg, #00dbde 0%, #fc00ff 100%);
+}
+.karaoke-header {
+  display: flex;
+  width: 70%;
+  margin: 50px auto 0;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 30px;
+  font-weight: 900;
+  color: #fff;
+}
+.karaoke-header i {
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.karaoke-content {
+  text-align: center;
+  margin-top: 200px;
+  font-size: 50px;
+  color: #fff;
+  font-weight: 900;
+}
+.show {
+  translate: 0 0;
+}
+.karaoke-content p {
+  transition: opacity 0.3s ease;
+}
+.karaoke-content p > span {
+  position: relative;
+}
+.karaoke-content p > span > span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  color: darkred;
+  width: 0;
+  overflow: hidden;
+  z-index: 5;
 }
