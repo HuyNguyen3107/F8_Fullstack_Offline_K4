@@ -105,23 +105,23 @@ var handleInput = function (valueMove) {
 };
 
 var mark = function () {
-    return Math.floor(Math.random() * 100);
-}
+  return Math.floor(Math.random() * 100);
+};
 
-var getComment = function(mark) {
-    if (80 < mark && mark <= 100) {
-        return `WOW! Amazing GÚT CHÓP. 
-        Đề nghị hát thêm bài nữa`
-    } else if (60 < mark && mark <= 80) {
-        return `Bạn hát cũng tạm được đó`
-    } else if (40 < mark && mark <= 60) {
-        return `Bạn hát không hay cần cải thiện`
-    } else if (20 < mark && mark <= 40) {
-        return `Bỏ đi bạn ơi!`
-    } else if (mark <= 20) {
-        return `1 CỐC`;
-    }
-}
+var getComment = function (mark) {
+  if (80 < mark && mark <= 100) {
+    return `WOW! Amazing GÚT CHÓP. 
+        Đề nghị hát thêm bài nữa`;
+  } else if (60 < mark && mark <= 80) {
+    return `Bạn hát cũng tạm được đó`;
+  } else if (40 < mark && mark <= 60) {
+    return `Bạn hát không hay cần cải thiện`;
+  } else if (20 < mark && mark <= 40) {
+    return `Bỏ đi bạn ơi!`;
+  } else if (mark <= 20) {
+    return `1 CỐC`;
+  }
+};
 
 var audio = document.querySelector(".audio");
 var currentTimeEl = progressBar.previousElementSibling;
@@ -243,12 +243,7 @@ var musicNameList = [
   `Kìa Bóng Dáng Ai`,
 ];
 
-var singers = [
-    `Lưu Anh Quân`,
-    `Tạ Hoàng An`,
-    `Đặng Ngọc Khải`,
-    `Lê Đức Nam`
-]
+var singers = [`Lưu Anh Quân`, `Tạ Hoàng An`, `Đặng Ngọc Khải`, `Lê Đức Nam`];
 
 var downloadLinks = [
   `https://vnno-zn-5-tf-a128-zmp3.zmdcdn.me/2bffcdf100535fc0c9a0f0a967cca1e1?authen=exp=1695827632~acl=/2bffcdf100535fc0c9a0f0a967cca1e1/*~hmac=072c7fa3482ba117f3d20bcfa466966f`,
@@ -258,7 +253,7 @@ var downloadLinks = [
 ];
 
 var lyricList = [
-    `{
+  `{
           "err": 0,
           "msg": "Success",
           "data": {
@@ -2282,7 +2277,7 @@ var lyricList = [
           },
           "timestamp": 1695699898940
       }`,
-    `{
+  `{
           "err": 0,
           "msg": "Success",
           "data": {
@@ -4411,7 +4406,7 @@ var lyricList = [
           "timestamp": 1695700420950
       }
       `,
-    `{
+  `{
       "err": 0,
       "msg": "Success",
       "data": {
@@ -7478,7 +7473,7 @@ var lyricList = [
       "timestamp": 1695700854072
   }
     `,
-    `{
+  `{
       "err": 0,
       "msg": "Success",
       "data": {
@@ -10179,8 +10174,8 @@ var lyricList = [
       },
       "timestamp": 1695700932915
   }
-    `
-  ];
+    `,
+];
 
 var nextMusic = document.querySelector(".forward-right");
 var prevMusic = document.querySelector(".forward-left");
@@ -10195,7 +10190,6 @@ var downloadLink = document.querySelector(".link-download");
 var lyric = lyricList[0];
 lyric = JSON.parse(lyric).data.sentences;
 var countName = 0;
-
 
 nextMusic.addEventListener("click", function () {
   if (count < playList.length - 1) {
@@ -10340,7 +10334,7 @@ var renderSentences = function () {
         karaokeContent.children[0].children[
           indexWord
         ].children[0].style.width = `${rate}%`;
-        karaokeContent.children[0].children[indexWord].style.width = `${rate}%`;
+        // karaokeContent.children[0].children[indexWord].style.width = `${rate}%`;
       } else {
         if (index % 2 !== 0) {
           var second = getSentences(index);
@@ -10402,7 +10396,7 @@ var renderSentences = function () {
     }
   } else {
     countMinute++;
-    if (countMinute >= 20) {
+    if (countMinute >= 100) {
       karaokeContent.children[0].innerText = `${musicNameList[countName]}`;
       karaokeContent.children[1].innerText = `Ca sỹ: ${singers[countName]}`;
       countMinute = 0;

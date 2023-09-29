@@ -1,0 +1,35 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+html {
+  background-color: blueviolet;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.sort-table {
+  background-color: #fff;
+  display: inline-block;
+  margin: 50px 0;
+  transform: translateX(-50%);
+  position: relative;
+  left: 50%;
+  padding: 16px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.sort-table .module.sort-item {
+  background-color: orangered;
+}
+.sort-table .sort-item {
+  padding: 10px;
+  background-color: royalblue;
+  margin: 2px 0;
+  cursor: grab;
+}
