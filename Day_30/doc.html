@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../icons/fontawesome-free-6.4.0/fontawesome-free-6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./doc.css">
+    <title>Document Editor</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="doc-title">
+            Doc Editor
+        </h1>
+        <div class="edit-tool">
+            <div class="file-handle">
+                <div class="chooses">
+                    <span class="title">File</span>
+                    <i class="fa-solid fa-caret-down"></i>
+                    <div class="select-file">
+                        <span>New</span>
+                        <span>Save as TXT</span>
+                        <span>Save as PDF</span>
+                    </div>
+                </div>
+                <input type="text" class="file-name" placeholder="File Name" value="untitled">
+            </div>
+            <div class="edit-text">
+                <button class="bold">b</button>
+                <button class="underline">u</button>
+                <button class="italic">i</button>
+                <input type="color" class="change-color">
+            </div>
+        </div>
+        <div class="content" contenteditable="true"></div>
+        <div class="count">
+            <div>
+                <span class="count-char">Số ký tự: <span class="number-char">0</span></span>
+                <span class="count-word">Số từ: <span class="number-word">0</span></span>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.0/html2pdf.bundle.min.js"
+        integrity="sha512-w3u9q/DeneCSwUDjhiMNibTRh/1i/gScBVp2imNVAMCt6cUHIw6xzhzcPFIaL3Q1EbI2l+nu17q2aLJJLo4ZYg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./doc.js"></script>
+</body>
+
+</html>
