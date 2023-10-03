@@ -9,6 +9,8 @@ var content = document.querySelector(".content");
 var numChar = document.querySelector(".number-char");
 var numWord = document.querySelector(".number-word");
 
+content.focus();
+
 choose.addEventListener("click", function (e) {
   e.stopPropagation();
   select.classList.toggle("show");
@@ -36,7 +38,6 @@ colorChange.addEventListener('input', function() {
 content.addEventListener('input', function() {
   var char = content.innerText.trim();
   var word = char;
-  char = char.replaceAll(' ', '');
   word = word.replace(/\s+/g, ' ');
   numChar.innerText = char.length;
   if (!word.split(' ')[0]) {
