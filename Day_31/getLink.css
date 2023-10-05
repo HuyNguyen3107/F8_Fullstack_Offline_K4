@@ -1,0 +1,49 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+html {
+  background-color: purple;
+}
+body,
+button {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.container {
+  max-width: 50%;
+  margin: 200px auto;
+  text-align: center;
+}
+
+.get-link h1 {
+  color: #fff;
+  font-size: 50px;
+}
+.counter {
+  display: flex;
+  color: #fff;
+  background-color: deeppink;
+  width: 60px;
+  height: 60px;
+  font-size: 30px;
+  border-radius: 50%;
+  font-weight: 700;
+  margin: 30px auto 0;
+  align-items: center;
+  justify-content: center;
+}
+.action {
+  margin-top: 60px;
+}
+.btn {
+  padding: 20px 30px;
+  border-radius: 99px;
+  font-size: 20px;
+  border: 1px solid deeppink;
+  color: deeppink;
+  font-weight: 700;
+  cursor: not-allowed;
+}
