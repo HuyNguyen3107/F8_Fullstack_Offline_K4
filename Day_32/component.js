@@ -9,14 +9,14 @@ class F8 {
     }
     if (arr.length === 2) {
       let data = obj[arr[0]]();
+      let values = {};
       Object.keys(data).forEach(function (key) {
         keys[keys.length] = key;
       });
       Object.keys(data).forEach(function (key) {
         window[key] = data[key];
+        values[key] = document.createTextNode(data[key]);
       });
-      obj[arr[1]] = obj[arr[1]].replaceAll("{{", "<span>{{");
-      obj[arr[1]] = obj[arr[1]].replaceAll("}}", "}}</span>");
       customElements.define(
         nameEl,
         class extends HTMLElement {
@@ -34,13 +34,10 @@ class F8 {
               Array.from(elHandle.children).forEach(function (element) {
                 keys.forEach(function (key) {
                   if (element.innerText.includes(`{{ ${key} }}`)) {
-                    let targetEl = Array.from(
-                      element.querySelectorAll("span")
-                    ).find(function (item) {
-                      return item.innerText.includes(`{{ ${key} }}`);
-                    });
-                    targetEl.innerText = window[key];
-                    targetEl.classList.add(key);
+                    let temp = element.innerHTML;
+                    element.innerHTML = temp.slice(0, temp.indexOf("{{"));
+                    element.append(values[key]);
+                    element.append(temp.slice(temp.indexOf("}}") + 2));
                   }
                 });
                 if (element.attributes.length > 0) {
@@ -55,21 +52,22 @@ class F8 {
                           let select = keys.find((key) => {
                             return control.includes(key);
                           });
+                          if (control.includes(select)) {
+                            control = control.replaceAll(
+                              `${select}`,
+                              `values['${select}'].data`
+                            );
+                          }
                           element.addEventListener(event, function (e) {
                             eval(control);
-                            let elSelected = Array.from(
-                              shadow.querySelectorAll("span")
-                            ).find(function (item) {
-                              return item.classList.contains(select);
-                            });
-                            if (elSelected !== undefined) {
-                              elSelected.innerText = window[select];
-                            }
                           });
                         }
                       }
                     });
                   }
+                }
+                if (element.children.length > 0) {
+                  handleChildren(element);
                 }
                 elHandle.append(element);
               });
@@ -77,13 +75,10 @@ class F8 {
             Array.from(templateNode.children).forEach(function (element) {
               keys.forEach(function (key) {
                 if (element.innerText.includes(`{{ ${key} }}`)) {
-                  let targetEl = Array.from(
-                    element.querySelectorAll("span")
-                  ).find(function (item) {
-                    return item.innerText.includes(`{{ ${key} }}`);
-                  });
-                  targetEl.innerText = window[key];
-                  targetEl.classList.add(key);
+                  let temp = element.innerHTML;
+                  element.innerHTML = temp.slice(0, temp.indexOf("{{"));
+                  element.append(values[key]);
+                  element.append(temp.slice(temp.indexOf("}}") + 2));
                 }
               });
               if (element.attributes.length > 0) {
@@ -98,16 +93,14 @@ class F8 {
                         let select = keys.find((key) => {
                           return control.includes(key);
                         });
+                        if (control.includes(select)) {
+                          control = control.replaceAll(
+                            `${select}`,
+                            `values['${select}'].data`
+                          );
+                        }
                         element.addEventListener(event, function (e) {
                           eval(control);
-                          let elSelected = Array.from(
-                            shadow.querySelectorAll("span")
-                          ).find(function (item) {
-                            return item.classList.contains(select);
-                          });
-                          if (elSelected !== undefined) {
-                            elSelected.innerText = window[select];
-                          }
                         });
                       }
                     }

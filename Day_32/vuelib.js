@@ -9,7 +9,7 @@ F8.component("count-app", {
   },
   templateEl: `
     <h2>{{ title }}</h2>
-    <h2>Số lần anh Quân đã đếm là: {{ count }}</h2>
+    <h2>Số lần anh Quân đã đếm là: {{ count }} lần</h2>
     <div v-on:mouseover = "e.target.style.border = '1px solid red'">{{ content }}</div>
     <div>Hello my name is Huy. I'm good boy 
     <button v-on:click = "count++">+</button>
