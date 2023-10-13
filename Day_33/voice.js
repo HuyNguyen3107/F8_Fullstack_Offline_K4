@@ -1,3 +1,4 @@
+// Sử dụng strict mode
 "use strict";
 
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
@@ -17,8 +18,12 @@ recognition.maxAlternatives = 1;
 let voiceSearch = document.querySelector(".voice-search");
 let btn = document.querySelector(".btn");
 let action = document.querySelector(".action");
+
+// tạo 1 biến kiểm tra cho trường hợp không thực hiện được yêu cầu
 let check = false;
 
+// xử lý kết quả khi nói xong
+// khi thực hiện được yêu cầu gắn check = true
 let handleResult = (result) => {
   result = result.toLowerCase();
   switch (result) {
@@ -47,7 +52,7 @@ let handleResult = (result) => {
       check = true;
       break;
   }
-
+  // case yêu cầu chỉ đường => Mở bản đồ Google Maps kèm địa điểm cần đến
   if (
     (result.includes("chỉ đường") || result.includes("tới")) &&
     !result.includes("bài hát") &&
@@ -63,7 +68,7 @@ let handleResult = (result) => {
     window.open(`https://www.google.com/maps/search/${result}`);
     check = true;
   }
-
+  // Case yêu cầu mở bài hát => Mở web ZingMp3 kèm bài hát yêu cầu
   if (
     result.includes("bài hát") &&
     !result.includes("đường tới") &&
@@ -74,7 +79,7 @@ let handleResult = (result) => {
     window.open(`https://zingmp3.vn/tim-kiem/tat-ca?q=${result}`);
     check = true;
   }
-
+  // Case yêu cầu mở video => Mở web youtube kèm video yêu cầu
   if (
     result.includes("video") &&
     !result.includes("đường tới") &&
@@ -87,18 +92,23 @@ let handleResult = (result) => {
   }
 };
 
+// khi click vào button bắt đầu lắng nghe giọng nói
 btn.addEventListener("click", function () {
   recognition.start();
   action.innerText = "Hãy nói nội dung anh Quân muốn";
   btn.innerText = "Anh An đang lắng nghe";
   action.style.color = "purple";
+  // nếu có thẻ thể hiện trạng thái kết quả thực hiện yêu cầu thì remove thẻ đó
   if (voiceSearch.children.length === 4) {
     voiceSearch.lastElementChild.remove();
   }
 });
 
+// xủ lý sau khi đã lắng nghe
 recognition.onresult = function (event) {
+  // lấy kết quả lắng nghe được lưu vào biến result
   let result = event.results[0][0].transcript;
+  // tạo thẻ thể hiện trạng thái thực hiện yêu cầu
   let status = document.createElement("div");
   let css = {
     border: "1px solid purple",
@@ -112,10 +122,12 @@ recognition.onresult = function (event) {
   status.innerText = `Đang thực hiện: ${result}`;
   Object.assign(status.style, css);
   voiceSearch.append(status);
+  // delay thời gian thực hiện yêu cầu
   setTimeout(() => {
     handleResult(result);
     if (check) {
       status.innerText = `Anh An đã thực hiện xong`;
+      // khi hành động được thực hiện gán lại check = false
       check = false;
     } else {
       status.innerText = `Xin lỗi anh Quân nhé anh An không thực hiện được rùi`;
@@ -126,10 +138,12 @@ recognition.onresult = function (event) {
     "Anh An nghe xong rùi. Nếu anh còn muốn điều gì nữa hãy nhấp vô đây";
 };
 
+// xử lý khi không lắng nghe được bất kì âm thanh nào
 recognition.onerror = function (event) {
   action.innerText = "Error occurred in recognition";
 };
 
+// dừng việc lắng nghe
 recognition.onspeechend = function () {
   recognition.stop();
 };
