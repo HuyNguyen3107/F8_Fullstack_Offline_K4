@@ -141,6 +141,8 @@ recognition.onresult = function (event) {
 // xử lý khi không lắng nghe được bất kì âm thanh nào
 recognition.onerror = function (event) {
   action.innerText = "Error occurred in recognition";
+  btn.innerText =
+    "Anh An khum nghe thấy gì cả anh Quân nói lại đi(Nhấp vô đây a nhé)";
 };
 
 // dừng việc lắng nghe
