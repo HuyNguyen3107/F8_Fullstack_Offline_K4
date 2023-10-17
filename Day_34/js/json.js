@@ -1,5 +1,5 @@
 "use strict";
-const serverApi = `http://localhost:3000`;
+const serverApi = `https://t5tk6k-8080.csb.app`;
 
 export const getTasks = async () => {
   const response = await fetch(`${serverApi}/tasks`);
