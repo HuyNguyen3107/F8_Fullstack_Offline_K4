@@ -37,6 +37,9 @@ searchTool.focus();
 let checkAdd = false;
 let checkChange = false;
 
+let elementChange;
+let changeId;
+
 let count = todosContentCompleted.children.length;
 let countTextNode = document.createTextNode(count);
 quantityCompleted.insertBefore(
@@ -77,6 +80,7 @@ const renderTask = function (value, status, taskId) {
     btnChange.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`;
     btnCheck.innerHTML = `<i class="fa-solid fa-check-to-slot"></i>`;
     btnDelete.addEventListener("click", function (e) {
+      e.preventDefault();
       let deleteId = taskId;
       deleteTask(deleteId);
       if (e.target.classList.contains("delete")) {
@@ -87,6 +91,7 @@ const renderTask = function (value, status, taskId) {
       counter();
     });
     btnChange.addEventListener("click", function (e) {
+      e.preventDefault();
       checkChange = true;
       edit.style.display = "block";
       let value;
@@ -100,30 +105,12 @@ const renderTask = function (value, status, taskId) {
         value = e.target.parentElement.parentElement.parentElement.innerText;
       }
       editValue.value = value;
-
-      saveBtn.addEventListener("click", function (e) {
-        // console.log(taskId);
-        e.preventDefault();
-        if (checkChange) {
-          if (editValue.value) {
-            updateTask(
-              {
-                value: editValue.value,
-              },
-              taskId
-            );
-            element.innerText = editValue.value;
-            btnAdd.style.border = "";
-            edit.style.display = "";
-            editValue.value = "";
-            checkAdd = false;
-            checkChange = false;
-          }
-        }
-      });
+      elementChange = element;
+      changeId = taskId;
       editValue.focus();
     });
     btnCheck.addEventListener("click", function (e) {
+      e.preventDefault();
       let element;
 
       if (!btnCheck.classList.contains("checked")) {
@@ -193,6 +180,7 @@ const renderTask = function (value, status, taskId) {
 let idDelete = 1;
 deleteBtnList.forEach(function (item) {
   item.addEventListener("click", function (e) {
+    e.preventDefault();
     deleteTask(idDelete);
     if (e.target.classList.contains("delete")) {
       e.target.parentElement.parentElement.remove();
@@ -222,26 +210,8 @@ changeBtnList.forEach(function (item) {
     }
     editValue.value = value;
     let id = idChange;
-    saveBtn.addEventListener("click", function (e) {
-      // console.log(taskId);
-      e.preventDefault();
-      if (checkChange) {
-        if (editValue.value) {
-          updateTask(
-            {
-              value: editValue.value,
-            },
-            id
-          );
-          element.innerText = editValue.value;
-          btnAdd.style.border = "";
-          edit.style.display = "";
-          editValue.value = "";
-          checkAdd = false;
-          checkChange = false;
-        }
-      }
-    });
+    elementChange = element;
+    changeId = id;
     idChange++;
     editValue.focus();
   });
@@ -250,6 +220,7 @@ changeBtnList.forEach(function (item) {
 let idCheck = 1;
 checkBtnList.forEach(function (item) {
   item.addEventListener("click", function (e) {
+    e.preventDefault;
     let element;
 
     if (!item.classList.contains("checked")) {
@@ -369,11 +340,28 @@ saveBtn.addEventListener("click", async function (e) {
         value: value,
         status: false,
       };
-      postTask(data).then(async () => {
-        let taskList = await getTasks();
-        let taskId = taskList[taskList.length - 1].id;
-        renderTask(value, false, taskId);
+      postTask(data).then(() => {
+        getTasks().then((taskList) => {
+          let taskId = taskList[taskList.length - 1].id;
+          renderTask(value, false, taskId);
+        });
       });
+      btnAdd.style.border = "";
+      edit.style.display = "";
+      editValue.value = "";
+      checkAdd = false;
+      checkChange = false;
+    }
+  }
+  if (checkChange) {
+    if (editValue.value) {
+      updateTask(
+        {
+          value: editValue.value,
+        },
+        changeId
+      );
+      elementChange.innerText = editValue.value;
       btnAdd.style.border = "";
       edit.style.display = "";
       editValue.value = "";
@@ -434,7 +422,8 @@ window.addEventListener("load", async function () {
 
 let checkShow = false;
 
-quantityCompleted.addEventListener("click", function () {
+quantityCompleted.addEventListener("click", function (e) {
+  e.preventDefault();
   if (!checkShow) {
     quantityCompleted.style.backgroundColor = "#0c9774";
     quantityCompleted.lastElementChild.style.transform = `rotateZ(0deg)`;
@@ -489,3 +478,5 @@ searchTool.addEventListener("input", function () {
   });
   counterFind();
 });
+
+// getTasks().then((data) => console.log(data))/
