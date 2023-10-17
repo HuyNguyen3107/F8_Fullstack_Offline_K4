@@ -219,10 +219,10 @@ changeBtnList.forEach(function (item) {
 
 let idCheck = 1;
 checkBtnList.forEach(function (item) {
+  let id = idCheck;
   item.addEventListener("click", function (e) {
     e.preventDefault;
     let element;
-
     if (!item.classList.contains("checked")) {
       if (
         e.target.classList.contains("check") &&
@@ -237,7 +237,7 @@ checkBtnList.forEach(function (item) {
           {
             status: true,
           },
-          idCheck
+          id
         );
       } else {
         element = e.target.parentElement.parentElement.parentElement;
@@ -249,7 +249,7 @@ checkBtnList.forEach(function (item) {
           {
             status: true,
           },
-          idCheck
+          id
         );
       }
     } else {
@@ -263,7 +263,7 @@ checkBtnList.forEach(function (item) {
           {
             status: false,
           },
-          idCheck
+          id
         );
       } else {
         element = e.target.parentElement.parentElement.parentElement;
@@ -275,12 +275,12 @@ checkBtnList.forEach(function (item) {
           {
             status: false,
           },
-          idCheck
+          id
         );
       }
     }
-    idCheck++;
   });
+  idCheck++;
 });
 
 searchTool.addEventListener("focus", function () {
