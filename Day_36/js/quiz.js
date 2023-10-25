@@ -144,7 +144,7 @@ const handleProgress = function () {
     setTimeout(function () {
       handleProgress();
     }, 100);
-  } else { 
+  } else {
     if (currentNumQues < totalQuestion) {
       quizizz.removeChild(element);
       time = 100;
@@ -215,6 +215,11 @@ const renderQuizizz = async function (e) {
     <img src="./img/chelsea.jpg" alt="">
     <div class="question">
         <span>${stripHtml(question.question)}</span>
+        <span>${
+          question.correctId.length > 1
+            ? `(You have to choose ${question.correctId.length} answers)`
+            : ""
+        }</span>
     </div>
     <div class="answers">
         <div class="answer"><span>${stripHtml(
@@ -226,7 +231,7 @@ const renderQuizizz = async function (e) {
         <div class="answer"><span>${stripHtml(
           question.answers[2].answer
         )}</span></div>
-        <div class="answer"><span>${stripHtml(
+        <div class="answer"><span>${stripHtml( 
           question.answers[3].answer
         )}</span></div>
     </div>
@@ -266,12 +271,12 @@ const renderQuizizz = async function (e) {
           if (checkChooseCorrect === question.correctId.length) {
             lenStreakProgress += percent;
             lenStreakProgress =
-              lenStreakProgress <= 100 ? lenStreakProgress : 100;
+            lenStreakProgress <= 100 ? lenStreakProgress : 100;
             pointProgress.style.width = `${lenStreakProgress}%`;
             streak += 100;
             streak = streak <= 300 ? streak : 300;
             pointAdd.innerText = `+${streak}`;
-            total = total + streak + point;
+            total = total + streak + Math.ceil(((time/ 100) * point));
             totalScore.innerText = `Score: ${total}`;
             congrat.play();
             correctNum++;
@@ -280,7 +285,7 @@ const renderQuizizz = async function (e) {
             pointProgress.style.width = `${lenStreakProgress}%`;
             streak = 0;
             pointAdd.innerText = `+${streak}`;
-            total = total + streak + point;
+            total = total + streak + Math.ceil(((time/ 100) * point));
             decry.play();
             incorrectNum++;
           }
