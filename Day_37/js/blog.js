@@ -536,29 +536,45 @@ const blog = {
     const btnPostNew = document.querySelector(".btn-post-new");
     btnPostNew.addEventListener("click", async function (e) {
       e.preventDefault();
+      btnPostNew.disabled = true;
+      btnPostNew.style.cursor = "not-allowed";
+      btnPostNew.style.transform = "scale(1)";
       const titleEl = document.querySelector("#title");
       const contentEl = document.querySelector("#content");
 
       const title = titleEl.value;
       const content = contentEl.value;
-      const { response, data: post } = await client.post("/blogs", {
-        title,
-        content,
-      });
-      titleEl.value = "";
-      contentEl.value = "";
-      if (response.ok) {
-        blog.renderPost(post.data.userId.name, title, content);
-      } else {
-        blog.handleRefreshToken().then(async () => {
-          const { response, data: post } = await client.post("/blogs", {
-            title,
-            content,
-          });
-          if (response.ok) {
-            blog.renderPost(post.data.userId.name, title, content);
-          }
+      if (title && content) {
+        const { response, data: post } = await client.post("/blogs", {
+          title,
+          content,
         });
+        titleEl.value = "";
+        contentEl.value = "";
+        if (response.ok) {
+          btnPostNew.disabled = false;
+          btnPostNew.style.cursor = "";
+          btnPostNew.style.transform = "";
+          blog.renderPost(post.data.userId.name, title, content);
+        } else {
+          blog.handleRefreshToken().then(async () => {
+            const { response, data: post } = await client.post("/blogs", {
+              title,
+              content,
+            });
+            if (response.ok) {
+              btnPostNew.disabled = false;
+              btnPostNew.style.cursor = "";
+              btnPostNew.style.transform = "";
+              blog.renderPost(post.data.userId.name, title, content);
+            }
+          });
+        }
+      } else {
+        btnPostNew.disabled = false;
+        btnPostNew.style.cursor = "";
+        btnPostNew.style.transform = "";
+        blog.alertError("Vui lòng nhập đủ các trường");
       }
     });
   },
