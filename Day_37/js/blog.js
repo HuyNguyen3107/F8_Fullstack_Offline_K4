@@ -45,7 +45,7 @@ const blog = {
 
     return status;
   },
-  render: function () {
+  render: async function () {
     if (blog.isLogin()) {
       blog.getProfile().then((user) => {
         // console.log(user);
@@ -58,10 +58,12 @@ const blog = {
             <div class="post-new">
                 <h1 class="heading">Blogger</h1>
                 <div class="info-user">
-                    <div class="avatar"><a href="#">${stripHtml(user.data.name.charAt(0))}</a></div>
-                    <div class="user-name"><a href="#">${
-                      stripHtml(user.data.name)
-                    }</a></div>
+                    <div class="avatar"><a href="#">${stripHtml(
+                      user.data.name.charAt(0)
+                    )}</a></div>
+                    <div class="user-name"><a href="#">${stripHtml(
+                      user.data.name
+                    )}</a></div>
                 </div>
                 <form action="">
                     <div class="title-field">
@@ -88,7 +90,7 @@ const blog = {
           blog.renderPosts();
           blog.handlePost();
           blog.handleLogout();
-        } 
+        }
       });
     } else {
       loading.style.display = "";
@@ -342,6 +344,9 @@ const blog = {
     const btnSignUp = document.querySelector(".btn-sign-up");
     btnSignUp.addEventListener("click", async function (e) {
       e.preventDefault();
+      btnSignUp.disabled = true;
+      btnSignUp.style.cursor = "not-allowed";
+      btnSignUp.style.transform = "scale(1)";
       const emailEl = document.querySelector("#email");
       const passwordEl = document.querySelector("#password");
       const nameEl = document.querySelector("#name");
@@ -388,13 +393,20 @@ const blog = {
           nameEl.value = "";
           passwordEl.value = "";
           emailEl.value = "";
+          btnSignUp.disabled = false;
+          btnSignUp.style.cursor = "";
+          btnSignUp.style.transform = "";
           setTimeout(function () {
             document.querySelector(".go-signin").click();
           }, 3000);
         } else {
+          btnSignUp.disabled = false;
           throw new Error("Tài khoản đã tồn tại");
         }
       } catch (e) {
+        btnSignUp.disabled = false;
+        btnSignUp.style.cursor = "";
+        btnSignUp.style.transform = "";
         blog.alertError(e.message);
       }
     });
@@ -402,7 +414,7 @@ const blog = {
   handleLogout: function () {
     const btnLogout = document.querySelector(".btn-logout");
     btnLogout.addEventListener("click", async function () {
-      loading.style.display = 'flex';
+      loading.style.display = "flex";
       const { response } = await client.post("/auth/logout", {});
       if (response.ok) {
         // loading.style.display = 'flex';
@@ -578,7 +590,7 @@ const blog = {
     if (response.ok) {
       return user;
     } else {
-      blog.handleRefreshToken().then(async () => {
+      blog.handleRefreshToken().then(async function () {
         const { response, data: user } = await client.get("/users/profile");
         if (response.ok) {
           // console.log(user);
@@ -593,7 +605,6 @@ const blog = {
 };
 
 blog.start();
-
 
 // blog.getProfile().then((user) => {
 //   console.log(user);
