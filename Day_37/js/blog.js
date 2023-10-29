@@ -48,7 +48,7 @@ const blog = {
   render: async function () {
     if (blog.isLogin()) {
       blog.getProfile().then((user) => {
-        // console.log(user);
+        console.log(user);
         if (user) {
           loading.style.display = "";
           let html;
@@ -556,6 +556,7 @@ const blog = {
           btnPostNew.style.cursor = "";
           btnPostNew.style.transform = "";
           blog.renderPost(post.data.userId.name, title, content);
+          blog.alertSuccess("Thêm bài viết thành công");
         } else {
           blog.handleRefreshToken().then(async () => {
             const { response, data: post } = await client.post("/blogs", {
@@ -567,6 +568,7 @@ const blog = {
               btnPostNew.style.cursor = "";
               btnPostNew.style.transform = "";
               blog.renderPost(post.data.userId.name, title, content);
+              blog.alertSuccess("Thêm bài viết thành công");
             }
           });
         }
@@ -616,6 +618,9 @@ const blog = {
     }
   },
   start: function () {
+    if (blog.isLogin()) {
+      client.setToken(localStorage.getItem("access_token"));
+    }
     this.render();
   },
 };
