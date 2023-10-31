@@ -480,6 +480,9 @@ const blog = {
       const postsEl = document.createElement("div");
       postsEl.classList.add("posts");
       posts.data.forEach(function (post) {
+        const time = new Date(post.createdAt);
+        const timeBefore = blog.handleTime(time);
+        console.log(timeBefore);
         const postEl = document.createElement("div");
         postEl.classList.add("post");
         postEl.innerHTML = `
@@ -487,12 +490,12 @@ const blog = {
       <div class="post">
           <div class="time">
               <div class="time-detail">
-                  <span class="preiod">1 hour ago
+                  <span class="preiod">${timeBefore}
                       <span></span>
                   </span>
                   <div class="time-post">
-                      <span class="hours">11 pm</span>
-                       <span class="minutes">28 minutes</span>
+                      <span class="hours">${time.getHours()} h</span>
+                       <span class="minutes">${time.getMinutes()} minutes</span>
                   </div>
               </div>
               <span class="tag-name">@${stripHtml(post.userId.name)}</span>
@@ -618,9 +621,11 @@ const blog = {
           } else {
             titleEl.value = "";
             contentEl.value = "";
-            document.querySelector("#time-post").value = "";  //`Bài viết của bạn sẽ được đăng vào ${}` `${time[2]}-${time[0]}-${time[1]}`
+            document.querySelector("#time-post").value = ""; //`Bài viết của bạn sẽ được đăng vào ${}` `${time[2]}-${time[0]}-${time[1]}`
             blog.alertSuccess(
-              `Bài viết của bạn sẽ được đăng vào ${blog.formatDate(`${time[2]}-${time[0]}-${time[1]}`)}`
+              `Bài viết của bạn sẽ được đăng vào ${blog.formatDate(
+                `${time[2]}-${time[0]}-${time[1]}`
+              )}`
             );
           }
         }
@@ -909,7 +914,30 @@ const blog = {
     const year = date.getFullYear();
     const hours = date.getHours();
     const minutes = date.getMinutes();
-    return `${hours} giờ ${minutes} phút ngày ${day} tháng ${month + 1} năm ${year}`;
+    return `${hours} giờ ${minutes} phút ngày ${day} tháng ${
+      month + 1
+    } năm ${year}`;
+  },
+  handleTime: function (time) {
+    const currentTime = new Date();
+    const postedTime = new Date(time);
+    const secondSub = (currentTime.getTime() - postedTime.getTime()) / 1000;
+    console.log(secondSub);
+    if (secondSub < 60) {
+      return `${Math.floor(secondSub)} giây trước`;
+    } else if (secondSub < 3600) {
+      return `${Math.floor(secondSub / 60)} phút trước`;
+    } else if (secondSub < 3600 * 60) {
+      return `${Math.floor(secondSub / 3600)} giờ trước`;
+    } else if (secondSub < 3600 * 60 * 31) {
+      return `${Math.floor(secondSub / (3600 * 60))} ngày trước`;
+    } else if (secondSub < 3600 * 60 * 31 * 12) {
+      return `${Math.floor(secondSub / (3600 * 60 * 31))} tháng trước`;
+    } else if (secondSub < 3600 * 60 * 31 * 12 * 5) {
+      return `${Math.floor(secondSub / (3600 * 60 * 31 * 12))} năm trước`;
+    } else {
+      return `Vài năm trước`;
+    }
   },
   start: function () {
     if (blog.isLogin()) {
