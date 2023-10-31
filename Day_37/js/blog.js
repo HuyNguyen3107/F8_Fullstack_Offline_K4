@@ -527,21 +527,23 @@ const blog = {
       blog.root.append(postsEl);
     }
   },
-  renderPost: function (name, title, content) {
+  renderPost: function (name, title, content, time) {
     const postsEl = document.querySelector(".posts");
     const postEl = document.createElement("div");
+    const currentTime = new Date(time);
+    const timeBefore = blog.handleTime(currentTime);
     postEl.classList.add("post");
     postEl.innerHTML = `
     <div class="posts">
     <div class="post">
         <div class="time">
             <div class="time-detail">
-                <span class="preiod">1 hour ago
+                <span class="preiod">${timeBefore}
                     <span></span>
                 </span>
                 <div class="time-post">
-                    <span class="hours">11 pm</span>
-                     <span class="minutes">28 minutes</span>
+                    <span class="hours">${currentTime.getHours()}</span>
+                     <span class="minutes">${currentTime.getMinutes()}</span>
                 </div>
             </div>
             <span class="tag-name">@${stripHtml(name)}</span>
@@ -589,11 +591,12 @@ const blog = {
           });
           titleEl.value = "";
           contentEl.value = "";
+          console.log(post.data.createdAt);
           if (response.ok) {
             btnPostNew.disabled = false;
             btnPostNew.style.cursor = "";
             btnPostNew.style.transform = "";
-            blog.renderPost(post.data.userId.name, title, content);
+            blog.renderPost(post.data.userId.name, title, content, post.data.createdAt);
             blog.alertSuccess("Thêm bài viết thành công");
           } else {
             blog.handleRefreshToken().then(async () => {
@@ -605,7 +608,7 @@ const blog = {
                 btnPostNew.disabled = false;
                 btnPostNew.style.cursor = "";
                 btnPostNew.style.transform = "";
-                blog.renderPost(post.data.userId.name, title, content);
+                blog.renderPost(post.data.userId.name, title, content, post.data.createdAt);
                 blog.alertSuccess("Thêm bài viết thành công");
               }
             });
