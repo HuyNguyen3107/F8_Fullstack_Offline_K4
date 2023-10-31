@@ -13,6 +13,7 @@ const alertContent = document.querySelector(".alert-content");
 
 let time = 100;
 let checkRender = true;
+let timeList = [];
 
 const handleProgress = function () {
   setTimeout(function () {
@@ -474,6 +475,7 @@ const blog = {
   //   },
   renderPosts: async function () {
     // console.log('ok');
+    timeList = [];
     const { response, data: posts } = await client.get("/blogs");
     // console.log('ok');
     if (response.ok) {
@@ -482,7 +484,7 @@ const blog = {
       posts.data.forEach(function (post) {
         const time = new Date(post.createdAt);
         const timeBefore = blog.handleTime(time);
-        console.log(timeBefore);
+        timeList.push(time);
         const postEl = document.createElement("div");
         postEl.classList.add("post");
         postEl.innerHTML = `
@@ -525,9 +527,13 @@ const blog = {
         postsEl.append(postEl);
       });
       blog.root.append(postsEl);
+      setInterval(function() {
+        blog.updatePeriod();
+      }, 60000);
     }
   },
   renderPost: function (name, title, content, time) {
+    timeList.unshift(time);
     const postsEl = document.querySelector(".posts");
     const postEl = document.createElement("div");
     const currentTime = new Date(time);
@@ -972,6 +978,18 @@ const blog = {
     } else {
       return `Vài năm trước`;
     }
+  },
+  updatePeriod: () => {
+    const posts = document.querySelector(".posts");
+    Array.from(posts.children).forEach(function (post, index) {
+      const period = post.querySelector(".preiod");
+      const currentTime = new Date(timeList[index]);
+      const timeBefore = blog.handleTime(currentTime);
+      period.innerHTML = `
+        ${timeBefore}
+        <span></span>
+      `;
+    });
   },
   start: function () {
     if (blog.isLogin()) {
