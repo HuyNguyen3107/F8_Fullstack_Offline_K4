@@ -533,6 +533,7 @@ const blog = {
     const currentTime = new Date(time);
     const timeBefore = blog.handleTime(currentTime);
     postEl.classList.add("post");
+    console.log(currentTime.getHours(), currentTime.getMinutes());
     postEl.innerHTML = `
     <div class="posts">
     <div class="post">
@@ -542,8 +543,8 @@ const blog = {
                     <span></span>
                 </span>
                 <div class="time-post">
-                    <span class="hours">${currentTime.getHours()}</span>
-                     <span class="minutes">${currentTime.getMinutes()}</span>
+                    <span class="hours">${currentTime.getHours()} h</span>
+                     <span class="minutes">${currentTime.getMinutes()} minutes</span>
                 </div>
             </div>
             <span class="tag-name">@${stripHtml(name)}</span>
@@ -591,7 +592,7 @@ const blog = {
           });
           titleEl.value = "";
           contentEl.value = "";
-          console.log(post.data.createdAt);
+          // console.log(post.data.createdAt);
           if (response.ok) {
             btnPostNew.disabled = false;
             btnPostNew.style.cursor = "";
@@ -925,7 +926,7 @@ const blog = {
     const currentTime = new Date();
     const postedTime = new Date(time);
     const secondSub = (currentTime.getTime() - postedTime.getTime()) / 1000;
-    console.log(secondSub);
+    // console.log(secondSub);
     if (secondSub < 60) {
       return `${Math.floor(secondSub)} giây trước`;
     } else if (secondSub < 3600) {
