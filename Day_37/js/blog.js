@@ -45,7 +45,7 @@ const blog = {
 
     return status;
   },
-  render: async function () {
+  render: function () {
     if (blog.isLogin()) {
       blog.getProfile().then((user) => {
         console.log(user);
@@ -669,10 +669,9 @@ const blog = {
     if (response.ok) {
       return user;
     } else {
-      blog.handleRefreshToken().then(async function () {
+      return blog.handleRefreshToken().then(async ()=> {
         const { response, data: user } = await client.get("/users/profile");
         if (response.ok) {
-          // console.log(user);
           return user;
         }
       });
