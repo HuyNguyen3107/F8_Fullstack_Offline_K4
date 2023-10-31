@@ -597,7 +597,12 @@ const blog = {
             btnPostNew.disabled = false;
             btnPostNew.style.cursor = "";
             btnPostNew.style.transform = "";
-            blog.renderPost(post.data.userId.name, title, content, post.data.createdAt);
+            blog.renderPost(
+              post.data.userId.name,
+              title,
+              content,
+              post.data.createdAt
+            );
             blog.alertSuccess("Thêm bài viết thành công");
           } else {
             blog.handleRefreshToken().then(async () => {
@@ -609,7 +614,12 @@ const blog = {
                 btnPostNew.disabled = false;
                 btnPostNew.style.cursor = "";
                 btnPostNew.style.transform = "";
-                blog.renderPost(post.data.userId.name, title, content, post.data.createdAt);
+                blog.renderPost(
+                  post.data.userId.name,
+                  title,
+                  content,
+                  post.data.createdAt
+                );
                 blog.alertSuccess("Thêm bài viết thành công");
               }
             });
@@ -669,7 +679,7 @@ const blog = {
     if (response.ok) {
       return user;
     } else {
-      return blog.handleRefreshToken().then(async ()=> {
+      return blog.handleRefreshToken().then(async () => {
         const { response, data: user } = await client.get("/users/profile");
         if (response.ok) {
           return user;
@@ -851,6 +861,13 @@ const blog = {
             item.classList.remove("active");
           }
         });
+        let time = document.querySelector("#time-post").value.split("/");
+        calendarContainer.style.display = "";
+        blog.alertSuccess(
+          `Bài viết của bạn sẽ được đăng vào ${blog.formatDate(
+            `${time[2]}-${time[0]}-${time[1]}`
+          )}`
+        );
       });
     });
     yearList.forEach(function (item) {
@@ -905,8 +922,22 @@ const blog = {
                 item.classList.remove("active");
               }
             });
+            let time = document.querySelector("#time-post").value.split("/");
+            calendarContainer.style.display = "";
+            blog.alertSuccess(
+              `Bài viết của bạn sẽ được đăng vào ${blog.formatDate(
+                `${time[2]}-${time[0]}-${time[1]}`
+              )}`
+            );
           });
         });
+        let time = document.querySelector("#time-post").value.split("/");
+        calendarContainer.style.display = "";
+        blog.alertSuccess(
+          `Bài viết của bạn sẽ được đăng vào ${blog.formatDate(
+            `${time[2]}-${time[0]}-${time[1]}`
+          )}`
+        );
       });
     });
   },
