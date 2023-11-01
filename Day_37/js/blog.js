@@ -527,7 +527,7 @@ const blog = {
         postsEl.append(postEl);
       });
       blog.root.append(postsEl);
-      setInterval(function() {
+      setInterval(function () {
         blog.updatePeriod();
       }, 60000);
     }
@@ -868,12 +868,18 @@ const blog = {
           }
         });
         let time = document.querySelector("#time-post").value.split("/");
+        let currentTime = new Date().getTime();
+        let timeSet = new Date(`${time[2]}-${time[0]}-${time[1]}`).getTime();
         calendarContainer.style.display = "";
-        blog.alertSuccess(
-          `Bài viết của bạn sẽ được đăng vào ${blog.formatDate(
-            `${time[2]}-${time[0]}-${time[1]}`
-          )}`
-        );
+        if (timeSet <= currentTime) {
+          blog.alertError("Vui lòng chọ lại thời gian đăng bài");
+        } else {
+          blog.alertSuccess(
+            `Bài viết của bạn sẽ được đăng vào ${blog.formatDate(
+              `${time[2]}-${time[0]}-${time[1]}`
+            )}`
+          );
+        }
       });
     });
     yearList.forEach(function (item) {
@@ -929,21 +935,35 @@ const blog = {
               }
             });
             let time = document.querySelector("#time-post").value.split("/");
+            let currentTime = new Date().getTime();
+            let timeSet = new Date(
+              `${time[2]}-${time[0]}-${time[1]}`
+            ).getTime();
             calendarContainer.style.display = "";
-            blog.alertSuccess(
-              `Bài viết của bạn sẽ được đăng vào ${blog.formatDate(
-                `${time[2]}-${time[0]}-${time[1]}`
-              )}`
-            );
+            if (timeSet <= currentTime) {
+              blog.alertError("Vui lòng chọ lại thời gian đăng bài");
+            } else {
+              blog.alertSuccess(
+                `Bài viết của bạn sẽ được đăng vào ${blog.formatDate(
+                  `${time[2]}-${time[0]}-${time[1]}`
+                )}`
+              );
+            }
           });
         });
         let time = document.querySelector("#time-post").value.split("/");
+        let currentTime = new Date().getTime();
+        let timeSet = new Date(`${time[2]}-${time[0]}-${time[1]}`).getTime();
         calendarContainer.style.display = "";
-        blog.alertSuccess(
-          `Bài viết của bạn sẽ được đăng vào ${blog.formatDate(
-            `${time[2]}-${time[0]}-${time[1]}`
-          )}`
-        );
+        if (timeSet <= currentTime) {
+          blog.alertError("Vui lòng chọ lại thời gian đăng bài");
+        } else {
+          blog.alertSuccess(
+            `Bài viết của bạn sẽ được đăng vào ${blog.formatDate(
+              `${time[2]}-${time[0]}-${time[1]}`
+            )}`
+          );
+        }
       });
     });
   },
