@@ -49,7 +49,6 @@ const blog = {
   render: function () {
     if (blog.isLogin()) {
       blog.getProfile().then((user) => {
-        console.log(user);
         if (user) {
           loading.style.display = "";
           let html;
@@ -58,7 +57,7 @@ const blog = {
         <div class="user-control">
             <div class="post-new">
                 <h1 class="heading">Blogger</h1>
-                <div class="info-user">
+                <div class="info-user-main">
                     <div class="avatar"><a href="#">${stripHtml(
                       user.data.name.charAt(0)
                     )}</a></div>
@@ -124,6 +123,7 @@ const blog = {
           blog.handlePost();
           blog.handleLogout();
           blog.handleCalender();
+          blog.handleMainProfile(user.data);
         }
       });
     } else {
@@ -479,6 +479,11 @@ const blog = {
     const { response, data: posts } = await client.get("/blogs");
     // console.log('ok');
     if (response.ok) {
+      let titleList = [];
+      let contentList = [];
+      let nameList = [];
+      let listTime = [];
+      let infoList = [];
       const postsEl = document.createElement("div");
       postsEl.classList.add("posts");
       posts.data.forEach(function (post) {
@@ -513,11 +518,15 @@ const blog = {
               </div>
               <h2 class="title">${stripHtml(post.title)}</h2>
               <p class="post-content">
-                  ${stripHtml(post.content)}
+                  ${blog.handleRegex(stripHtml(post.content))} 
               </p>
-              <div class="view-detail-post"><a href="#"># view more test...</a></div>
+              <div class="view-detail-post"><a href="#"># view more ${stripHtml(
+                post.title.charAt(0)
+              )}...</a></div>
               <div class="post-footer">
-                  <div class="user-profile"><a href="#"># admin01</a></div>
+                  <div class="user-profile"><a href="#"># ${stripHtml(
+                    post.userId.name
+                  )}</a></div>
                   <div class="read-time">Khoảng ${blog.randomNum()} giây đọc</div>
               </div>
           </div>
@@ -525,14 +534,28 @@ const blog = {
   </div>
       `;
         postsEl.append(postEl);
+        titleList.push(post.title);
+        contentList.push(post.content);
+        nameList.push(post.userId.name);
+        listTime.push(post.createdAt);
+        infoList.push(post.userId);
       });
       blog.root.append(postsEl);
       setInterval(function () {
         blog.updatePeriod();
       }, 60000);
+      blog.handleViewDetail(
+        titleList,
+        contentList,
+        nameList,
+        listTime,
+        null,
+        infoList
+      );
+      blog.handleViewProfile(infoList);
     }
   },
-  renderPost: function (name, title, content, time) {
+  renderPost: async function (name, title, content, time, userId) {
     timeList.unshift(time);
     const postsEl = document.querySelector(".posts");
     const postEl = document.createElement("div");
@@ -564,11 +587,15 @@ const blog = {
             </div>
             <h2 class="title">${stripHtml(title)}</h2>
             <p class="post-content">
-                ${stripHtml(content)}
+                ${blog.handleRegex(stripHtml(content))}
             </p>
-            <div class="view-detail-post"><a href="#"># view more test...</a></div>
+            <div class="view-detail-post"><a href="#"># view more ${stripHtml(
+              title.charAt(0)
+            )}...</a></div>
             <div class="post-footer">
-                <div class="user-profile"><a href="#"># admin01</a></div>
+                <div class="user-profile"><a href="#"># ${stripHtml(
+                  name
+                )}</a></div>
                 <div class="read-time">Khoảng ${blog.randomNum()} giây đọc</div>
             </div>
         </div>
@@ -576,6 +603,678 @@ const blog = {
 </div>
     `;
     postsEl.prepend(postEl);
+    const detailPost = document.querySelector(".view-detail-post");
+    detailPost.addEventListener("click", function () {
+      let html;
+      html = `
+      <div class="post-detail-page">
+      <div class="post-detail-title">
+          ${stripHtml(title)}
+      </div>
+      <div class="post-detail-content">
+          ${blog.handleRegex(stripHtml(content))}
+      </div>
+      <div class="user-profile"><a href="#"># ${name}</a></div>
+      <div class="post-detail-line"></div>
+      <div class="period-time">${blog.handleTime(time)}</div>
+      <div class="time-detail">${blog.formatDate(time)}</div>
+      <button class="btn-go-home">Go Home Page</button>
+  </div>
+      `;
+      blog.root.innerHTML = html;
+      blog.handleGoHome();
+    });
+    const infoUser = document.querySelector(".info-user");
+    const userProfile = document.querySelector(".user-profile");
+    const { response, data: profile } = await client.get(
+      `/users/${userId._id}`
+    );
+    let titleList = [];
+    let contentList = [];
+    let nameList = [];
+    let listTime = [];
+
+    let titleList2 = [];
+    let contentList2 = [];
+    let nameList2 = [];
+    let listTime2 = [];
+    infoUser.addEventListener("click", function () {
+      let html;
+      html = `
+            <div class="profile-page">
+            <div class="profile">
+                <h2>Personal profile: <a href="#"># ${stripHtml(
+                  profile.data.name
+                )}</a></h2>
+                <button class="btn-go-home">Về trang chủ</button>
+                <span>View user blog:</span>
+            </div>
+            <div class="posts">
+            </div>
+        </div>
+            `;
+      blog.root.innerHTML = html;
+      blog.handleGoHome();
+      const posts = document.querySelector(".posts");
+      profile.data.blogs.forEach(function (item, index) {
+        const time = new Date(item.createdAt);
+        const timeBefore = blog.handleTime(time);
+        let post = document.createElement("div");
+        post.classList.add("post");
+        post.innerHTML = `
+                  <div class="posts">
+                    <div class="post">
+                    <div class="time">
+                    <div class="time-detail">
+                        <span class="preiod">${timeBefore}
+                            <span></span>
+                        </span>
+                        <div class="time-post">
+                            <span class="hours">${time.getHours()} h</span>
+                            <span class="minutes">${time.getMinutes()} minutes</span>
+                        </div>
+                    </div>
+                    <span class="tag-name">@${stripHtml(
+                      profile.data.name
+                    )}</span>
+                </div>
+                <div class="post-detail">
+                    <div class="info-user">
+                        <div class="avatar"><a href="#">${stripHtml(
+                          profile.data.name.charAt(0)
+                        )}</a></div>
+                        <div class="user-name"><a href="#">${stripHtml(
+                          profile.data.name
+                        )}</a></div>
+                    </div>
+                    <h2 class="title">${stripHtml(item.title)}</h2>
+                    <p class="post-content">${blog.handleRegex(
+                      stripHtml(item.content)
+                    )}</p>
+                    <div class="view-detail-post"><a href="#"># view more ${stripHtml(
+                      profile.data.name.charAt(0)
+                    )}...</a></div>
+                    <div class="post-footer">
+                        <div class="user-profile"><a href="#"># ${stripHtml(
+                          profile.data.name
+                        )}</a></div>
+                        <div class="read-time">Khoảng ${blog.randomNum()} giây đọc</div>
+                    </div>
+                </div>
+                    </div>
+                  </div>
+                  `;
+        posts.append(post);
+        titleList.push(item.title);
+        contentList.push(item.content);
+        nameList.push(profile.data.name);
+        listTime.push(item.createdAt);
+      });
+      blog.handleViewDetail(titleList, contentList, nameList, listTime, userId);
+    });
+
+    userProfile.addEventListener("click", function () {
+      let html;
+      html = `
+            <div class="profile-page">
+            <div class="profile">
+                <h2>Personal profile: <a href="#"># ${stripHtml(
+                  profile.data.name
+                )}</a></h2>
+                <button class="btn-go-home">Về trang chủ</button>
+                <span>View user blog:</span>
+            </div>
+            <div class="posts">
+            </div>
+        </div>
+            `;
+      blog.root.innerHTML = html;
+      blog.handleGoHome();
+      const posts = document.querySelector(".posts");
+      profile.data.blogs.forEach(function (item, index) {
+        const time = new Date(item.createdAt);
+        const timeBefore = blog.handleTime(time);
+        let post = document.createElement("div");
+        post.classList.add("post");
+        post.innerHTML = `
+                  <div class="posts">
+                    <div class="post">
+                    <div class="time">
+                    <div class="time-detail">
+                        <span class="preiod">${timeBefore}
+                            <span></span>
+                        </span>
+                        <div class="time-post">
+                            <span class="hours">${time.getHours()} h</span>
+                            <span class="minutes">${time.getMinutes()} minutes</span>
+                        </div>
+                    </div>
+                    <span class="tag-name">@${stripHtml(
+                      profile.data.name
+                    )}</span>
+                </div>
+                <div class="post-detail">
+                    <div class="info-user">
+                        <div class="avatar"><a href="#">${stripHtml(
+                          profile.data.name.charAt(0)
+                        )}</a></div>
+                        <div class="user-name"><a href="#">${stripHtml(
+                          profile.data.name
+                        )}</a></div>
+                    </div>
+                    <h2 class="title">${stripHtml(item.title)}</h2>
+                    <p class="post-content">${blog.handleRegex(
+                      stripHtml(item.content)
+                    )}</p>
+                    <div class="view-detail-post"><a href="#"># view more ${stripHtml(
+                      profile.data.name.charAt(0)
+                    )}...</a></div>
+                    <div class="post-footer">
+                        <div class="user-profile"><a href="#"># ${stripHtml(
+                          profile.data.name
+                        )}</a></div>
+                        <div class="read-time">Khoảng ${blog.randomNum()} giây đọc</div>
+                    </div>
+                </div>
+                    </div>
+                  </div>
+                  `;
+        posts.append(post);
+        titleList2.push(item.title);
+        contentList2.push(item.content);
+        nameList2.push(profile.data.name);
+        listTime2.push(item.createdAt);
+      });
+      blog.handleViewDetail(
+        titleList2,
+        contentList2,
+        nameList2,
+        listTime2,
+        userId
+      );
+    });
+  },
+  handleViewDetail: function (
+    titleList,
+    contentList,
+    nameList,
+    listTime,
+    infoUser,
+    infoList
+  ) {
+    const detailPostList = document.querySelectorAll(".view-detail-post");
+
+    detailPostList.forEach(function (detailPost, index) {
+      detailPost.addEventListener("click", async function () {
+        let html;
+        html = `
+        <div class="post-detail-page">
+        <div class="post-detail-title">
+            ${stripHtml(titleList[index])}
+        </div>
+        <div class="post-detail-content">
+            ${blog.handleRegex(stripHtml(contentList[index]))}
+        </div>
+        <div class="user-profile"><a href="#"># ${stripHtml(
+          nameList[index]
+        )}</a></div>
+        <div class="post-detail-line"></div>
+        <div class="period-time">${blog.handleTime(listTime[index])}</div>
+        <div class="time-detail">${blog.formatDate(listTime[index])}</div>
+        <button class="btn-go-home">Go Home Page</button>
+    </div>
+        `;
+        blog.root.innerHTML = html;
+        blog.handleGoHome();
+        if (infoUser) {
+          const profileUser = document.querySelector(".user-profile");
+          let titleList = [];
+          let contentList = [];
+          let nameList = [];
+          let listTime = [];
+          const { response, data: profile } = await client.get(
+            `/users/${infoUser._id}`
+          );
+          profileUser.addEventListener("click", function () {
+            let html;
+            html = `
+      <div class="profile-page">
+      <div class="profile">
+          <h2>Personal profile: <a href="#"># ${stripHtml(
+            profile.data.name
+          )}</a></h2>
+          <button class="btn-go-home">Về trang chủ</button>
+          <span>View user blog:</span>
+      </div>
+      <div class="posts">
+      </div>
+  </div>
+      `;
+            blog.root.innerHTML = html;
+            blog.handleGoHome();
+            const posts = document.querySelector(".posts");
+            profile.data.blogs.forEach(function (item, index) {
+              const time = new Date(item.createdAt);
+              const timeBefore = blog.handleTime(time);
+              let post = document.createElement("div");
+              post.classList.add("post");
+              post.innerHTML = `
+            <div class="posts">
+              <div class="post">
+              <div class="time">
+              <div class="time-detail">
+                  <span class="preiod">${timeBefore}
+                      <span></span>
+                  </span>
+                  <div class="time-post">
+                      <span class="hours">${time.getHours()} h</span>
+                      <span class="minutes">${time.getMinutes()} minutes</span>
+                  </div>
+              </div>
+              <span class="tag-name">@${stripHtml(profile.data.name)}</span>
+          </div>
+          <div class="post-detail">
+              <div class="info-user">
+                  <div class="avatar"><a href="#">${stripHtml(
+                    profile.data.name.charAt(0)
+                  )}</a></div>
+                  <div class="user-name"><a href="#">${stripHtml(
+                    profile.data.name
+                  )}</a></div>
+              </div>
+              <h2 class="title">${stripHtml(item.title)}</h2>
+              <p class="post-content">${blog.stripHtml(
+                stripHtml(item.content)
+              )}</p>
+              <div class="view-detail-post"><a href="#"># view more ${stripHtml(
+                profile.data.name.charAt(0)
+              )}...</a></div>
+              <div class="post-footer">
+                  <div class="user-profile"><a href="#"># ${stripHtml(
+                    profile.data.name
+                  )}</a></div>
+                  <div class="read-time">Khoảng ${blog.randomNum()} giây đọc</div>
+              </div>
+          </div>
+              </div>
+            </div>
+            `;
+              posts.append(post);
+              titleList.push(item.title);
+              contentList.push(item.content);
+              nameList.push(profile.data.name);
+              listTime.push(item.createdAt);
+            });
+            blog.handleViewDetail(
+              titleList,
+              contentList,
+              nameList,
+              listTime,
+              infoUser
+            );
+          });
+        }
+        if (infoList) {
+          const profileList = document.querySelectorAll(".user-profile");
+          let titleList = [];
+          let contentList = [];
+          let nameList = [];
+          let listTime = [];
+
+          profileList.forEach(async function (item, index) {
+            const { response, data: profile } = await client.get(
+              `/users/${infoList[index]._id}`
+            );
+            if (response.ok) {
+              item.addEventListener("click", function () {
+                let html;
+                html = `
+            <div class="profile-page">
+            <div class="profile">
+                <h2>Personal profile: <a href="#"># ${stripHtml(
+                  profile.data.name
+                )}</a></h2>
+                <button class="btn-go-home">Về trang chủ</button>
+                <span>View user blog:</span>
+            </div>
+            <div class="posts">
+            </div>
+        </div>
+            `;
+                blog.root.innerHTML = html;
+                blog.handleGoHome();
+                const posts = document.querySelector(".posts");
+                profile.data.blogs.forEach(function (item, index) {
+                  const time = new Date(item.createdAt);
+                  const timeBefore = blog.handleTime(time);
+                  let post = document.createElement("div");
+                  post.classList.add("post");
+                  post.innerHTML = `
+                  <div class="posts">
+                    <div class="post">
+                    <div class="time">
+                    <div class="time-detail">
+                        <span class="preiod">${timeBefore}
+                            <span></span>
+                        </span>
+                        <div class="time-post">
+                            <span class="hours">${time.getHours()} h</span>
+                            <span class="minutes">${time.getMinutes()} minutes</span>
+                        </div>
+                    </div>
+                    <span class="tag-name">@${stripHtml(
+                      profile.data.name
+                    )}</span>
+                </div>
+                <div class="post-detail">
+                    <div class="info-user">
+                        <div class="avatar"><a href="#">${stripHtml(
+                          profile.data.name.charAt(0)
+                        )}</a></div>
+                        <div class="user-name"><a href="#">${stripHtml(
+                          profile.data.name
+                        )}</a></div>
+                    </div>
+                    <h2 class="title">${stripHtml(item.title)}</h2>
+                    <p class="post-content">${blog.handleRegex(
+                      stripHtml(item.content)
+                    )}</p>
+                    <div class="view-detail-post"><a href="#"># view more ${stripHtml(
+                      profile.data.name.charAt(0)
+                    )}...</a></div>
+                    <div class="post-footer">
+                        <div class="user-profile"><a href="#"># ${stripHtml(
+                          profile.data.name
+                        )}</a></div>
+                        <div class="read-time">Khoảng ${blog.randomNum()} giây đọc</div>
+                    </div>
+                </div>
+                    </div>
+                  </div>
+                  `;
+                  posts.append(post);
+                  titleList.push(item.title);
+                  contentList.push(item.content);
+                  nameList.push(profile.data.name);
+                  listTime.push(item.createdAt);
+                });
+                blog.handleViewDetail(
+                  titleList,
+                  contentList,
+                  nameList,
+                  listTime,
+                  infoList[index]
+                );
+              });
+            }
+          });
+        }
+      });
+    });
+  },
+  handleMainProfile: async function (userId) {
+    const infoUserMain = document.querySelector(".info-user-main");
+    const { response, data: profile } = await client.get(
+      `/users/${userId._id}`
+    );
+    let titleList = [];
+    let contentList = [];
+    let nameList = [];
+    let listTime = [];
+
+    infoUserMain.addEventListener("click", function () {
+      let html;
+      html = `
+      <div class="profile-page">
+      <div class="profile">
+          <h2>Personal profile: <a href="#"># ${stripHtml(
+            profile.data.name
+          )}</a></h2>
+          <button class="btn-go-home">Về trang chủ</button>
+          <span>View user blog:</span>
+      </div>
+      <div class="posts">
+      </div>
+  </div>
+      `;
+      blog.root.innerHTML = html;
+      blog.handleGoHome();
+      const posts = document.querySelector(".posts");
+      profile.data.blogs.forEach(function (item, index) {
+        const time = new Date(item.createdAt);
+        const timeBefore = blog.handleTime(time);
+        let post = document.createElement("div");
+        post.classList.add("post");
+        post.innerHTML = `
+            <div class="posts">
+              <div class="post">
+              <div class="time">
+              <div class="time-detail">
+                  <span class="preiod">${timeBefore}
+                      <span></span>
+                  </span>
+                  <div class="time-post">
+                      <span class="hours">${time.getHours()} h</span>
+                      <span class="minutes">${time.getMinutes()} minutes</span>
+                  </div>
+              </div>
+              <span class="tag-name">@${stripHtml(profile.data.name)}</span>
+          </div>
+          <div class="post-detail">
+              <div class="info-user">
+                  <div class="avatar"><a href="#">${stripHtml(
+                    profile.data.name.charAt(0)
+                  )}</a></div>
+                  <div class="user-name"><a href="#">${stripHtml(
+                    profile.data.name
+                  )}</a></div>
+              </div>
+              <h2 class="title">${stripHtml(item.title)}</h2>
+              <p class="post-content">${blog.handleRegex(
+                stripHtml(item.content)
+              )}</p>
+              <div class="view-detail-post"><a href="#"># view more ${stripHtml(
+                profile.data.name.charAt(0)
+              )}...</a></div>
+              <div class="post-footer">
+                  <div class="user-profile"><a href="#"># ${stripHtml(
+                    profile.data.name
+                  )}</a></div>
+                  <div class="read-time">Khoảng ${blog.randomNum()} giây đọc</div>
+              </div>
+          </div>
+              </div>
+            </div>
+            `;
+        posts.append(post);
+        titleList.push(item.title);
+        contentList.push(item.content);
+        nameList.push(profile.data.name);
+        listTime.push(item.createdAt);
+      });
+      blog.handleViewDetail(titleList, contentList, nameList, listTime, userId);
+    });
+  },
+  handleGoHome: function () {
+    const btnGoHome = document.querySelector(".btn-go-home");
+    btnGoHome.addEventListener("click", function () {
+      blog.render();
+    });
+  },
+  handleViewProfile: async function (infoList) {
+    const profileList = document.querySelectorAll(".user-profile");
+    const infoUserList = document.querySelectorAll(".info-user");
+
+    let titleList = [];
+    let contentList = [];
+    let nameList = [];
+    let listTime = [];
+
+    profileList.forEach(async function (item, index) {
+      const { response, data: profile } = await client.get(
+        `/users/${infoList[index]._id}`
+      );
+      if (response.ok) {
+        item.addEventListener("click", function () {
+          let html;
+          html = `
+      <div class="profile-page">
+      <div class="profile">
+          <h2>Personal profile: <a href="#"># ${stripHtml(
+            profile.data.name
+          )}</a></h2>
+          <button class="btn-go-home">Về trang chủ</button>
+          <span>View user blog:</span>
+      </div>
+      <div class="posts">
+      </div>
+  </div>
+      `;
+          blog.root.innerHTML = html;
+          blog.handleGoHome();
+          const posts = document.querySelector(".posts");
+          profile.data.blogs.forEach(function (item, index) {
+            const time = new Date(item.createdAt);
+            const timeBefore = blog.handleTime(time);
+            let post = document.createElement("div");
+            post.classList.add("post");
+            post.innerHTML = `
+            <div class="posts">
+              <div class="post">
+              <div class="time">
+              <div class="time-detail">
+                  <span class="preiod">${timeBefore}
+                      <span></span>
+                  </span>
+                  <div class="time-post">
+                      <span class="hours">${time.getHours()} h</span>
+                      <span class="minutes">${time.getMinutes()} minutes</span>
+                  </div>
+              </div>
+              <span class="tag-name">@${stripHtml(profile.data.name)}</span>
+          </div>
+          <div class="post-detail">
+              <div class="info-user">
+                  <div class="avatar"><a href="#">${stripHtml(
+                    profile.data.name.charAt(0)
+                  )}</a></div>
+                  <div class="user-name"><a href="#">${stripHtml(
+                    profile.data.name
+                  )}</a></div>
+              </div>
+              <h2 class="title">${stripHtml(item.title)}</h2>
+              <p class="post-content">${blog.handleRegex(
+                stripHtml(item.content)
+              )}</p>
+              <div class="view-detail-post"><a href="#"># view more ${stripHtml(
+                profile.data.name.charAt(0)
+              )}...</a></div>
+              <div class="post-footer">
+                  <div class="user-profile"><a href="#"># ${stripHtml(
+                    profile.data.name
+                  )}</a></div>
+                  <div class="read-time">Khoảng ${blog.randomNum()} giây đọc</div>
+              </div>
+          </div>
+              </div>
+            </div>
+            `;
+            posts.append(post);
+            titleList.push(item.title);
+            contentList.push(item.content);
+            nameList.push(profile.data.name);
+            listTime.push(item.createdAt);
+          });
+          blog.handleViewDetail(
+            titleList,
+            contentList,
+            nameList,
+            listTime,
+            infoList[index]
+          );
+        });
+      }
+    });
+
+    infoUserList.forEach(async function (item, index) {
+      const { response, data: profile } = await client.get(
+        `/users/${infoList[index]._id}`
+      );
+      if (response.ok) {
+        item.addEventListener("click", function () {
+          let html;
+          html = `
+      <div class="profile-page">
+      <div class="profile">
+          <h2>Personal profile: <a href="#"># ${stripHtml(
+            profile.data.name
+          )}</a></h2>
+          <button class="btn-go-home">Về trang chủ</button>
+          <span>View user blog:</span>
+      </div>
+      <div class="posts">
+      </div>
+  </div>
+      `;
+          blog.root.innerHTML = html;
+          blog.handleGoHome();
+          const posts = document.querySelector(".posts");
+          profile.data.blogs.forEach(function (item, index) {
+            const time = new Date(item.createdAt);
+            const timeBefore = blog.handleTime(time);
+            let post = document.createElement("div");
+            post.classList.add("post");
+            post.innerHTML = `
+            <div class="posts">
+              <div class="post">
+              <div class="time">
+              <div class="time-detail">
+                  <span class="preiod">${timeBefore}
+                      <span></span>
+                  </span>
+                  <div class="time-post">
+                      <span class="hours">${time.getHours()} h</span>
+                      <span class="minutes">${time.getMinutes()} minutes</span>
+                  </div>
+              </div>
+              <span class="tag-name">@${stripHtml(profile.data.name)}</span>
+          </div>
+          <div class="post-detail">
+              <div class="info-user">
+                  <div class="avatar"><a href="#">${stripHtml(
+                    profile.data.name.charAt(0)
+                  )}</a></div>
+                  <div class="user-name"><a href="#">${stripHtml(
+                    profile.data.name
+                  )}</a></div>
+              </div>
+              <h2 class="title">${stripHtml(item.title)}</h2>
+              <p class="post-content">${blog.handleRegex(
+                stripHtml(item.content)
+              )}</p>
+              <div class="view-detail-post"><a href="#"># view more ${stripHtml(
+                profile.data.name.charAt(0)
+              )}...</a></div>
+              <div class="post-footer">
+                  <div class="user-profile"><a href="#"># ${stripHtml(
+                    profile.data.name
+                  )}</a></div>
+                  <div class="read-time">Khoảng ${blog.randomNum()} giây đọc</div>
+              </div>
+          </div>
+              </div>
+            </div>
+            `;
+            posts.append(post);
+            titleList.push(item.title);
+            contentList.push(item.content);
+            nameList.push(profile.data.name);
+            listTime.push(item.createdAt);
+          });
+          blog.handleViewDetail(titleList, contentList, nameList, listTime);
+        });
+      }
+    });
   },
   handlePost: async function () {
     const currentTime = new Date().getTime();
@@ -607,7 +1306,8 @@ const blog = {
               post.data.userId.name,
               title,
               content,
-              post.data.createdAt
+              post.data.createdAt,
+              post.data.userId
             );
             blog.alertSuccess("Thêm bài viết thành công");
           } else {
@@ -624,7 +1324,8 @@ const blog = {
                   post.data.userId.name,
                   title,
                   content,
-                  post.data.createdAt
+                  post.data.createdAt,
+                  post.data.userId
                 );
                 blog.alertSuccess("Thêm bài viết thành công");
               }
@@ -987,29 +1688,77 @@ const blog = {
       return `${Math.floor(secondSub)} giây trước`;
     } else if (secondSub < 3600) {
       return `${Math.floor(secondSub / 60)} phút trước`;
-    } else if (secondSub < 3600 * 60) {
+    } else if (secondSub < 3600 * 24) {
       return `${Math.floor(secondSub / 3600)} giờ trước`;
-    } else if (secondSub < 3600 * 60 * 31) {
-      return `${Math.floor(secondSub / (3600 * 60))} ngày trước`;
-    } else if (secondSub < 3600 * 60 * 31 * 12) {
-      return `${Math.floor(secondSub / (3600 * 60 * 31))} tháng trước`;
-    } else if (secondSub < 3600 * 60 * 31 * 12 * 5) {
-      return `${Math.floor(secondSub / (3600 * 60 * 31 * 12))} năm trước`;
+    } else if (secondSub < 3600 * 24 * 31) {
+      return `${Math.floor(secondSub / (3600 * 24))} ngày trước`;
+    } else if (secondSub < 3600 * 24 * 31 * 12) {
+      return `${Math.floor(secondSub / (3600 * 24 * 31))} tháng trước`;
+    } else if (secondSub < 3600 * 24 * 31 * 12 * 5) {
+      return `${Math.floor(secondSub / (3600 * 24 * 31 * 12))} năm trước`;
     } else {
       return `Vài năm trước`;
     }
   },
   updatePeriod: () => {
     const posts = document.querySelector(".posts");
-    Array.from(posts.children).forEach(function (post, index) {
-      const period = post.querySelector(".preiod");
-      const currentTime = new Date(timeList[index]);
-      const timeBefore = blog.handleTime(currentTime);
-      period.innerHTML = `
-        ${timeBefore}
-        <span></span>
-      `;
-    });
+    if (posts) {
+      Array.from(posts.children).forEach(function (post, index) {
+        const period = post.querySelector(".preiod");
+        const currentTime = new Date(timeList[index]);
+        const timeBefore = blog.handleTime(currentTime);
+        period.innerHTML = `
+          ${timeBefore}
+          <span></span>
+        `;
+      });
+    }
+  },
+  handleRegex: function (content) {
+    const result = blog.handleRegexPhone(content);
+    const result2 = blog.handleRegexEmail(result);
+    const result3 = blog.handleRegexLink(result2);
+    const result4 = blog.handleRegexVideo(result3);
+    const result5 = blog.handleRegexLine(result4);
+    return blog.handleRegexSpace(result5);
+  },
+  handleRegexPhone: function (content) {
+    const pattern = /((0|\+84)\d{9})/gi;
+    return content.replace(
+      pattern,
+      ` <a href="tel:$1" target="_blank">$1</a> `
+    );
+  },
+  handleRegexEmail: function (content) {
+    const pattern = /(([\w\.-]{3,})@([\w\.-]{1,}\.[a-z]{2,}))/gi;
+    return content.replace(
+      pattern,
+      `<a href="mailto:$1" target="_blank">$1</a>`
+    );
+  },
+  handleRegexVideo: function (content) {
+    const pattern =
+      /<span>www.youtube.com\/watch\?v\=([a-zA-Z0-9]+)(\&?[a-z0-9A-Z\=\-\_\.\/\+\?]+|)<\/span>/g;
+    return content.replace(
+      pattern,
+      `<iframe src="https://www.youtube.com/embed/$1" width="500" height="300"></iframe>`
+    );
+  },
+  handleRegexLink: function (content) {
+    const pattern =
+      /((?:http|https):\/\/(((?:[a-z0-9][a-z0-9-_\.]*\.|)[a-z0-9][a-z0-9-_\.]*\.[a-z]{2,}(?::\d{2,}|))(\/|)[a-zA-Z0-9\?\=\-\_\.\+]*))/g;
+    return content.replace(
+      pattern,
+      `<a href="$1" target="_blank"><span>$2</span></a>`
+    );
+  },
+  handleRegexSpace: function (content) {
+    const pattern = /\s+/g;
+    return content.replace(pattern, " ");
+  },
+  handleRegexLine: function (content) {
+    const pattern = /\n+/g;
+    return content.replace(pattern, "\n");
   },
   start: function () {
     if (blog.isLogin()) {

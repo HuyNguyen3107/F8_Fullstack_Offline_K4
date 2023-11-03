@@ -110,7 +110,7 @@ html {
   flex: 4;
 }
 
-.info-user {
+.info-user, .info-user-main {
   display: flex;
   align-items: center;
   column-gap: 10px;
@@ -269,6 +269,7 @@ html {
 .btn-sign-in,
 .btn-sign-up,
 .btn-post-new,
+.btn-go-home,
 .go-home-page {
   border: none;
   color: #fff;
@@ -284,6 +285,7 @@ html {
 .btn-sign-in:hover,
 .btn-sign-up:hover,
 .btn-post-new:hover,
+.btn-go-home:hover,
 .go-home-page:hover {
   background-color: #fff;
   color: rgb(5, 167, 5);
@@ -565,4 +567,43 @@ html {
 .selected {
   background-color: #9B59B6;
   color: #fff !important;
+}
+.post-detail-page {
+  color: #fff;
+}
+
+.post-detail-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: rgb(5, 167, 5);
+}
+.post-detail-content {
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.post-detail-page .user-profile {
+  margin-top: 20px;
+}
+
+.period-time {
+  margin-top: 10px;
+  /* color: rgb(5, 167, 5); */
+}
+
+.time-detail {
+  margin-top: 10px;
+  /* color: rgb(5, 167, 5); */
+}
+
+.btn-go-home {
+  margin-top: 10px;
+}
+
+.post-detail-line {
+  height: 2px;
+  width: 100%;
+  background-color: rgb(5, 167, 5);
+  margin-top: 10px;
 }
