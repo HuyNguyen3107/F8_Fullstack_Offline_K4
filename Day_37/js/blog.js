@@ -144,6 +144,7 @@ const blog = {
     const signIn = document.querySelector(".sign-in");
     signIn.addEventListener("click", function (e) {
       e.preventDefault();
+      e.stopPropagation();
       let html;
       html = `
         <div class="sign-in-page">
@@ -187,11 +188,15 @@ const blog = {
     const goSignUp = document.querySelector(".go-signup");
     const goHome = document.querySelector(".go-home");
 
-    goHome.addEventListener("click", function () {
+    goHome.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
       blog.render();
     });
 
     btnSignUp.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
       e.preventDefault();
       let html;
       html = `
@@ -231,13 +236,17 @@ const blog = {
       blog.root.innerHTML = html;
       const goHome = document.querySelector(".go-home");
 
-      goHome.addEventListener("click", function () {
+      goHome.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
         blog.render();
       });
       blog.backLogin();
       blog.handleSignUp();
     });
-    goSignUp.addEventListener("click", function () {
+    goSignUp.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
       let html;
       html = `
           <div class="sign-up-page">
@@ -276,7 +285,9 @@ const blog = {
       blog.root.innerHTML = html;
       const goHome = document.querySelector(".go-home");
 
-      goHome.addEventListener("click", function () {
+      goHome.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
         blog.render();
       });
       blog.backLogin();
@@ -304,6 +315,7 @@ const blog = {
 
     btnSignIn.addEventListener("click", function (e) {
       e.preventDefault();
+      e.stopPropagation();
       const emailEl = document.querySelector("#email");
       const passwordEl = document.querySelector("#password");
       const email = emailEl.value;
@@ -336,7 +348,9 @@ const blog = {
   },
   backLogin: function () {
     const goSignIn = document.querySelector(".go-signin");
-    goSignIn.addEventListener("click", function () {
+    goSignIn.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
       let html;
       html = `
         <div class="sign-in-page">
@@ -378,6 +392,7 @@ const blog = {
     const btnSignUp = document.querySelector(".btn-sign-up");
     btnSignUp.addEventListener("click", async function (e) {
       e.preventDefault();
+      e.stopPropagation();
       btnSignUp.disabled = true;
       btnSignUp.style.cursor = "not-allowed";
       btnSignUp.style.transform = "scale(1)";
@@ -447,7 +462,9 @@ const blog = {
   },
   handleLogout: function () {
     const btnLogout = document.querySelector(".btn-logout");
-    btnLogout.addEventListener("click", async function () {
+    btnLogout.addEventListener("click", async function (e) {
+      e.preventDefault();
+      e.stopPropagation();
       loading.style.display = "flex";
       const { response } = await client.post("/auth/logout", {});
       if (response.ok) {
@@ -604,7 +621,9 @@ const blog = {
     `;
     postsEl.prepend(postEl);
     const detailPost = document.querySelector(".view-detail-post");
-    detailPost.addEventListener("click", function () {
+    detailPost.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
       let html;
       html = `
       <div class="post-detail-page">
@@ -638,7 +657,9 @@ const blog = {
     let contentList2 = [];
     let nameList2 = [];
     let listTime2 = [];
-    infoUser.addEventListener("click", function () {
+    infoUser.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
       let html;
       html = `
             <div class="profile-page">
@@ -713,7 +734,9 @@ const blog = {
       blog.handleViewDetail(titleList, contentList, nameList, listTime, userId);
     });
 
-    userProfile.addEventListener("click", function () {
+    userProfile.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
       let html;
       html = `
             <div class="profile-page">
@@ -805,7 +828,9 @@ const blog = {
     const detailPostList = document.querySelectorAll(".view-detail-post");
 
     detailPostList.forEach(function (detailPost, index) {
-      detailPost.addEventListener("click", async function () {
+      detailPost.addEventListener("click", async function (e) {
+        e.preventDefault();
+        e.stopPropagation();
         let html;
         html = `
         <div class="post-detail-page">
@@ -835,7 +860,9 @@ const blog = {
           const { response, data: profile } = await client.get(
             `/users/${infoUser._id}`
           );
-          profileUser.addEventListener("click", function () {
+          profileUser.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
             let html;
             html = `
       <div class="profile-page">
@@ -926,7 +953,9 @@ const blog = {
               `/users/${infoList[index]._id}`
             );
             if (response.ok) {
-              item.addEventListener("click", function () {
+              item.addEventListener("click", function (e) {
+                e.preventDefault();
+                e.stopPropagation();
                 let html;
                 html = `
             <div class="profile-page">
@@ -1022,7 +1051,9 @@ const blog = {
     let nameList = [];
     let listTime = [];
 
-    infoUserMain.addEventListener("click", function () {
+    infoUserMain.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
       let html;
       html = `
       <div class="profile-page">
@@ -1097,7 +1128,9 @@ const blog = {
   },
   handleGoHome: function () {
     const btnGoHome = document.querySelector(".btn-go-home");
-    btnGoHome.addEventListener("click", function () {
+    btnGoHome.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
       blog.render();
     });
   },
@@ -1115,7 +1148,9 @@ const blog = {
         `/users/${infoList[index]._id}`
       );
       if (response.ok) {
-        item.addEventListener("click", function () {
+        item.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
           let html;
           html = `
       <div class="profile-page">
@@ -1201,7 +1236,9 @@ const blog = {
         `/users/${infoList[index]._id}`
       );
       if (response.ok) {
-        item.addEventListener("click", function () {
+        item.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
           let html;
           html = `
       <div class="profile-page">
@@ -1281,6 +1318,7 @@ const blog = {
     const btnPostNew = document.querySelector(".btn-post-new");
     btnPostNew.addEventListener("click", async function (e) {
       e.preventDefault();
+      e.stopPropagation();
       btnPostNew.disabled = true;
       btnPostNew.style.cursor = "not-allowed";
       btnPostNew.style.transform = "scale(1)";
@@ -1403,6 +1441,7 @@ const blog = {
     const calendarIcon = document.querySelector(".fa-calendar");
     calendarIcon.addEventListener("click", function (e) {
       e.stopPropagation();
+      e.preventDefault();
       if (calendarContainer.style.display === "") {
         calendarContainer.style.display = "block";
       } else {
@@ -1411,8 +1450,11 @@ const blog = {
     });
     calendarContainer.addEventListener("click", function (e) {
       e.stopPropagation();
+      e.preventDefault();
     });
-    document.addEventListener("click", function () {
+    document.addEventListener("click", function (e) {
+      e.stopPropagation();
+      e.preventDefault();
       calendarContainer.style.display = "";
     });
     const timePost = document.querySelector("#time-post");
@@ -1482,6 +1524,7 @@ const blog = {
     listIcon.forEach((icon) => {
       icon.addEventListener("click", (e) => {
         e.stopPropagation();
+        e.preventDefault();
         currMonth = icon.id === "prev" ? currMonth - 1 : currMonth + 1;
 
         if (currMonth < 0 || currMonth > 11) {
@@ -1499,6 +1542,7 @@ const blog = {
         dayList.forEach(function (item) {
           item.addEventListener("click", (e) => {
             e.stopPropagation();
+            e.preventDefault();
             e.target.classList.add("active");
             currDate = e.target.innerText;
             checkMonth = currMonth;
@@ -1532,6 +1576,7 @@ const blog = {
     years.innerHTML = yearLiList;
     present.addEventListener("click", function (e) {
       e.stopPropagation();
+      e.preventDefault();
       if (years.style.display === "") {
         years.style.display = "flex";
         icons.style.display = "none";
@@ -1547,6 +1592,7 @@ const blog = {
     dayList.forEach(function (item) {
       item.addEventListener("click", (e) => {
         e.stopPropagation();
+        e.preventDefault();
         e.target.classList.add("active");
         currDate = e.target.innerText;
         checkMonth = currMonth;
@@ -1586,6 +1632,7 @@ const blog = {
     yearList.forEach(function (item) {
       item.addEventListener("click", function (e) {
         e.stopPropagation();
+        e.preventDefault();
         e.target.classList.add("selected");
         yearList.forEach(function (item) {
           if (item.classList.contains("selected") && item !== e.target) {
@@ -1614,6 +1661,7 @@ const blog = {
         dayList.forEach(function (item) {
           item.addEventListener("click", (e) => {
             e.stopPropagation();
+            e.preventDefault();
             e.target.classList.add("active");
             currDate = e.target.innerText;
             checkMonth = currMonth;
