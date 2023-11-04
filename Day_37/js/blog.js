@@ -22,16 +22,16 @@ const handleProgress = function () {
       progress.style.width = `${time}%`;
       setTimeout(function () {
         handleProgress();
-      }, 1000);
+      }, 2000);
     }
-  }, 1000);
+  }, 2000);
   if (time === 0) {
     setTimeout(function () {
       time = 100;
       alertDiv.style.transform = "";
       progress.style.width = "";
       return;
-    }, 1000);
+    }, 2000);
   }
 };
 
@@ -468,7 +468,7 @@ const blog = {
       loading.style.display = "flex";
       const { response } = await client.post("/auth/logout", {});
       if (response.ok) {
-        // loading.style.display = 'flex';
+        loading.style.display = 'flex';
         localStorage.removeItem("access_token");
         localStorage.removeItem("refresh_token");
         client.token = null;
@@ -477,7 +477,7 @@ const blog = {
         blog.handleRefreshToken().then(async () => {
           const { response } = await client.post("/auth/logout", {});
           if (response.ok) {
-            // loading.style.display = 'flex';
+            loading.style.display = 'flex';
             localStorage.removeItem("access_token");
             localStorage.removeItem("refresh_token");
             client.token = null;
@@ -1774,14 +1774,14 @@ const blog = {
     const pattern = /((0|\+84)\d{9})/gi;
     return content.replace(
       pattern,
-      ` <a href="tel:$1" target="_blank">$1</a> `
+      ` <a href="tel:$1" target="_blank" class="phone-regex">$1</a> `
     );
   },
   handleRegexEmail: function (content) {
     const pattern = /(([\w\.-]{3,})@([\w\.-]{1,}\.[a-z]{2,}))/gi;
     return content.replace(
       pattern,
-      `<a href="mailto:$1" target="_blank">$1</a>`
+      `<a href="mailto:$1" target="_blank" class="mail-regex">$1</a>`
     );
   },
   handleRegexVideo: function (content) {
@@ -1797,7 +1797,7 @@ const blog = {
       /((?:http|https):\/\/(((?:[a-z0-9][a-z0-9-_\.]*\.|)[a-z0-9][a-z0-9-_\.]*\.[a-z]{2,}(?::\d{2,}|))(\/|)[a-zA-Z0-9\?\=\-\_\.\+]*))/g;
     return content.replace(
       pattern,
-      `<a href="$1" target="_blank"><span>$2</span></a>`
+      `<a href="$1" target="_blank" class="link-regex"><span>$2</span></a>`
     );
   },
   handleRegexSpace: function (content) {
