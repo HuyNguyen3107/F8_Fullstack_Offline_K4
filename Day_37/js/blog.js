@@ -910,7 +910,7 @@ const blog = {
                   )}</a></div>
               </div>
               <h2 class="title">${stripHtml(item.title)}</h2>
-              <p class="post-content">${blog.stripHtml(
+              <p class="post-content">${blog.handleRegex(
                 stripHtml(item.content)
               )}</p>
               <div class="view-detail-post"><a href="#"># view more ${stripHtml(
