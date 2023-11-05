@@ -1795,7 +1795,7 @@ const blog = {
   },
   handleRegexVideo: function (content) {
     const pattern =
-      /<span>www.youtube.com\/watch\?v\=([a-zA-Z0-9_]+)(\&?[a-z0-9A-Z\=\-\_\.\/\+\?]+|)<\/span>/g;
+      /<span>www.youtube.com\/watch\?v\=([a-zA-Z0-9\_\-]+)(\&?[a-z0-9A-Z\=\-\_\.\/\+\?]+|)<\/span>/g;
     return content.replace(
       pattern,
       `<iframe src="https://www.youtube.com/embed/$1" width="500" height="300"></iframe>`
