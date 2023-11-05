@@ -504,6 +504,7 @@ const blog = {
       const postsEl = document.createElement("div");
       postsEl.classList.add("posts");
       posts.data.forEach(function (post) {
+        const contentShow = post.content.slice(0, post.content.length / 2);
         const time = new Date(post.createdAt);
         const timeBefore = blog.handleTime(time);
         timeList.push(time);
@@ -535,7 +536,7 @@ const blog = {
               </div>
               <h2 class="title">${stripHtml(post.title)}</h2>
               <p class="post-content">
-                  ${blog.handleRegex(stripHtml(post.content))} 
+                  ${blog.handleRegex(stripHtml(contentShow))}...
               </p>
               <div class="view-detail-post"><a href="#"># view more ${stripHtml(
                 post.title.charAt(0)
@@ -573,6 +574,7 @@ const blog = {
     }
   },
   renderPost: async function (name, title, content, time, userId) {
+    const contentShow = content.slice(0, content.length / 2);
     timeList.unshift(time);
     const postsEl = document.querySelector(".posts");
     const postEl = document.createElement("div");
@@ -604,7 +606,7 @@ const blog = {
             </div>
             <h2 class="title">${stripHtml(title)}</h2>
             <p class="post-content">
-                ${blog.handleRegex(stripHtml(content))}
+                ${blog.handleRegex(stripHtml(contentShow))}...
             </p>
             <div class="view-detail-post"><a href="#"># view more ${stripHtml(
               title.charAt(0)
@@ -678,6 +680,7 @@ const blog = {
       blog.handleGoHome();
       const posts = document.querySelector(".posts");
       profile.data.blogs.forEach(function (item, index) {
+        const contentShow = item.content.slice(0, item.content.length / 2);
         const time = new Date(item.createdAt);
         const timeBefore = blog.handleTime(time);
         let post = document.createElement("div");
@@ -710,8 +713,8 @@ const blog = {
                     </div>
                     <h2 class="title">${stripHtml(item.title)}</h2>
                     <p class="post-content">${blog.handleRegex(
-                      stripHtml(item.content)
-                    )}</p>
+                      stripHtml(contentShow)
+                    )}...</p>
                     <div class="view-detail-post"><a href="#"># view more ${stripHtml(
                       profile.data.name.charAt(0)
                     )}...</a></div>
@@ -755,6 +758,7 @@ const blog = {
       blog.handleGoHome();
       const posts = document.querySelector(".posts");
       profile.data.blogs.forEach(function (item, index) {
+        const contentShow = item.content.slice(0, item.content.length / 2);
         const time = new Date(item.createdAt);
         const timeBefore = blog.handleTime(time);
         let post = document.createElement("div");
@@ -787,8 +791,8 @@ const blog = {
                     </div>
                     <h2 class="title">${stripHtml(item.title)}</h2>
                     <p class="post-content">${blog.handleRegex(
-                      stripHtml(item.content)
-                    )}</p>
+                      stripHtml(contentShow)
+                    )}...</p>
                     <div class="view-detail-post"><a href="#"># view more ${stripHtml(
                       profile.data.name.charAt(0)
                     )}...</a></div>
@@ -881,6 +885,7 @@ const blog = {
             blog.handleGoHome();
             const posts = document.querySelector(".posts");
             profile.data.blogs.forEach(function (item, index) {
+              const contentShow = item.content.slice(0, item.content.length / 2)
               const time = new Date(item.createdAt);
               const timeBefore = blog.handleTime(time);
               let post = document.createElement("div");
@@ -911,8 +916,8 @@ const blog = {
               </div>
               <h2 class="title">${stripHtml(item.title)}</h2>
               <p class="post-content">${blog.handleRegex(
-                stripHtml(item.content)
-              )}</p>
+                stripHtml(contentShow)
+              )}...</p>
               <div class="view-detail-post"><a href="#"># view more ${stripHtml(
                 profile.data.name.charAt(0)
               )}...</a></div>
@@ -974,6 +979,7 @@ const blog = {
                 blog.handleGoHome();
                 const posts = document.querySelector(".posts");
                 profile.data.blogs.forEach(function (item, index) {
+                  const contentShow = item.content.slice(0, item.content.length / 2)
                   const time = new Date(item.createdAt);
                   const timeBefore = blog.handleTime(time);
                   let post = document.createElement("div");
@@ -1006,8 +1012,8 @@ const blog = {
                     </div>
                     <h2 class="title">${stripHtml(item.title)}</h2>
                     <p class="post-content">${blog.handleRegex(
-                      stripHtml(item.content)
-                    )}</p>
+                      stripHtml(contentShow)
+                    )}...</p>
                     <div class="view-detail-post"><a href="#"># view more ${stripHtml(
                       profile.data.name.charAt(0)
                     )}...</a></div>
@@ -1072,6 +1078,7 @@ const blog = {
       blog.handleGoHome();
       const posts = document.querySelector(".posts");
       profile.data.blogs.forEach(function (item, index) {
+        const contentShow = item.content.slice(0, item.content.length / 2)
         const time = new Date(item.createdAt);
         const timeBefore = blog.handleTime(time);
         let post = document.createElement("div");
@@ -1102,8 +1109,8 @@ const blog = {
               </div>
               <h2 class="title">${stripHtml(item.title)}</h2>
               <p class="post-content">${blog.handleRegex(
-                stripHtml(item.content)
-              )}</p>
+                stripHtml(contentShow)
+              )}...</p>
               <div class="view-detail-post"><a href="#"># view more ${stripHtml(
                 profile.data.name.charAt(0)
               )}...</a></div>
@@ -1169,6 +1176,7 @@ const blog = {
           blog.handleGoHome();
           const posts = document.querySelector(".posts");
           profile.data.blogs.forEach(function (item, index) {
+            const contentShow = item.content.slice(0, item.content.length / 2)
             const time = new Date(item.createdAt);
             const timeBefore = blog.handleTime(time);
             let post = document.createElement("div");
@@ -1199,8 +1207,8 @@ const blog = {
               </div>
               <h2 class="title">${stripHtml(item.title)}</h2>
               <p class="post-content">${blog.handleRegex(
-                stripHtml(item.content)
-              )}</p>
+                stripHtml(contentShow)
+              )}...</p>
               <div class="view-detail-post"><a href="#"># view more ${stripHtml(
                 profile.data.name.charAt(0)
               )}...</a></div>
@@ -1257,6 +1265,7 @@ const blog = {
           blog.handleGoHome();
           const posts = document.querySelector(".posts");
           profile.data.blogs.forEach(function (item, index) {
+            const contentShow = item.content.slice(0, item.content.length / 2)
             const time = new Date(item.createdAt);
             const timeBefore = blog.handleTime(time);
             let post = document.createElement("div");
@@ -1287,8 +1296,8 @@ const blog = {
               </div>
               <h2 class="title">${stripHtml(item.title)}</h2>
               <p class="post-content">${blog.handleRegex(
-                stripHtml(item.content)
-              )}</p>
+                stripHtml(contentShow)
+              )}...</p>
               <div class="view-detail-post"><a href="#"># view more ${stripHtml(
                 profile.data.name.charAt(0)
               )}...</a></div>
