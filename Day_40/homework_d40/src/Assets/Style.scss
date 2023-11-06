@@ -1,0 +1,68 @@
+header {
+    margin-top: 100px;
+
+    .container {
+        border-bottom: 4px solid red;
+
+        h1 {
+            a {
+                color: red;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+main {
+    .container {
+        .row {
+            .col-3 {
+                h2 {
+                    color: darkgreen;
+                }
+
+                ul {
+                    li {
+                        a {
+                            text-decoration: none;
+                            color: darkmagenta;
+                            font-weight: 900;
+                            font-size: 18px;
+                        }
+                    }
+                }
+            }
+
+            .col-9 {
+                color: darkgreen;
+
+                a {
+                    text-decoration: none;
+                    color: darkmagenta;
+                    font-weight: 900;
+                    font-size: 18px;
+                }
+
+                button {
+                    margin-top: 10px;
+                    background-color: purple;
+                    color: #fff;
+                    font-size: 18px;
+                    font-weight: 700;
+                    padding: 10px 20px;
+                    border-radius: 6px;
+                    border: none;
+                    transition: transform .2s linear;
+
+                    &:hover {
+                        transform: scale(0.9);
+                    }
+                }
+            }
+        }
+    }
+}
+
+footer {
+    color: darkred;
+}
