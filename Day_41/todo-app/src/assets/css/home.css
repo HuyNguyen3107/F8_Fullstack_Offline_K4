@@ -1,0 +1,165 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+html {
+  background-color: #fff;
+}
+
+body,
+input,
+button {
+  font-family: "Roboto", sans-serif;
+}
+
+.todo-app {
+  background-color: #334155;
+  margin: 40px;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-heading {
+  text-align: center;
+  color: #fff;
+}
+.add-todo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+  position: relative;
+  width: 40%;
+  margin: 20px auto;
+}
+
+.add-todo::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: lightseagreen;
+  bottom: -10px;
+  left: 0;
+}
+
+.add-todo .content {
+  padding: 10px;
+  width: 300px;
+  color: #fff;
+  background-color: #334155;
+  border: none;
+  font-size: 20px;
+}
+
+.add-todo .btn-add-todo {
+  border: none;
+  background-color: lightseagreen;
+  color: #fff;
+  padding: 10px 25px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.add-todo .btn-add-todo:hover {
+  background-color: darkcyan;
+}
+
+.todo-list {
+  display: inline-block;
+  min-width: 80%;
+  margin: 50px auto 0;
+}
+
+.none-item {
+  background-color: #fff;
+  color: #334155;
+  border-radius: 5px;
+  padding: 50px 30px;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.todo-item,
+.todo-item-editing {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.todo-item .item-content {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.edit {
+  margin-top: 20px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.editing {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.is-completed,
+.editable {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 15px;
+}
+
+.change,
+.delete,
+.out-update {
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.change {
+  background-color: lightseagreen;
+}
+
+.delete {
+  background-color: red;
+}
+
+.out-update {
+  background-color: darkorange;
+}
+.change:hover {
+  background-color: darkcyan;
+}
+
+.delete:hover {
+  background-color: darkred;
+}
+
+.out-update:hover {
+  background-color: darkgoldenrod;
+}
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+}

@@ -1,0 +1,14 @@
+.toastify-success {
+  background-color: green;
+  color: #fff;
+}
+
+.toastify-error {
+  background-color: red;
+  color: #fff;
+}
+
+.toastify-pending {
+  background-color: yellow;
+  color: #fff;
+}
