@@ -34,7 +34,7 @@ export class TodoChange extends Component {
       ? (inputEL.style.textDecoration = "line-through")
       : (inputEL.style.textDecoration = "");
     this.state.onRemoveId(this.state.id);
-    this.state.onChange(false);
+    this.state.onChange(false, null, true);
   };
 
   handleUpdate = async (inputEL, labelEL, id) => {
@@ -97,6 +97,7 @@ export class TodoChange extends Component {
             id={this.state.id}
             onChange={(e) => {
               e.target.removeAttribute("checked");
+              console.log(e.target);
               const inputEL =
                 e.target.parentElement.parentElement.previousElementSibling;
               const labelEL = e.target.previousElementSibling;

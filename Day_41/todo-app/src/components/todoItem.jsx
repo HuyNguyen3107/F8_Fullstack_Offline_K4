@@ -41,18 +41,24 @@ export class TodoItem extends Component {
     const index = this.idChange.findIndex((_id) => id === _id);
     this.idChange.splice(index, 1);
   };
-  isChange = async (status = false, id) => {
+  isChange = async (status = false, id, changeTodo = false) => {
     if (id) {
       this.idChange.push(id);
     }
-    const { data, response } = await client.get("/todos");
-    if (response.ok) {
+    if (changeTodo) {
+      const { data, response } = await client.get("/todos");
+      if (response.ok) {
+        this.setState({
+          todoList: data.data.listTodo,
+          changeStatus: status,
+        });
+      } else {
+        this.state.onLogout();
+      }
+    } else {
       this.setState({
-        todoList: data.data.listTodo,
         changeStatus: status,
       });
-    } else {
-      this.state.onLogout();
     }
   };
   handleCompleted = (inputEL, labelEL) => {
