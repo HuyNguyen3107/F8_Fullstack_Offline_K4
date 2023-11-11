@@ -93,6 +93,7 @@ export class TodoItem extends Component {
                     todo={todo}
                     isCompleted={`${isCompleted}`}
                     onLogout={this.state.onLogout}
+                    listTodo={this.state.todoList}
                   />
                 ) : (
                   <TodoDefault

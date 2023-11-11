@@ -67,7 +67,7 @@ export class Home extends Component {
       <div className="container">
         <div className="todo-app">
           <h1 className="todo-heading">Welcome to Todo App!</h1>
-          <div className="add-todo">
+          <form className="add-todo">
             <input
               type="text"
               className="content"
@@ -76,6 +76,7 @@ export class Home extends Component {
             <button
               className="btn-add-todo"
               onClick={(e) => {
+                e.preventDefault();
                 const inputEl = e.target.previousElementSibling;
                 const todo = e.target.previousElementSibling.value;
                 if (!todo.length) {
@@ -89,7 +90,7 @@ export class Home extends Component {
             >
               Thêm mới
             </button>
-          </div>
+          </form>
           <div className="todo-list">
             {this.state.todoList.length === 0 ? (
               <NoneTodo />

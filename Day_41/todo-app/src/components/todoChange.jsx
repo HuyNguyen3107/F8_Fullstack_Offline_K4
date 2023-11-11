@@ -16,6 +16,7 @@ export class TodoChange extends Component {
       isCompleted: props.isCompleted,
       onDeleteTodo: props.onDeleteTodo,
       onLogout: props.onLogout,
+      listTodo: props.listTodo,
     };
   }
   handleOut = (inputEL) => {
@@ -91,10 +92,11 @@ export class TodoChange extends Component {
           </label>
           <input
             type="checkbox"
-            checked={this.state.isCompleted + "" === "true"}
+            checked={this.state.isCompleted === "true"}
             name={this.state.id}
             id={this.state.id}
             onChange={(e) => {
+              e.target.removeAttribute("checked");
               const inputEL =
                 e.target.parentElement.parentElement.previousElementSibling;
               const labelEL = e.target.previousElementSibling;
