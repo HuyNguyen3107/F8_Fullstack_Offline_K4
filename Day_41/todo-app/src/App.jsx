@@ -9,18 +9,20 @@ export class App extends Component {
     super(props);
     this.state = {
       status: false,
+      userName: "",
     };
   }
-  handleLogged = () => {
+  handleLogged = (name = "") => {
     this.setState({
       status: !this.state.status,
+      userName: name,
     });
   };
   render() {
     return (
       <Fragment>
         {this.state.status || localStorage.getItem("apiKey") ? (
-          <Home />
+          <Home name={this.state.userName} onHandleLogged={this.handleLogged} />
         ) : (
           <Login onHandleLogged={this.handleLogged} />
         )}

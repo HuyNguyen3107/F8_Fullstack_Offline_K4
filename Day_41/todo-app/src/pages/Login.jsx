@@ -1,7 +1,7 @@
 import { client } from "../configs/client";
 import { regexEmail } from "../Extension/regex";
 import "../assets/css/login.css";
-import { notifyError, ToastBox } from "../Extension/jsx/toastify";
+import { notifyError, ToastBox } from "../Extension/jsx/Toastify";
 import React, { Component } from "react";
 import { loading } from "../main";
 
@@ -22,9 +22,11 @@ export class Login extends Component {
       loading.style.display = "";
       if (response.ok) {
         const { apiKey } = data.data;
+        let userName = email;
+        userName = userName.slice(0, userName.indexOf("@"));
         localStorage.setItem("apiKey", apiKey);
         localStorage.setItem("userEmail", email);
-        this.state.onHandleLogged();
+        this.state.onHandleLogged(userName);
       } else {
         notifyError("Email không tồn tại");
         emailEl.value = "";

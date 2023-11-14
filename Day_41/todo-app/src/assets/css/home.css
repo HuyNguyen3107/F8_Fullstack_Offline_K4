@@ -163,3 +163,18 @@ input[type="checkbox"] {
   width: 20px;
   height: 20px;
 }
+
+.btn-search {
+  border: none;
+  background-color: darkorange;
+  color: #fff;
+  padding: 10px 25px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.btn-search:hover {
+  background-color: darkgoldenrod;
+}

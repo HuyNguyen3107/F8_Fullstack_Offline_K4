@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import "../assets/css/home.css";
 import { loading } from "../main";
 import { client } from "../configs/client";
-import { notifyError, notifySuccess } from "../Extension/jsx/toastify";
+import {
+  notifyError,
+  notifyPending,
+  notifySuccess,
+} from "../Extension/jsx/Toastify";
 
 export class TodoChange extends Component {
   constructor(props) {
@@ -39,31 +43,35 @@ export class TodoChange extends Component {
 
   handleUpdate = async (inputEL, labelEL, id) => {
     const todo = inputEL.value;
-    let isCompleted;
-    if (labelEL.innerText === "Not Completed") {
-      isCompleted = false;
-    } else {
-      isCompleted = true;
-    }
-    loading.style.display = "flex";
-    const { data, response } = await client.patch(`/todos/${id}`, {
-      todo,
-      isCompleted,
-    });
-    loading.style.display = "";
-    if (response.ok) {
-      notifySuccess("Cập nhật Todo thành công");
-      this.setState({
-        todo: data.data.todo,
-        isCompleted: data.data.isCompleted + "",
+    if (todo) {
+      let isCompleted;
+      if (labelEL.innerText === "Not Completed") {
+        isCompleted = false;
+      } else {
+        isCompleted = true;
+      }
+      loading.style.display = "flex";
+      const { data, response } = await client.patch(`/todos/${id}`, {
+        todo,
+        isCompleted,
       });
-      this.handleOutUpdated(
-        inputEL,
-        data.data.todo,
-        data.data.isCompleted + ""
-      );
+      loading.style.display = "";
+      if (response.ok) {
+        notifySuccess("Cập nhật Todo thành công");
+        this.setState({
+          todo: data.data.todo,
+          isCompleted: data.data.isCompleted + "",
+        });
+        this.handleOutUpdated(
+          inputEL,
+          data.data.todo,
+          data.data.isCompleted + ""
+        );
+      } else {
+        this.state.onLogout();
+      }
     } else {
-      this.state.onLogout();
+      notifyPending("Nội dung công việc cần chứa ít nhất 1 ký tự");
     }
   };
 
@@ -97,7 +105,6 @@ export class TodoChange extends Component {
             id={this.state.id}
             onChange={(e) => {
               e.target.removeAttribute("checked");
-              console.log(e.target);
               const inputEL =
                 e.target.parentElement.parentElement.previousElementSibling;
               const labelEL = e.target.previousElementSibling;

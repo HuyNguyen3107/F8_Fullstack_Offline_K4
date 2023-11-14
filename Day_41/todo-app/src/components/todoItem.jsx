@@ -5,12 +5,11 @@ import {
   notifySuccess,
   notifyError,
   ToastBox,
-} from "../Extension/jsx/toastify";
-import TodoChange from "./todoChange";
-import TodoDefault from "./todoDefault";
+} from "../Extension/jsx/Toastify";
+import TodoChange from "./TodoChange";
+import TodoDefault from "./TodoDefault";
 import { loading } from "../main";
 import { client } from "../configs/client";
-
 export class TodoItem extends Component {
   constructor(props) {
     super(props);
@@ -71,48 +70,47 @@ export class TodoItem extends Component {
     }
   };
   render() {
+    console.log(this.props);
     return (
       <Fragment>
-        {[...Array.from(this.state.todoList)].map(
-          ({ _id, todo, isCompleted }) => {
-            return (
-              <div
-                className="todo-item"
-                key={_id}
-                status={`${isCompleted}`}
-                id={_id}
-              >
-                <input
-                  type="text"
-                  className="item-content"
-                  disabled
-                  placeholder={todo}
-                  style={isCompleted ? { textDecoration: "line-through" } : {}}
+        {this.props.todoList.map(({ _id, todo, isCompleted }) => {
+          return (
+            <div
+              className="todo-item"
+              key={_id}
+              status={`${isCompleted}`}
+              id={_id}
+            >
+              <input
+                type="text"
+                className="item-content"
+                disabled
+                placeholder={todo}
+                style={isCompleted ? { textDecoration: "line-through" } : {}}
+              />
+              {this.idChange.includes(_id) ? (
+                <TodoChange
+                  onCompleted={this.handleCompleted}
+                  onChange={this.isChange}
+                  onRemoveId={this.handleRemoveId}
+                  onDeleteTodo={this.handleDeleteTodo}
+                  id={_id}
+                  todo={todo}
+                  isCompleted={`${isCompleted}`}
+                  onLogout={this.state.onLogout}
+                  listTodo={this.state.todoList}
                 />
-                {this.idChange.includes(_id) ? (
-                  <TodoChange
-                    onCompleted={this.handleCompleted}
-                    onChange={this.isChange}
-                    onRemoveId={this.handleRemoveId}
-                    onDeleteTodo={this.handleDeleteTodo}
-                    id={_id}
-                    todo={todo}
-                    isCompleted={`${isCompleted}`}
-                    onLogout={this.state.onLogout}
-                    listTodo={this.state.todoList}
-                  />
-                ) : (
-                  <TodoDefault
-                    _id={_id}
-                    todo={todo}
-                    onDeleteTodo={this.handleDeleteTodo}
-                    onChange={this.isChange}
-                  />
-                )}
-              </div>
-            );
-          }
-        )}
+              ) : (
+                <TodoDefault
+                  _id={_id}
+                  todo={todo}
+                  onDeleteTodo={this.handleDeleteTodo}
+                  onChange={this.isChange}
+                />
+              )}
+            </div>
+          );
+        })}
         <ToastBox />
       </Fragment>
     );
