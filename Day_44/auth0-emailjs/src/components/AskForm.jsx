@@ -14,6 +14,7 @@ function AskForm() {
   const msgRef = useRef();
   const nameRef = useRef();
   const emailRef = useRef();
+  const logoutRef = useRef();
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -39,7 +40,10 @@ function AskForm() {
           },
           (error) => {
             setLoading(false);
-            notifyError("Gửi Email không thành công :(((");
+            notifyError("Gửi Email không thành công. Vui lòng đăng nhập lại");
+            setTimeout(() => {
+              logoutRef.current.click();
+            }, 5000);
             console.log(error.text);
           }
         );
@@ -96,7 +100,7 @@ function AskForm() {
           <input type="submit" value="Send" className="btn-sendMsg" />
         </form>
       </div>
-      <Logout />
+      <Logout ref={logoutRef} />
       <ToastBox />
       <Loading isLoading={isLoading} />
     </div>
