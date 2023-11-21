@@ -1,0 +1,20 @@
+.toastify-success {
+  background-color: darkgreen;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.toastify-error {
+  background-color: darkred;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.toastify-pending {
+  background-color: darkgoldenrod;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+}
