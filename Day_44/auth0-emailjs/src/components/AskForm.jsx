@@ -3,7 +3,7 @@ import emailjs from "@emailjs/browser";
 import Logout from "./Logout";
 import { useAuth0 } from "@auth0/auth0-react";
 import "../assets/css/form.css";
-import { notifySuccess, ToastBox } from "../helper/toastify";
+import { notifySuccess, ToastBox, notifyError } from "../helper/toastify";
 import Loading from "../helper/Loading";
 
 function AskForm() {
@@ -11,6 +11,7 @@ function AskForm() {
 
   const [isLoading, setLoading] = useState(false);
   const form = useRef();
+  const msgRef = useRef();
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -26,10 +27,12 @@ function AskForm() {
         (result) => {
           setLoading(false);
           console.log(result.text);
-          notifySuccess("Chúc mừng bạn đã gửi Email thành công <3");
+          notifySuccess("Gửi Email thành công <3");
+          msgRef.current.value = "";
         },
         (error) => {
           setLoading(false);
+          notifySuccess("Gửi Email 0 thành công :(((");
           console.log(error.text);
         }
       );
@@ -72,7 +75,11 @@ function AskForm() {
           </div>
           <div>
             <label>Message</label>
-            <textarea name="message" placeholder="Enter your message..." />
+            <textarea
+              name="message"
+              placeholder="Enter your message..."
+              ref={msgRef}
+            />
           </div>
           <input type="submit" value="Send" className="btn-sendMsg" />
         </form>
