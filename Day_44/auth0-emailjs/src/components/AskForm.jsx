@@ -12,30 +12,40 @@ function AskForm() {
   const [isLoading, setLoading] = useState(false);
   const form = useRef();
   const msgRef = useRef();
+  const nameRef = useRef();
+  const emailRef = useRef();
 
   const sendEmail = (e) => {
     e.preventDefault();
-    setLoading(true);
-    emailjs
-      .sendForm(
-        "service_m71ysug",
-        "template_5ufe84f",
-        form.current,
-        "SiFGsIAwnytX5LwCC"
-      )
-      .then(
-        (result) => {
-          setLoading(false);
-          console.log(result.text);
-          notifySuccess("Gửi Email thành công <3");
-          msgRef.current.value = "";
-        },
-        (error) => {
-          setLoading(false);
-          notifySuccess("Gửi Email 0 thành công :(((");
-          console.log(error.text);
-        }
-      );
+    if (
+      emailRef.current.value &&
+      nameRef.current.value &&
+      msgRef.current.value
+    ) {
+      setLoading(true);
+      emailjs
+        .sendForm(
+          "service_m71ysug",
+          "template_5ufe84f",
+          form.current,
+          "SiFGsIAwnytX5LwCC"
+        )
+        .then(
+          (result) => {
+            setLoading(false);
+            console.log(result.text);
+            notifySuccess("Gửi Email thành công <3");
+            msgRef.current.value = "";
+          },
+          (error) => {
+            setLoading(false);
+            notifyError("Gửi Email không thành công :(((");
+            console.log(error.text);
+          }
+        );
+    } else {
+      notifyError("Vui lòng nhập đủ các trường ");
+    }
   };
   return (
     <div className="container">
@@ -63,6 +73,7 @@ function AskForm() {
               type="text"
               name="user_name"
               placeholder="Enter your name..."
+              ref={nameRef}
             />
           </div>
           <div>
@@ -71,6 +82,7 @@ function AskForm() {
               type="email"
               name="user_email"
               placeholder="Enter your email..."
+              ref={emailRef}
             />
           </div>
           <div>

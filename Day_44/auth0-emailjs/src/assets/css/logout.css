@@ -1,4 +1,4 @@
-button {
+.btn-logout {
   margin-top: 10px;
   width: 100%;
   padding: 10px 0;
@@ -12,6 +12,6 @@ button {
   transition: transform 0.2s linear;
 }
 
-button:hover {
+.btn-logout:hover {
   transform: scale(0.9);
 }
