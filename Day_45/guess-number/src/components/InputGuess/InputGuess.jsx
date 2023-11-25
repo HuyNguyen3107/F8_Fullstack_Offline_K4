@@ -50,8 +50,17 @@ function InputGuess() {
               type: "histories/add",
               payload:
                 count === 1
-                  ? { number: +inputRef.current.value, maxTime: maxTimes }
-                  : { number: +inputRef.current.value },
+                  ? {
+                      number: +inputRef.current.value,
+                      maxTime: maxTimes,
+                      isCorrect:
+                        correctNum === +inputRef.current.value ? true : false,
+                    }
+                  : {
+                      number: +inputRef.current.value,
+                      isCorrect:
+                        correctNum === +inputRef.current.value ? true : false,
+                    },
             });
             if (correctNum > +inputRef.current.value) {
               if (count === +maxTimes) {
@@ -125,6 +134,9 @@ function InputGuess() {
       });
       dispatch({
         type: "histories/remove",
+      });
+      dispatch({
+        type: "update",
       });
     }
   };

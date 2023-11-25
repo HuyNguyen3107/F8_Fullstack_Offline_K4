@@ -6,6 +6,7 @@ import { Fragment } from "react";
 function TableResult() {
   const histories = useSelector((state) => state.histories.histories);
   const isDelete = useSelector((state) => state.histories.isDelete);
+  const isUpdate = useSelector((state) => state.histories.isUpdate);
   const dispatch = useDispatch();
   const tableRef = useRef();
   const containerRef = useRef();
@@ -82,7 +83,6 @@ function TableResult() {
             } else {
               checkNumRef.current = false;
             }
-            console.log(num);
             boxRef.current.scroll({
               left: widthRef.current * num,
               behavior: "smooth",
@@ -96,7 +96,17 @@ function TableResult() {
         }
       }
     });
-  }, []);
+  });
+
+  useEffect(() => {
+    if (boxRef.current) {
+      boxRef.current.scroll({
+        left: 0,
+        behavior: "smooth",
+      });
+    }
+  }, [isUpdate]);
+
   return (
     <div
       className="box"
@@ -141,7 +151,7 @@ function TableResult() {
               </table>
               <div className="info-result">
                 <span className="play-times">
-                  Lần chơi thứ {index + 1}/{histories.length}
+                  Lần chơi thứ {histories.length - index}/{histories.length}
                 </span>
                 <span className="max-input">
                   Số lần nhập tối đa:{" "}
@@ -149,9 +159,11 @@ function TableResult() {
                 </span>
                 <span className="correct-rate">
                   Tỷ lệ đúng:{" "}
-                  {((history[0].maxTime - history.length) /
-                    history[0].maxTime) *
-                    100}
+                  {history.findIndex((item) => item.isCorrect) !== -1
+                    ? ((history[0].maxTime - history.length + 1) /
+                        history[0].maxTime) *
+                      100
+                    : 0}
                   %
                 </span>
               </div>

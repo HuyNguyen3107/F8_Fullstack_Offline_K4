@@ -52,7 +52,6 @@ function Home() {
         backgroundColor: theme === "light" ? "#fff" : "#1a202c",
       }}
     >
-      {console.log(correctNum)}
       <ProgressBar />
       <div className="game">
         <div

@@ -4,14 +4,15 @@ const initialState = {
     : [],
   history: [],
   isDelete: false,
+  isUpdate: false,
 };
 
 export const historiesReducer = (state = initialState, action) => {
   switch (action.type) {
     case "histories/update": {
-      const temp = [...state.histories, action.payload];
-      localStorage.setItem("data", JSON.stringify(temp));
-      return { ...state, histories: temp };
+      state.histories.unshift(action.payload);
+      localStorage.setItem("data", JSON.stringify(state.histories));
+      return { ...state, histories: state.histories };
     }
     case "histories/clear": {
       localStorage.removeItem("data");
@@ -25,6 +26,9 @@ export const historiesReducer = (state = initialState, action) => {
     }
     case "delete/toggle": {
       return { ...state, isDelete: !state.isDelete };
+    }
+    case "update": {
+      return { ...state, isUpdate: !state.isUpdate };
     }
     default: {
       return state;
