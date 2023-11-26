@@ -7,6 +7,7 @@ import {
   notifyInfo,
   notifySuccess,
   notifyWarning,
+  notifyError,
 } from "../../helper/toast.js";
 
 function InputGuess() {
@@ -65,6 +66,7 @@ function InputGuess() {
                     },
             });
             if (correctNum > +inputRef.current.value) {
+              console.log(correctNum);
               if (count === +maxTimes) {
                 dispatch({
                   type: "compare",

@@ -85,7 +85,8 @@ function RangeNumber() {
         type: "compare/reset",
       });
       dispatch({
-        type: "correct/update",
+        type: "correct/random",
+        payload: Math.floor((currentValueRef.current / 100) * 2048),
       });
       dispatch({
         type: "histories/remove",
@@ -152,7 +153,8 @@ function RangeNumber() {
                   type: "compare/reset",
                 });
                 dispatch({
-                  type: "correct/update",
+                  type: "correct/random",
+                  payload: Math.floor((currentValueRef.current / 100) * 2048),
                 });
                 dispatch({
                   type: "histories/remove",
