@@ -49,4 +49,5 @@
 }
 .box {
   overflow-x: scroll;
+  scrollbar-width: thin;
 }

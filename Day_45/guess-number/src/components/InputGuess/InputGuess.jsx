@@ -4,6 +4,7 @@ import { regexNumber } from "../../helper/regex.js";
 import { useSelector, useDispatch } from "react-redux";
 import { Fragment } from "react";
 import {
+  notifyError,
   notifyInfo,
   notifySuccess,
   notifyWarning,
@@ -29,115 +30,119 @@ function InputGuess() {
     }
   };
   const handleSubmit = () => {
-    if (count <= +maxTimes) {
-      if (!isEnd) {
-        if (+inputRef.current.value > maxNum) {
-          notifyWarning("Giá trị nhập vào đang bị quá giới hạn đó nha");
-        } else {
-          if (!arrCheck.includes(+inputRef.current.value)) {
-            dispatch({
-              type: "remain/decrease",
-            });
-            dispatch({
-              type: "progress/update",
-              payload: maxTimes,
-            });
-            dispatch({
-              type: "compare/push",
-              payload: +inputRef.current.value,
-            });
-            dispatch({
-              type: "histories/add",
-              payload:
-                count === 1
-                  ? {
-                      number: +inputRef.current.value,
-                      maxTime: maxTimes,
-                      isCorrect:
-                        correctNum === +inputRef.current.value ? true : false,
-                    }
-                  : {
-                      number: +inputRef.current.value,
-                      isCorrect:
-                        correctNum === +inputRef.current.value ? true : false,
-                    },
-            });
-            if (correctNum > +inputRef.current.value) {
-              if (count === +maxTimes) {
-                dispatch({
-                  type: "compare",
-                  payload:
-                    "Đáng lẽ ra anh Quân nên tăng thêm xíu nữa. Buồn anh Quân",
-                });
-                notifyInfo(
-                  "Đáng lẽ ra anh Quân nên tăng thêm xíu nữa. Buồn anh Quân"
-                );
+    if (+inputRef.current.value) {
+      if (count <= +maxTimes) {
+        if (!isEnd) {
+          if (+inputRef.current.value > maxNum) {
+            notifyWarning("Giá trị nhập vào đang bị quá giới hạn đó nha");
+          } else {
+            if (!arrCheck.includes(+inputRef.current.value)) {
+              dispatch({
+                type: "remain/decrease",
+              });
+              dispatch({
+                type: "progress/update",
+                payload: maxTimes,
+              });
+              dispatch({
+                type: "compare/push",
+                payload: +inputRef.current.value,
+              });
+              dispatch({
+                type: "histories/add",
+                payload:
+                  count === 1
+                    ? {
+                        number: +inputRef.current.value,
+                        maxTime: maxTimes,
+                        isCorrect:
+                          correctNum === +inputRef.current.value ? true : false,
+                      }
+                    : {
+                        number: +inputRef.current.value,
+                        isCorrect:
+                          correctNum === +inputRef.current.value ? true : false,
+                      },
+              });
+              if (correctNum > +inputRef.current.value) {
+                if (count === +maxTimes) {
+                  dispatch({
+                    type: "compare",
+                    payload:
+                      "Đáng lẽ ra anh Quân nên tăng thêm xíu nữa. Buồn anh Quân",
+                  });
+                  notifyInfo(
+                    "Đáng lẽ ra anh Quân nên tăng thêm xíu nữa. Buồn anh Quân"
+                  );
+                } else {
+                  dispatch({
+                    type: "compare",
+                    payload: "Hmmm... tăng thêm xíu đi anh Quân",
+                  });
+                  notifyInfo("Hmmm... tăng thêm xíu đi anh Quân");
+                }
+              } else if (correctNum < +inputRef.current.value) {
+                if (count === +maxTimes) {
+                  dispatch({
+                    type: "compare",
+                    payload:
+                      "Đáng lẽ ra anh Quân nên giảm thêm xíu nữa. Buồn anh Quân",
+                  });
+                  notifyInfo(
+                    "Đáng lẽ ra anh Quân nên giảm thêm xíu nữa. Buồn anh Quân"
+                  );
+                } else {
+                  dispatch({
+                    type: "compare",
+                    payload: "Hmmm... giảm xíu nữa đi anh Quân",
+                  });
+                  notifyInfo("Hmmm... giảm xíu nữa đi anh Quân");
+                }
               } else {
                 dispatch({
                   type: "compare",
-                  payload: "Hmmm... tăng thêm xíu đi anh Quân",
+                  payload: "Hi hi! Đúng rùi đẳng cấp đấy chứ nhỉ",
                 });
-                notifyInfo("Hmmm... tăng thêm xíu đi anh Quân");
-              }
-            } else if (correctNum < +inputRef.current.value) {
-              if (count === +maxTimes) {
-                dispatch({
-                  type: "compare",
-                  payload:
-                    "Đáng lẽ ra anh Quân nên giảm thêm xíu nữa. Buồn anh Quân",
-                });
-                notifyInfo(
-                  "Đáng lẽ ra anh Quân nên giảm thêm xíu nữa. Buồn anh Quân"
-                );
-              } else {
-                dispatch({
-                  type: "compare",
-                  payload: "Hmmm... giảm xíu nữa đi anh Quân",
-                });
-                notifyInfo("Hmmm... giảm xíu nữa đi anh Quân");
+                notifySuccess("Hi hi! Đúng rùi đẳng cấp đấy chứ nhỉ");
+                setEnd(true);
               }
             } else {
-              dispatch({
-                type: "compare",
-                payload: "Hi hi! Đúng rùi đẳng cấp đấy chứ nhỉ",
-              });
-              notifySuccess("Hi hi! Đúng rùi đẳng cấp đấy chứ nhỉ");
-              setEnd(true);
+              notifyWarning("Giá trị này đã nhập rồi nghen");
             }
-          } else {
-            notifyWarning("Giá trị này đã nhập rồi nghen");
           }
         }
       }
-    }
-    if (count === +maxTimes && !isEnd) {
-      setEnd(true);
-    }
-    if (isEnd) {
-      setEnd(false);
-      dispatch({
-        type: "progress/reset",
-      });
-      dispatch({
-        type: "remain/reset",
-        payload: maxTimes,
-      });
-      dispatch({
-        type: "compare/reset",
-      });
-      dispatch({
-        type: "correct/update",
-      });
-      dispatch({
-        type: "histories/update",
-        payload: history,
-      });
-      dispatch({
-        type: "histories/remove",
-      });
-      dispatch({
-        type: "update",
-      });
+      if (count === +maxTimes && !isEnd) {
+        setEnd(true);
+      }
+      if (isEnd) {
+        setEnd(false);
+        dispatch({
+          type: "progress/reset",
+        });
+        dispatch({
+          type: "remain/reset",
+          payload: maxTimes,
+        });
+        dispatch({
+          type: "compare/reset",
+        });
+        dispatch({
+          type: "correct/update",
+        });
+        dispatch({
+          type: "histories/update",
+          payload: history,
+        });
+        dispatch({
+          type: "histories/remove",
+        });
+        dispatch({
+          type: "update",
+        });
+      }
+    } else {
+      notifyError("Nhập giá trị vô nghen");
     }
   };
   useEffect(() => {

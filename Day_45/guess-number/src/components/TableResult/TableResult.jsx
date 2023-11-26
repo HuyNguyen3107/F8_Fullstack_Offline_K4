@@ -37,18 +37,9 @@ function TableResult() {
     containerRef.current.style.display = "flex";
     document.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") {
-        if (
-          containerRef.current.clientWidth %
-            (boxRef.current.scrollLeft + widthRef.current) !==
-          0
-        ) {
-          let num =
-            +histories.length -
-            Math.ceil(
-              containerRef.current.clientWidth /
-                (boxRef.current.scrollLeft + widthRef.current)
-            ) +
-            1;
+        if (Math.ceil(boxRef.current.scrollLeft) % widthRef.current !== 0) {
+          let num = Math.ceil(boxRef.current.scrollLeft / widthRef.current);
+          console.log(num);
           boxRef.current.scroll({
             left: widthRef.current * num,
             behavior: "smooth",
@@ -60,29 +51,11 @@ function TableResult() {
           });
         }
       }
-
       if (e.key === "ArrowLeft") {
         if (boxRef.current.scrollLeft >= widthRef.current) {
-          if (
-            containerRef.current.clientWidth %
-              (boxRef.current.scrollLeft + widthRef.current) !==
-            0
-          ) {
-            let num =
-              +histories.length -
-              Math.ceil(
-                containerRef.current.clientWidth /
-                  (boxRef.current.scrollLeft + widthRef.current)
-              );
-            if (num === 1) {
-              if (checkNumRef.current) {
-                num = 0;
-                checkNumRef.current = false;
-              }
-              checkNumRef.current = true;
-            } else {
-              checkNumRef.current = false;
-            }
+          if (Math.ceil(boxRef.current.scrollLeft) % widthRef.current !== 0) {
+            let num = Math.floor(boxRef.current.scrollLeft / widthRef.current);
+            console.log(num);
             boxRef.current.scroll({
               left: widthRef.current * num,
               behavior: "smooth",
@@ -90,6 +63,16 @@ function TableResult() {
           } else {
             boxRef.current.scroll({
               left: boxRef.current.scrollLeft - widthRef.current,
+              behavior: "smooth",
+            });
+          }
+        } else {
+          if (Math.ceil(boxRef.current.scrollLeft) % widthRef.current !== 0) {
+            let num =
+              Math.floor(boxRef.current.scrollLeft / widthRef.current) - 1;
+            console.log(num);
+            boxRef.current.scroll({
+              left: widthRef.current * num,
               behavior: "smooth",
             });
           }
