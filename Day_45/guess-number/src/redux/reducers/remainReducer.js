@@ -1,10 +1,13 @@
 const initialState = {
-  remainTimes: 10,
+  remainTimes: localStorage.getItem("remainTimes")
+    ? localStorage.getItem("remainTimes")
+    : 10,
 };
 
 export const remainTimesReducer = (state = initialState, action) => {
   switch (action.type) {
     case "remain/update": {
+      localStorage.setItem("remainTimes", Math.ceil(Math.log2(action.payload)));
       return { ...state, remainTimes: Math.ceil(Math.log2(action.payload)) };
     }
     case "remain/decrease": {
