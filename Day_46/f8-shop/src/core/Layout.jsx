@@ -1,5 +1,5 @@
 import React from "react";
-import { publicRoutes } from "../routers/publicRoutes";
+import { publicRoutes } from "../routers/PublicRoutes";
 import { Routes } from "react-router-dom";
 
 function Layout() {

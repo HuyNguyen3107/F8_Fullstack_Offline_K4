@@ -21,3 +21,14 @@
   font-size: 28px;
   color: #fff;
 }
+
+.cart-icon {
+  position: relative;
+}
+.quantity {
+  position: absolute;
+  font-size: 18px;
+  color: #fff;
+  bottom: -20px;
+  right: -20px;
+}

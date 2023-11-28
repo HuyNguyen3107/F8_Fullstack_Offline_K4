@@ -4,9 +4,13 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getProductDetail } from "../../redux/middlewares/productMiddlewares";
 import { useLocation } from "react-router-dom";
+import { cartSlice } from "../../redux/slice/cartSlice";
+
+const { add } = cartSlice.actions;
 
 function ProductDetail() {
   const product = useSelector((state) => state.detail.productDetail);
+  const page = useSelector((state) => state.paginate.currentPage);
   const dispatch = useDispatch();
   const location = useLocation();
   useEffect(() => {
@@ -19,7 +23,6 @@ function ProductDetail() {
 
   return (
     <div className="product-detail-info">
-      {console.log(product)}
       <div className="product-info-img">
         <img src={product.image} alt="" />
       </div>
@@ -30,13 +33,20 @@ function ProductDetail() {
         <span className="product-category">Category: {product.category}</span>
         <div>
           <div>
-            <Link to={"/"}>
+            <Link to={`/product/${page}`}>
               <button className="btn-go-home">Go Home</button>
             </Link>
           </div>
           <div>
             <span className="product-detail-price">${product.price}</span>
-            <button className="btn-add-cart">Add To Cart</button>
+            <button
+              className="btn-add-cart"
+              onClick={() => {
+                dispatch(add(product));
+              }}
+            >
+              Add To Cart
+            </button>
           </div>
         </div>
       </div>

@@ -71,10 +71,13 @@
 }
 
 .quantity-change input {
-  width: 30px;
+  width: 60px;
   text-align: center;
   padding: 4px 8px;
   border: 1px solid purple;
+
+  font-weight: 500;
+  color: darkmagenta;
 }
 
 .increase,
