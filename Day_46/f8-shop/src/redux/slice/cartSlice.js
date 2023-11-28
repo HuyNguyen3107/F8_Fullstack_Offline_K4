@@ -1,0 +1,81 @@
+import { createSlice } from "@reduxjs/toolkit";
+
+const initialState = {
+  cart: localStorage.getItem("cart") ? localStorage.getItem("cart") : [],
+};
+
+export const cartSlice = createSlice({
+  name: "cart",
+  initialState,
+  reducers: {
+    add: (state, action) => {
+      const productList = JSON.parse(localStorage.getItem("cart"));
+      console.log(productList);
+      if (productList) {
+        const check = productList.find(
+          (product) => product._id === action.payload._id
+        );
+        if (!check) {
+          const item = {
+            ...action.payload,
+            amount: action.payload.quantity,
+            quantity: 1,
+          };
+          state.cart = [...state.cart, item];
+          localStorage.setItem("cart", JSON.stringify(state.cart));
+        } else {
+          const updateList = productList.map((product) => {
+            if (product._id === check._id) {
+              return {
+                ...product,
+                quantity: check.quantity + 1,
+                amount: check.amount - 1,
+              };
+            } else {
+              return product;
+            }
+          });
+          state.cart = updateList;
+          localStorage.setItem("cart", JSON.stringify(updateList));
+        }
+      } else {
+        const item = {
+          ...action.payload,
+          amount: action.payload.quantity,
+          quantity: 1,
+        };
+        state.cart = [item];
+        localStorage.setItem("cart", JSON.stringify(state.cart));
+      }
+    },
+    decrement: (state, action) => {
+      const productList = JSON.parse(localStorage.getItem("cart"));
+      if (productList) {
+        const check = productList.find(
+          (product) => product._id === action.payload._id
+        );
+        if (check) {
+          if (check.quantity > 1) {
+            const updateList = productList.map((product) => {
+              if (product._id === check._id) {
+                return {
+                  ...product,
+                  quantity: check.quantity - 1,
+                  amount: check.amount + 1,
+                };
+              } else {
+                return product;
+              }
+            });
+            state.cart = updateList;
+            localStorage.setItem("cart", JSON.stringify(updateList));
+          }
+        }
+      }
+    },
+    remove: (state, action) => {
+      localStorage.removeItem("cart");
+      state.cart = [];
+    },
+  },
+});
