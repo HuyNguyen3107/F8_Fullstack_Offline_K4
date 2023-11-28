@@ -5,12 +5,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { getProductDetail } from "../../redux/middlewares/productMiddlewares";
 import { useLocation } from "react-router-dom";
 import { cartSlice } from "../../redux/slice/cartSlice";
+import Loading from "../../components/Loading/Loading";
 
 const { add } = cartSlice.actions;
 
 function ProductDetail() {
   const product = useSelector((state) => state.detail.productDetail);
   const page = useSelector((state) => state.paginate.currentPage);
+  const status = useSelector((state) => state.detail.status);
   const dispatch = useDispatch();
   const location = useLocation();
   useEffect(() => {
@@ -50,6 +52,7 @@ function ProductDetail() {
           </div>
         </div>
       </div>
+      {status === "pending" ? <Loading isLoading={true} /> : ""}
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { notifySuccess } from "../../helper/toast";
 
 const initialState = {
   cart: localStorage.getItem("cart")
@@ -24,6 +25,9 @@ export const cartSlice = createSlice({
             quantity: 1,
           };
           state.cart = [...state.cart, item];
+          notifySuccess(
+            `Đã thêm ${action.payload.name} vào giỏ hàng thành công`
+          );
           localStorage.setItem("cart", JSON.stringify(state.cart));
         } else {
           const updateList = productList.map((product) => {
@@ -47,6 +51,7 @@ export const cartSlice = createSlice({
           quantity: 1,
         };
         state.cart = [item];
+        notifySuccess(`Đã thêm ${action.payload.name} vào giỏ hàng thành công`);
         localStorage.setItem("cart", JSON.stringify(state.cart));
       }
     },
@@ -86,12 +91,14 @@ export const cartSlice = createSlice({
           }
         });
         state.cart = updateList;
+        notifySuccess(`Xóa ${action.payload.name} khỏi giỏ hàng thành công`);
         localStorage.setItem("cart", JSON.stringify(updateList));
       }
     },
     checkout: (state, action) => {
       localStorage.removeItem("cart");
       state.cart = [];
+      notifySuccess("Thanh toán thành công");
     },
   },
 });

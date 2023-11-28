@@ -11,7 +11,7 @@
   width: 100%; /* Full width (cover the whole page) */
   height: 100%; /* Full height (cover the whole page) */
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: #fff;
 }
 
 .loading-box .loading {

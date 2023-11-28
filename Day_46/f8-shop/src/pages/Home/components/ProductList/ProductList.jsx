@@ -4,12 +4,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { getProducts } from "../../../../redux/middlewares/productMiddlewares";
 import { Link } from "react-router-dom";
 import { cartSlice } from "../../../../redux/slice/cartSlice";
+import Loading from "../../../../components/Loading/Loading";
 
 const { add } = cartSlice.actions;
 
 function ProductList() {
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList.productList);
+  const status = useSelector((state) => state.productList.status);
   const page = useSelector((state) => state.paginate.currentPage);
   useEffect(() => {
     dispatch(getProducts(page));
@@ -53,6 +55,7 @@ function ProductList() {
           );
         })}
       </ul>
+      {status === "pending" ? <Loading isLoading={true} /> : ""}
     </div>
   );
 }
