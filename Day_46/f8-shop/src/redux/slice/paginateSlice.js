@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  currentPage: 1,
+  currentPage: localStorage.getItem("page") ? +localStorage.getItem("page") : 1,
 };
 
 export const paginateSlice = createSlice({
@@ -9,6 +9,7 @@ export const paginateSlice = createSlice({
   initialState,
   reducers: {
     change: (state, action) => {
+      localStorage.setItem("page", action.payload);
       state.currentPage = action.payload;
     },
   },

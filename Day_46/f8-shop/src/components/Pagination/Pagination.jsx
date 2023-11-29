@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 export default function PaginatedItems({ itemsPerPage }) {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
+  const page = useSelector((state) => state.paginate.currentPage);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,6 +41,7 @@ export default function PaginatedItems({ itemsPerPage }) {
         containerClassName="pagination"
         activeClassName="active"
         renderOnZeroPageCount={null}
+        forcePage={+page - 1}
       />
     </>
   );

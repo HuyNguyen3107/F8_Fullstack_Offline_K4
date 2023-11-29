@@ -17,6 +17,7 @@ function ProductList() {
     dispatch(getProducts(page));
   }, []);
   useEffect(() => {
+    console.log(page);
     dispatch(getProducts(page));
   }, [page]);
   const handleAddCart = (id) => {
@@ -27,6 +28,7 @@ function ProductList() {
   };
   return (
     <div className="product-list">
+      {console.log(productList)}
       <h2>PRODUCT LIST</h2>
       <ul>
         {productList.map((product, index) => {
