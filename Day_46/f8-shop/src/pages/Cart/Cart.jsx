@@ -4,11 +4,13 @@ import NoCart from "./component/NoCart";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { cartSlice } from "../../redux/slice/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const { decrement, add, remove, checkout } = cartSlice.actions;
 
 function Cart() {
   const cart = useSelector((state) => state.cart.cart);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const inputRef = useRef();
   return (
@@ -24,7 +26,13 @@ function Cart() {
                 <div className="cart-product" key={index + 1}>
                   <div className="cart-product-info">
                     <div className="cart-product-img">
-                      <img src={item.image} alt="" />
+                      <img
+                        src={item.image}
+                        alt=""
+                        onClick={() => {
+                          navigate(`/details/${item._id}`);
+                        }}
+                      />
                     </div>
                     <div>
                       <div>
@@ -89,7 +97,7 @@ function Cart() {
             }, 0)}
           </span>
           <div>
-            <Link to={"/"}>
+            <Link to={"/product/1"}>
               <button className="btn-home-page">Go Home</button>
             </Link>
             <button
