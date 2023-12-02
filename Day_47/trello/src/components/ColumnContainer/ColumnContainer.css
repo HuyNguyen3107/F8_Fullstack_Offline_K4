@@ -1,0 +1,13 @@
+.column-shadow {
+  height: 520px;
+  width: 352px;
+  background-color: #fff;
+  border-radius: 10px;
+  opacity: 0.5;
+}
+
+.title-change {
+  background-color: #ccc;
+  font-size: 22px;
+  border: none;
+}

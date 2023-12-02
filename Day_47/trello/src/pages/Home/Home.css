@@ -1,0 +1,133 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trello .row,
+.trello {
+  display: flex;
+  column-gap: 10px;
+}
+.trello {
+  overflow-x: auto;
+}
+
+.btn-add-column,
+.btn-add-task {
+  border: none;
+  height: 60px;
+  width: 350px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  column-gap: 10px;
+  padding: 0px 30px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #334155;
+  transition: transform 0.1s ease;
+  cursor: pointer;
+}
+
+.btn-add-column:hover {
+  transform: scale(0.9);
+}
+.btn-add-task {
+  background-color: #fff;
+  border-radius: 0;
+  border-radius: 0 0 10px 10px;
+}
+
+.btn-add-task:hover {
+  background-color: aliceblue;
+  color: lightskyblue;
+}
+.column {
+  /* width: 352px; */
+  /* width: 400px; */
+  width: 350px;
+}
+
+.column-header {
+  background-color: #ccc;
+  display: flex;
+  padding: 18px 20px;
+  border-radius: 10px 10px 0 0;
+  justify-content: space-between;
+  font-size: 16px;
+  align-items: center;
+  cursor: grab;
+}
+
+.column-header > div:nth-of-type(1) {
+  display: flex;
+  justify-content: left;
+  column-gap: 10px;
+  align-items: center;
+}
+
+.column-header > div:nth-of-type(1) span {
+  background-color: #fff;
+  padding: 2px;
+  border-radius: 40%;
+  font-weight: 900;
+}
+.column-title {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.column-header > div:nth-of-type(2) i {
+  padding: 5px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.column-header > div:nth-of-type(2):hover i {
+  background-color: #fff;
+}
+
+.column-main {
+  height: 400px;
+  background-color: #fff;
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  row-gap: 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.column-main::-webkit-scrollbar {
+  width: 10px;
+}
+
+.column-main::-webkit-scrollbar-track {
+  background-color: #e4e4e4;
+  border-radius: 100px;
+}
+
+.column-main::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background-image: linear-gradient(180deg, #d0368a 0%, #708ad4 99%);
+  box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
+}
+
+.trello::-webkit-scrollbar {
+  width: 10px;
+}
+
+.trello::-webkit-scrollbar-track {
+  background-color: #e4e4e4;
+  border-radius: 100px;
+}
+
+.trello::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background-image: linear-gradient(180deg, #d0368a 0%, #708ad4 99%);
+  box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
+}
