@@ -98,23 +98,30 @@ export const trelloSlice = createSlice({
     });
     builder.addCase(getTask.fulfilled, (state, action) => {
       state.status = "fulfilled";
-      console.log(action.payload);
-      state.columns = action.payload.columns.map((column) => {
-        return {
-          id: column.column,
-          title: column.columnName,
-        };
-      });
-      state.tasks = action.payload.tasks.map((task) => {
-        return {
-          id: task._id,
-          columnId: task.column,
-          content: task.content,
-        };
-      });
+      if (+action.payload.code === +200) {
+        state.columns = action.payload.data.columns.map((column) => {
+          return {
+            id: column.column,
+            title: column.columnName,
+          };
+        });
+        state.tasks = action.payload.data.tasks.map((task) => {
+          return {
+            id: task._id,
+            columnId: task.column,
+            content: task.content,
+          };
+        });
+      }
+      if (+action.payload.code === 401) {
+        localStorage.clear();
+        location.reload();
+      }
     });
     builder.addCase(getTask.rejected, (state) => {
       state.status = "rejected";
+      localStorage.clear();
+      location.reload();
     });
 
     builder.addCase(postTasks.pending, (state) => {
@@ -122,10 +129,17 @@ export const trelloSlice = createSlice({
     });
     builder.addCase(postTasks.fulfilled, (state, action) => {
       state.status = "fulfilled-post";
-      state.toggle = false;
+      if (action.payload) {
+        state.toggle = false;
+      } else {
+        localStorage.clear();
+        location.reload();
+      }
     });
     builder.addCase(postTasks.rejected, (state) => {
       state.status = "rejected-post";
+      localStorage.clear();
+      location.reload();
     });
   },
 });

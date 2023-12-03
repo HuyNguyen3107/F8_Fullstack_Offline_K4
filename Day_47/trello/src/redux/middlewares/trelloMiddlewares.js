@@ -8,11 +8,10 @@ export const getApiKey = createAsyncThunk("getApiKey", async (email) => {
 
 export const getTask = createAsyncThunk("getTask", async () => {
   const response = await client.get(`/tasks`);
-  return response.data.data;
+  return response.data;
 });
 
 export const postTasks = createAsyncThunk("postTasks", async (body) => {
-  console.log("ok");
   const response = await client.post(`/tasks`, body);
   return response.response.ok;
 });
