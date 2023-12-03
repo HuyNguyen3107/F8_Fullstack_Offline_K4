@@ -66,7 +66,7 @@ export const trelloSlice = createSlice({
     },
     updateTask: (state, action) => {
       const newTasks = state.tasks.map((task) => {
-        if (+task.id !== +action.payload.taskId) {
+        if (task.id + "" !== action.payload.taskId + "") {
           return task;
         }
         return { ...task, content: action.payload.newContent };
