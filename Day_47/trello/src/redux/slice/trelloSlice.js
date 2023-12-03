@@ -13,6 +13,7 @@ const initialState = {
     ? localStorage.getItem("apiKey")
     : null,
   status: "idle",
+  toggle: false,
 };
 
 export const trelloSlice = createSlice({
@@ -36,6 +37,7 @@ export const trelloSlice = createSlice({
         (task) => task.columnId !== action.payload
       );
       state.tasks = newTasks;
+      state.toggle = true;
     },
     updateCol: (state, action) => {
       const newColumns = state.columns.map((col) => {
@@ -55,10 +57,12 @@ export const trelloSlice = createSlice({
         content: `Task ${state.tasks.length}`,
       };
       state.tasks = [...state.tasks, newTask];
+      state.toggle = true;
     },
     deleteTask: (state, action) => {
       const newTasks = state.tasks.filter((task) => task.id !== action.payload);
       state.tasks = newTasks;
+      state.toggle = true;
     },
     updateTask: (state, action) => {
       const newTasks = state.tasks.map((task) => {
@@ -68,22 +72,11 @@ export const trelloSlice = createSlice({
         return { ...task, content: action.payload.newContent };
       });
       state.tasks = newTasks;
+      state.toggle = true;
     },
     changeTask: (state, action) => {
       state.tasks = [...action.payload];
     },
-    // postData: (state, action) => {
-    //   const data = state.tasks.map((task) => {
-    //     return {
-    //       content: task.content,
-    //       columnName: state.columns.find(
-    //         (column) => column.id === task.columnId
-    //       ).title,
-    //       column: task.columnId,
-    //     };
-    //   });
-    //   postTasks(data);
-    // },
   },
   extraReducers: (builder) => {
     builder.addCase(getApiKey.pending, (state) => {
@@ -128,8 +121,8 @@ export const trelloSlice = createSlice({
       state.status = "pending-post";
     });
     builder.addCase(postTasks.fulfilled, (state, action) => {
-      console.log("ok");
       state.status = "fulfilled-post";
+      state.toggle = false;
     });
     builder.addCase(postTasks.rejected, (state) => {
       state.status = "rejected-post";

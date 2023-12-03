@@ -27,6 +27,7 @@ function Home() {
   const dispatch = useDispatch();
   const status = useSelector((state) => state.trello.status);
   const columns = useSelector((state) => state.trello.columns);
+  const toggle = useSelector((state) => state.trello.toggle);
   const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
   const [activeCol, setActiveCol] = useState(null);
   const [activeTask, setActiveTask] = useState(null);
@@ -50,6 +51,23 @@ function Home() {
     }, 50);
   };
 
+  useEffect(() => {
+    if (toggle) {
+      dispatch(
+        postTasks(
+          tasks.map((task) => {
+            return {
+              content: task.content,
+              columnName: columns.find((column) => column.id === task.columnId)
+                .title,
+              column: task.columnId,
+            };
+          })
+        )
+      );
+    }
+  }, [toggle]);
+
   const handleAddColumn = () => {
     dispatch(addCol());
   };
@@ -65,6 +83,18 @@ function Home() {
     }
   };
   const onDragEnd = (e) => {
+    dispatch(
+      postTasks(
+        tasks.map((task) => {
+          return {
+            content: task.content,
+            columnName: columns.find((column) => column.id === task.columnId)
+              .title,
+            column: task.columnId,
+          };
+        })
+      )
+    );
     setActiveCol(null);
     setActiveTask(null);
     const { active, over } = e;
@@ -79,7 +109,6 @@ function Home() {
   };
 
   const onDragOver = (e) => {
-    console.log("ok");
     const { active, over } = e;
     if (!over) return;
     const activeId = active.id;
@@ -109,33 +138,6 @@ function Home() {
       } else {
         arrSorted = arrayMove(tasks, activeIndex, overIndex);
       }
-      // debounce(() => {
-      //   dispatch(
-      //     postTasks(
-      //       tasks.map((task) => {
-      //         return {
-      //           content: task.content,
-      //           columnName: columns.find(
-      //             (column) => column.id === task.columnId
-      //           ).title,
-      //           column: task.columnId,
-      //         };
-      //       })
-      //     )
-      //   );
-      // }, timerId);
-      // dispatch(
-      //   postTasks(
-      //     tasks.map((task) => {
-      //       return {
-      //         content: task.content,
-      //         columnName: columns.find((column) => column.id === task.columnId)
-      //           .title,
-      //         column: task.columnId,
-      //       };
-      //     })
-      //   )
-      // );
       debounce(() => {
         dispatch(changeTask(arrSorted));
       }, timerId);
@@ -210,6 +212,11 @@ function Home() {
         )}
       </DndContext>
       {status === "pending" ? <Loading isLoading={true} /> : ""}
+      {status === "pending-post" ? (
+        <span className="server">Đang đồng bộ dữ liệu với server.....</span>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

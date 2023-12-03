@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../TaskCard/TaskCard.css";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
@@ -9,10 +9,10 @@ const { deleteTask, updateTask } = trelloSlice.actions;
 function TaskCard({ task }) {
   const dispatch = useDispatch();
   const [editMode, setEditMode] = useState(false);
+
   const toggleEditMode = () => {
     setEditMode(!editMode);
   };
-
   const {
     setNodeRef,
     attributes,
