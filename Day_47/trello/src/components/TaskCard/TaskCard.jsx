@@ -9,6 +9,11 @@ const { deleteTask, updateTask } = trelloSlice.actions;
 function TaskCard({ task }) {
   const dispatch = useDispatch();
   const [editMode, setEditMode] = useState(false);
+  const [title, setTitle] = useState("");
+
+  const handleChange = (value) => {
+    setTitle(value);
+  };
 
   const toggleEditMode = () => {
     setEditMode(!editMode);
@@ -56,19 +61,31 @@ function TaskCard({ task }) {
           defaultValue={task.content}
           autoFocus
           placeholder="Task content here"
-          onBlur={toggleEditMode}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && e.shiftKey) {
-              toggleEditMode();
-            }
-          }}
-          onChange={(e) => {
+          onBlur={() => {
+            toggleEditMode();
             dispatch(
               updateTask({
                 taskId: task.id,
-                newContent: e.target.value,
+                newContent: title,
               })
             );
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && e.shiftKey) {
+              toggleEditMode();
+              dispatch(
+                updateTask({
+                  taskId: task.id,
+                  newContent: title,
+                })
+              );
+            }
+          }}
+          onChange={(e) => {
+            handleChange(e.target.value);
+          }}
+          onFocus={(e) => {
+            setTitle(e.target.value);
           }}
         ></textarea>
       </div>

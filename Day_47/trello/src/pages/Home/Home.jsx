@@ -40,6 +40,11 @@ function Home() {
     })
   );
 
+  window.addEventListener("beforeunload", () => {
+    localStorage.setItem("columns", JSON.stringify(columns));
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  });
+
   let timerId;
   const debounce = (callback, timerId) => {
     if (timerId) {

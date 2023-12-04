@@ -11,6 +11,11 @@ function ColumnContainer({ column, tasks }) {
   const dispatch = useDispatch();
   const deleteColRef = useRef();
   const [editMode, setEditMode] = useState(false);
+  const [title, setTitle] = useState("");
+
+  const handleChange = (value) => {
+    setTitle(value);
+  };
 
   const tasksIds = useMemo(() => {
     return tasks.map((task) => task.id);
@@ -59,20 +64,30 @@ function ColumnContainer({ column, tasks }) {
                 className="title-change"
                 defaultValue={column.title}
                 onChange={(e) => {
-                  dispatch(
-                    updateCol({
-                      id: column.id,
-                      title: e.target.value,
-                    })
-                  );
+                  handleChange(e.target.value);
                 }}
                 autoFocus
                 onBlur={() => {
                   setEditMode(false);
+                  dispatch(
+                    updateCol({
+                      id: column.id,
+                      title: title,
+                    })
+                  );
                 }}
                 onKeyDown={(e) => {
                   if (e.key !== "Enter") return;
                   setEditMode(false);
+                  dispatch(
+                    updateCol({
+                      id: column.id,
+                      title: title,
+                    })
+                  );
+                }}
+                onFocus={(e) => {
+                  setTitle(e.target.value);
                 }}
               />
             )}

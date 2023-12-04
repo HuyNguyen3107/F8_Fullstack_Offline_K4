@@ -26,6 +26,7 @@ export const trelloSlice = createSlice({
         title: `Column ${state.columns.length + 1}`,
       };
       state.columns = [...state.columns, newColumn];
+      state.toggle = true;
     },
     deleteCol: (state, action) => {
       const filterColumns = state.columns.filter(
@@ -46,6 +47,7 @@ export const trelloSlice = createSlice({
         return { ...col, title };
       });
       state.columns = newColumns;
+      state.toggle = true;
     },
     changeCol: (state, action) => {
       state.columns = action.payload;
@@ -131,6 +133,7 @@ export const trelloSlice = createSlice({
       state.status = "fulfilled-post";
       if (action.payload) {
         state.toggle = false;
+        notifySuccess("Cập nhật thành công gòi nghen");
       } else {
         localStorage.clear();
         location.reload();
