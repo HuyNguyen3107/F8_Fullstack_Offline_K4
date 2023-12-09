@@ -24,6 +24,7 @@
     "react-dom": "^18",
     "react-i18next": "^13.5.0",
     "react-redux": "^9.0.2",
+    "react-spinners-kit": "^1.9.1",
     "sass": "^1.69.5"
   },
   "devDependencies": {
