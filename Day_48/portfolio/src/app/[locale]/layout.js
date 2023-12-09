@@ -8,9 +8,9 @@ export const metadata = {
     "Hi.This is my portfolio and I hope you will find it interesting",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, params: { locale } }) {
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body>
         <Providers>{children}</Providers>
       </body>
