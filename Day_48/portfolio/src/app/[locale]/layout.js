@@ -1,5 +1,6 @@
 import "./globals.css";
 import "primeicons/primeicons.css";
+import Providers from "@/redux/Providers";
 
 export const metadata = {
   title: "Portfolio",
@@ -8,5 +9,11 @@ export const metadata = {
 };
 
 export default function HomeLayout({ children }) {
-  return <>{children}</>;
+  return (
+    <html lang="en">
+      <body>
+        <Providers>{children}</Providers>
+      </body>
+    </html>
+  );
 }
