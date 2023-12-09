@@ -14,8 +14,8 @@ const { light, dark } = themeSlice.actions;
 import i18n from "i18next";
 import { useTranslation, initReactI18next } from "react-i18next";
 
-import viMsg from "../../../public/assets/messages/vi.json";
-import enMsg from "../../../public/assets/messages/en.json";
+import viMsg from "../../../messages/vi.json";
+import enMsg from "../../../messages/en.json";
 
 import { usePathname, useRouter } from "next/navigation";
 
