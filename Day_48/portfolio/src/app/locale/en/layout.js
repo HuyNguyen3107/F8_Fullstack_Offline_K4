@@ -1,4 +1,4 @@
-import "../[locale]/globals.css";
+import "../globals.css";
 import "primeicons/primeicons.css";
 import Providers from "@/redux/Providers";
 
@@ -8,10 +8,12 @@ export const metadata = {
     "Hi.This is my portfolio and I hope you will find it interesting",
 };
 
-export default function PageLayout({ children, params: { locale } }) {
+export default function RootLayout({ children, params: { locale } }) {
   return (
-    <>
-      <Providers>{children}</Providers>
-    </>
+    <html lang={locale}>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
+    </html>
   );
 }

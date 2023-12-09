@@ -72,10 +72,10 @@ function Header() {
     if (themeLocale === "dark") {
       dispatch(light());
     }
-    if (pathname === "/en") {
+    if (pathname === "/locale/en") {
       i18n.changeLanguage("en");
     }
-    if (pathname === "/vi") {
+    if (pathname === "/locale/vi") {
       i18n.changeLanguage("vi");
     }
   }, []);
@@ -95,15 +95,15 @@ function Header() {
   }, [theme]);
 
   const handleLang = () => {
-    if (pathname === "/en") {
+    if (pathname === "/locale/en") {
       i18n.changeLanguage("vi");
       localStorage.setItem("lang", "vi");
-      router.push("vi");
+      router.push("/locale/vi");
     }
-    if (pathname === "/vi") {
+    if (pathname === "/locale/vi") {
       i18n.changeLanguage("en");
       localStorage.setItem("lang", "en");
-      router.push("en");
+      router.push("/locale/en");
     }
   };
 
@@ -112,7 +112,7 @@ function Header() {
       <div className="header-content">
         <nav className="navigation">
           <Link
-            href={"/en"}
+            href={"/"}
             onClick={() => {
               i18n.changeLanguage("en");
             }}
@@ -161,8 +161,15 @@ function Header() {
               ></i>
             )}
           </div>
-          <Button size="md" color="success" onClick={handleLang}>
-            {pathname.slice(1) === "vi" ? "en" : "vi"}
+          <Button
+            size="md"
+            color="success"
+            onClick={(e) => {
+              e.preventDefault();
+              handleLang();
+            }}
+          >
+            {pathname.slice(8) === "vi" ? "en" : "vi"}
           </Button>
         </div>
       </div>
