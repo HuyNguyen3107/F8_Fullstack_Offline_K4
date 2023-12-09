@@ -8,7 +8,7 @@ export const metadata = {
     "Hi.This is my portfolio and I hope you will find it interesting",
 };
 
-export default function HomeLayout({ children }) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
