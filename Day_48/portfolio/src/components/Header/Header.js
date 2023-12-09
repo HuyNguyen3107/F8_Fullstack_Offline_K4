@@ -43,7 +43,7 @@ function Header() {
   const { t } = useTranslation();
   const router = useRouter();
   const pathname = usePathname();
-  console.log(pathname);
+
   const handleTheme = () => {
     if (theme === "light") {
       dispatch(dark());
