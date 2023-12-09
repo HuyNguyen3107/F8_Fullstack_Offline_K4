@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import myAvatar from "../../../public/assets/images/myAvatar.jpg";
@@ -28,7 +28,7 @@ i18n.use(initReactI18next).init({
       translation: enMsg,
     },
   },
-  lng: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en",
+  lng: "en",
   fallbackLng: "en",
   interpolation: {
     escapeValue: false,
@@ -51,7 +51,26 @@ function Header() {
       dispatch(light());
     }
   };
-  useEffect(() => {
+
+  useLayoutEffect(() => {
+    const themeLocale = localStorage.getItem("theme")
+      ? localStorage.getItem("theme")
+      : "light";
+    const langLocale = localStorage.getItem("lang")
+      ? localStorage.getItem("lang")
+      : "en";
+    if (langLocale === "vi") {
+      i18n.changeLanguage("vi");
+    }
+    if (langLocale === "en") {
+      i18n.changeLanguage("en");
+    }
+    if (themeLocale === "light") {
+      dispatch(dark());
+    }
+    if (themeLocale === "dark") {
+      dispatch(light());
+    }
     if (pathname === "/en") {
       i18n.changeLanguage("en");
     }
