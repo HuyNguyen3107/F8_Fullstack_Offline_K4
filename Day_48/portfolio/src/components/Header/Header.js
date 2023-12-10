@@ -72,10 +72,10 @@ function Header() {
     if (themeLocale === "dark") {
       dispatch(light());
     }
-    if (pathname === "/locale/en") {
+    if (pathname === "/en") {
       i18n.changeLanguage("en");
     }
-    if (pathname === "/locale/vi") {
+    if (pathname === "/vi") {
       i18n.changeLanguage("vi");
     }
   }, []);
@@ -95,15 +95,15 @@ function Header() {
   }, [theme]);
 
   const handleLang = () => {
-    if (pathname === "/locale/en") {
+    if (pathname === "/en") {
       i18n.changeLanguage("vi");
       localStorage.setItem("lang", "vi");
-      router.push("/locale/vi");
+      router.push("/vi", undefined, { shallow: true });
     }
-    if (pathname === "/locale/vi") {
+    if (pathname === "/vi") {
       i18n.changeLanguage("en");
       localStorage.setItem("lang", "en");
-      router.push("/locale/en");
+      router.push("/en", undefined, { shallow: true });
     }
   };
 
@@ -169,7 +169,7 @@ function Header() {
               handleLang();
             }}
           >
-            {pathname.slice(8) === "vi" ? "en" : "vi"}
+            {pathname.slice(1) === "vi" ? "en" : "vi"}
           </Button>
         </div>
       </div>

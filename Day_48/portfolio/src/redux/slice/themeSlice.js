@@ -1,9 +1,7 @@
-"use client";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   theme: "light",
-  isLoading: true,
 };
 
 export const themeSlice = createSlice({
@@ -17,9 +15,6 @@ export const themeSlice = createSlice({
     dark: (state, action) => {
       state.theme = "dark";
       localStorage.setItem("theme", state.theme);
-    },
-    setLoading: (state, action) => {
-      state.isLoading = false;
     },
   },
 });
