@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 
 export const middleware = (request) => {
   const pathname = request.nextUrl.pathname;
-  if (pathname === "/") {
-    const url = `${request.nextUrl.origin}/en`;
+  if (pathname !== "/") {
+    const url = `${request.nextUrl.origin}/`;
     return NextResponse.redirect(url);
   }
 };

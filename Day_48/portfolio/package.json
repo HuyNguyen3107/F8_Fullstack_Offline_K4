@@ -12,6 +12,7 @@
     "@nextui-org/react": "^2.2.9",
     "@reduxjs/toolkit": "^2.0.1",
     "clsx": "^2.0.0",
+    "cookies-next": "^4.1.0",
     "framer-motion": "^10.16.14",
     "i18n": "^0.15.1",
     "i18next": "^23.7.8",

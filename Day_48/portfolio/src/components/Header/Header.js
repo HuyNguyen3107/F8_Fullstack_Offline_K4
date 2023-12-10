@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import myAvatar from "../../../public/assets/images/myAvatar.jpg";
@@ -41,8 +41,8 @@ function Header() {
   const headerRef = useRef();
 
   const { t } = useTranslation();
-  const router = useRouter();
-  const pathname = usePathname();
+
+  const [language, setLanguage] = useState("vi");
 
   const handleTheme = () => {
     if (theme === "light") {
@@ -72,12 +72,12 @@ function Header() {
     if (themeLocale === "dark") {
       dispatch(light());
     }
-    if (pathname === "/en") {
-      i18n.changeLanguage("en");
-    }
-    if (pathname === "/vi") {
-      i18n.changeLanguage("vi");
-    }
+    // if (pathname === "/en") {
+    //   i18n.changeLanguage("en");
+    // }
+    // if (pathname === "/vi") {
+    //   i18n.changeLanguage("vi");
+    // }
   }, []);
   useEffect(() => {
     if (theme === "light") {
@@ -94,16 +94,20 @@ function Header() {
     }
   }, [theme]);
 
-  const handleLang = () => {
-    if (pathname === "/en") {
+  const handleLang = (value) => {
+    if (value === "vi") {
       i18n.changeLanguage("vi");
       localStorage.setItem("lang", "vi");
-      router.push("/vi", undefined, { shallow: true });
+      // router.push("/vi", undefined, { shallow: true });
+      // setCookie("lang", "vi");
+      setLanguage("en");
     }
-    if (pathname === "/vi") {
+    if (value === "en") {
       i18n.changeLanguage("en");
       localStorage.setItem("lang", "en");
-      router.push("/en", undefined, { shallow: true });
+      // router.push("/en", undefined, { shallow: true });
+      // setCookie("lang", "en");
+      setLanguage("vi");
     }
   };
 
@@ -166,10 +170,10 @@ function Header() {
             color="success"
             onClick={(e) => {
               e.preventDefault();
-              handleLang();
+              handleLang(e.target.innerText);
             }}
           >
-            {pathname.slice(1) === "vi" ? "en" : "vi"}
+            {language}
           </Button>
         </div>
       </div>

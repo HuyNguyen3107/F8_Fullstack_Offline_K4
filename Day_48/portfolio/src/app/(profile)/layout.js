@@ -1,4 +1,4 @@
-import "../globals.css";
+import "./globals.css";
 import "primeicons/primeicons.css";
 import Providers from "@/redux/Providers";
 

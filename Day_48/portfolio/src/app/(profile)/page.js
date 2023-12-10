@@ -2,7 +2,7 @@ import React from "react";
 import Header from "@/components/Header/Header";
 import Portfolio from "@/components/Portfolio/Portfolio";
 
-function EnPage() {
+function ProfilePage() {
   return (
     <>
       <Header />
@@ -13,4 +13,4 @@ function EnPage() {
   );
 }
 
-export default EnPage;
+export default ProfilePage;
